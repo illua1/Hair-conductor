@@ -13,7 +13,7 @@ The main function - makes hair styling according to your corridor geometry.
 ## No holes or tears.
 ## The whole number of rings.
 ## Only a polygon has a group of vertices - the base.
-## The material for this pipe is assigned to the landfill.
+## The material for this pipe is assigned to the base.
 ## The aspect ratios of the base and scale affect the layout and amount of hair.
 ## Separate pipes must not be connected.
 ## Modifiers are not taken into account.
