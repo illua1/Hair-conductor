@@ -34,7 +34,7 @@ The main function - makes hair styling according to your corridor geometry.
 *Modifiers are not taken into account.
 *The object should not be rotated, scaled, have a parent.
 
-(https://cdn.discordapp.com/attachments/340195875399663617/731649425130127420/1.png "One hair element cutaway")
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/731649425130127420/1.png "One hair element cutaway")
 
 
 # Supported features:
@@ -65,12 +65,12 @@ The main function - makes hair styling according to your corridor geometry.
 
 # I want it:
 *Get the folder.
-**Open blender
-***User settings
-****Addons
-*****Open
-******Folder
-*******HairAddonTest.py
-********Activate.
+*Open blender
+*User settings
+*Addons
+*Open
+*Folder
+*HairAddonTest.py
+*Activate.
 ____
  *The addon is still at an early stage of development. I'm not a mater of Python. The code has 2 clockless cycles, object-oriented programming is ignored, all the features of the language and bpy are not used, there is a lot of garbage text, there is no translation.
