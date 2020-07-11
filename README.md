@@ -59,9 +59,9 @@ The main function - makes hair styling according to your corridor geometry.
 *Skeleton generation (and harness) - not yet started.
 
 # Testing:
-![Alt-текст](https://cdn.discordapp.com/attachments/474472368706945024/731236109610385549/2020-07-10_22-46-10_convert-video-online.com.mp4)
-![Alt-текст](https://cdn.discordapp.com/attachments/324814768152248323/731557262295957534/2020-07-11_20-03-58.mp4)
-![Alt-текст](https://cdn.discordapp.com/attachments/324814768152248323/731642313515991110/2020-07-12_01-44-22.mp4)
+[![Тут текст](https://cdn.discordapp.com/attachments/340195875399663617/731656260935614525/unknown.png)](https://cdn.discordapp.com/attachments/474472368706945024/731236109610385549/2020-07-10_22-46-10_convert-video-online.com.mp4)
+[![Тут текст](https://cdn.discordapp.com/attachments/340195875399663617/731656260935614525/unknown.png)](https://cdn.discordapp.com/attachments/324814768152248323/731557262295957534/2020-07-11_20-03-58.mp4)
+[![Тут текст](https://cdn.discordapp.com/attachments/340195875399663617/731656260935614525/unknown.png)](https://cdn.discordapp.com/attachments/324814768152248323/731642313515991110/2020-07-12_01-44-22.mp4)
 
 # I want it:
 *Get the folder.
