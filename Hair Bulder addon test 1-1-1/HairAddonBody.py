@@ -298,7 +298,7 @@ def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGr
     bpy.ops.object.mode_set(mode='EDIT')
     bpy.ops.object.mode_set(mode=mod)
 
-def CurvePose(map, obj, lines, vertMap, uvSize, HairLenRange, UvRange, noiseGroup, mod) :
+def CurvePose(map, obj, lines, vertMap, uvSize, HairLenRange, UvRange, noiseGroup, Smooth,mod) :
     a = [];
     for v in vertMap :
         vert = mathutils.Vector((1.0, 2.0, 3.0))
@@ -307,7 +307,7 @@ def CurvePose(map, obj, lines, vertMap, uvSize, HairLenRange, UvRange, noiseGrou
         
         oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], uvs[0:2]);
         
-        SetHairVertexCord(vert, oldLine, v[3], uvs[2]);
+        SetHairVertexCord(vert, oldLine, v[3], uvs[2],Smooth);
         
         #VertexNoise(vert, v, ecletSetings);
         

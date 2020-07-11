@@ -102,7 +102,7 @@ def genGeomerti(self, context, maps, Hairs, aDe, count,ditale,size,SizeUv,RangeU
         vertexMap = HairAddonBody.GenerateHairCurveMap(vert, maps, aDe, [count, ditale], mod)
         c = [];
         for a in vertexMap :
-            c = HairAddonBody.CurvePose(maps, vert, aDe, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], mod );
+            c = HairAddonBody.CurvePose(maps, vert, aDe, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth,mod );
             HairAddonBody.makeSpline(vert.data, "BEZIER", c , size)
     return vert;
 
