@@ -67,4 +67,35 @@ def MainButtonSeparateRight(row, self) :
         self.MainButtonSeparateRight = 0;
         return 1;
 
+  
+def DomenButtonBuild(row, self) :
+    row.prop(self, "DomenButtonBuild",icon="IMPORT")
+    if self.DomenButtonBuild == 1 :
+        #self.DomenButtonBuild = 0;
+        return 1;
+
+def DomenButtonBuildLeft(row, self) :
+    row.prop(self, "DomenButtonBuildLeft",icon="TRIA_LEFT")
+    if self.DomenButtonBuildLeft == 1 :
+        self.DomenButtonBuildLeft = 0;
+        return 1;
+
+def DomenButtonBuildRight(row, self) :
+    row.prop(self, "DomenButtonBuildRight",icon="TRIA_RIGHT")
+    if self.DomenButtonBuildRight == 1 :
+        self.DomenButtonBuildRight = 0;
+        return 1;
+
+
+
+def DomenButtonViews(row, self) :
+    g = self.DomenButtonViews
     
+    if self.DomenButtonViews == 1 :
+        row.prop(self, "DomenButtonViews",icon="HIDE_ON")
+    
+    else :
+        row.prop(self, "DomenButtonViews",icon="HIDE_ON")
+    
+    if not g == self.DomenButtonViews :
+        return 1;

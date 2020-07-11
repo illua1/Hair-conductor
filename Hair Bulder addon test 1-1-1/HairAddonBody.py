@@ -43,11 +43,40 @@ def allSelect(poly, i) :
         for e in i :
             if p.index == e :
                 p.select = 1; 
+def noCopiList(l) :
+    a = [];
+    for line in l :
+        yes = 1;
+        for e in a :
+            if line[3] == e :
+                yes = 0;
+        if yes :
+            a.append(line[3])
+    return a;
+
+def SeparateLineToMaterial(lines, indexe) :
+    a = []
+    for e in indexe :
+        a.append([]);
+    for line in lines :
+        a[ indexInArr(line[3],indexe) ].append(line);
+    return a;
+
+def indexInArr(e, list) :
+    g = 0;
+    for i in range(len(list)) :
+        if list[i] == e :
+            g = i
+    return g;
+    
 
 def GetObjectPart(poly, mod) :
     Group = [];
     worckPart = [];
+    print("-Separate object to hair elements");
+    n = 0;
     while 1 :
+        n += 1;
         bpy.ops.object.mode_set(mode='EDIT')
         bpy.ops.mesh.select_all(action='DESELECT')
         bpy.ops.object.mode_set(mode=mod)
@@ -68,6 +97,7 @@ def GetObjectPart(poly, mod) :
         worckPart = GetAllActive(poly);
         if len(worckPart) == 0 :
             break;
+        print("-Separate object to hair elements ",n);
     return Group;
 
 def conectedVertexe(obj, l, v) :
@@ -168,10 +198,12 @@ def GetLine(obj, poly, id, mod) :
             line = GetAllActive(obj.data.vertices);
             line = sortLineToEdgs(obj, f, line);
             a.append(line);
-            
-    prop = GetPolyProp(obj.data, floor );
+    #inf(obj.data.materials[ obj.data.polygons[floorPoly].material_index ])
+    materials = bpy.data.materials[ obj.data.materials[ obj.data.polygons[floorPoly].material_index ].name ].name
+    #inf(materials)
+    prop = GetPolyProp(obj.data, floor);
     
-    return [a,p,prop];
+    return [a,floorPoly,prop, materials];
 
 def GetIdOnDistList(d, o) :
     v = o[:];
@@ -188,21 +220,58 @@ def GetIdOnDistList(d, o) :
     x = ( d - g[c-1] ) / ( g[c] - g[c-1] )
     return [c-1, c, x];
 
-def SetHairVertexCord(vertex, oldLine, dol, size) :
+def GetIdOnBezList(id, oldLine) :
+    bezId = [];
+    
+    dist = [];
+    g = 0;
+    
+    if id[2] < 0.5 :
+        d = id[0]
+        l = id[2]+0.5
+        
+    else :
+        d = id[1]
+        l = id[2]-0.5
+    
+    if d == 0 :
+        elem = [d,d,d+1];
+    else :
+        if d == len(oldLine)-1 :
+            elem = [d-1,d,d];
+        else :
+            elem = [d-1,d,d+1];
+    
+    l1 = lerp(oldLine[elem[0]], oldLine[elem[1]], 0.5)
+    l2 = lerp(oldLine[elem[1]], oldLine[elem[2]], 0.5)
+    
+    p1 = lerp(l1, oldLine[elem[1]], l)
+    p2 = lerp(oldLine[elem[1]], l2, l)
+    
+    bezId = lerp(p1, p2, l);
+    
+    return bezId;
+
+def SetHairVertexCord(vertex, oldLine, dol, size, Smooth) :
     d = dol * oldLine[1][1] * size;
     id = GetIdOnDistList(d, oldLine[1][2]);
-    #print(d);
-    #print(id);
-    #print(oldLine[1][1]);
     
     if not id[1] < len(oldLine[0]) :
         id[1] -= 1;
+    #print("-", id)
+    #print("-", oldLine[0])
+    #print("-", len(oldLine[0]))
+    #print("-", len(oldLine[1]))
+    
+    bezId = GetIdOnBezList(id, oldLine[0])
+    
     cord = lerp( oldLine[0][id[0]], oldLine[0][id[1]], id[2] );
+    cord = lerp(cord, bezId, Smooth)
     vertex.x = cord[0];
     vertex.y = cord[1];
     vertex.z = cord[2];
 
-def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGroup, mod) :
+def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGroup, Smooth,mod) :
     for v in vertMap :
         vert = obj.data.vertices[v[0]].co
         
@@ -211,12 +280,12 @@ def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGr
         if len(noiseGroup) == 0:
             oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], uvs[0:2]);
             #VertexNoise(vert, vert, v, [ defoalt[1], defoalt[2], defoalt[3] ] );
-            SetHairVertexCord(vert, oldLine, v[3], uvs[2]);
+            SetHairVertexCord(vert, oldLine, v[3], uvs[2], Smooth);
         for noise in noiseGroup :
             
             oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], uvs[0:2]);
             
-            SetHairVertexCord(vert, oldLine, v[3], uvs[2]);
+            SetHairVertexCord(vert, oldLine, v[3], uvs[2], Smooth);
             
             if noise[0] == "noise" :
                 if noise[4] == "xyz" :
@@ -242,7 +311,7 @@ def CurvePose(map, obj, lines, vertMap, uvSize, HairLenRange, UvRange, noiseGrou
         
         #VertexNoise(vert, v, ecletSetings);
         
-        a.append((vert.x, vert.y, vert.z, 1,v[3]))
+        a.append((vert.x, vert.y, vert.z, 1,v[3], v[4]))
     
     return a;
  
@@ -307,7 +376,7 @@ def GenerateHairVertex(HairObject, GetLineObject, Line, HairProp, mod) :
 def GenerateHairCurveMap(HairObject, GetLineObject, Line, HairProp, mod) :
     d = []
     for HairGroup in range(len(Line)) :
-        
+        materialIndex = HairObject.data.materials.find( Line[HairGroup][3] )
         count = int(HairProp[0] * Line[HairGroup][2][1])
         for IdEveryHair in range(count) :
             a = [];
@@ -315,7 +384,11 @@ def GenerateHairCurveMap(HairObject, GetLineObject, Line, HairProp, mod) :
             for IdVertexOfHair in range(HairProp[1]) :
                 
                 id =+ 1;
-                a.append([ id, HairGroup, [IdEveryHair,(count)], IdVertexOfHair/(HairProp[1]-1) ]);
+                #inf(HairObject.data.materials[ Line[HairGroup][3] ])
+                #inf(HairObject.data.materials.keys)
+                #materialIndex = HairObject.data.materials.find( Line[HairGroup][3] )
+                
+                a.append([ id, HairGroup, [IdEveryHair,(count)], IdVertexOfHair/(HairProp[1]-1), materialIndex ]);
                 
             d.append(a)
     
@@ -369,6 +442,8 @@ def makeSpline(cu, typ, points, size):
             bez.co.z = pt[2]
             bez.radius = (1-pt[4])*size
             #print(bez.radius)
+        spline.material_index = pt[5]
+        #inf(spline)
             
             #bez.weight_softbody = 1;
     else:
@@ -379,9 +454,12 @@ def makeSpline(cu, typ, points, size):
     return
 
 def HairLines(input_object, intutStart_name, mod) :
+    bpy.ops.wm.console_toggle()
     print("-Start generate hair");
     
-    floorGroupIndex = input_object.vertex_groups[intutStart_name].index;
+    #floorGroupIndex = input_object.vertex_groups[intutStart_name].index;
+    floorGroupIndex = intutStart_name
+    
     
     VertexLine = [];
     bpy.ops.object.select_all(action='DESELECT')
@@ -392,7 +470,7 @@ def HairLines(input_object, intutStart_name, mod) :
     for part in range(len(ObjectPart)) :
         print("Solving object part", str(part/len(ObjectPart)));
         VertexLine.append( GetLine(input_object, ObjectPart[part], floorGroupIndex, mod) );
-    
+    bpy.ops.wm.console_toggle()
     return VertexLine;
 
 

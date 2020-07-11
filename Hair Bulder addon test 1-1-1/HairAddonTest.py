@@ -13,7 +13,7 @@ import Buttons
 import math
 
 def AddHairPreset(h) :
-    return h.append( [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ], 1,0.,0.01 ] );
+    return h.append( [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ], 1,1.,0.01 ] );
 def DelHairPreset(h, id) :
     if id < len(h):
         del h[id];
@@ -72,6 +72,89 @@ def ReSetControlNoise(self) :
         self.NoiseCollectionType =    self.Presets[n][4][b][0]
         self.NoiseCollectionCoord =   self.Presets[n][4][b][4]
         self.NoiseActive =            self.Presets[n][4][b][5]
+#HairAddonBody.inf(bpy.data.materials)
+def genGeomerti(self, context, maps, Hairs, aDe, count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types,matrialType,Smooth,mod) :
+    if types == "vertex":
+        me = bpy.data.meshes.new(maps.name+" Hair")
+    else :
+        me = bpy.data.curves.new("HairCurve", "CURVE")
+        me.dimensions = '3D'
+        me.resolution_u = 1;
+        me.bevel_depth = 0.01;
+        me.bevel_resolution = 0;
+        if not matrialType == -1 :
+            me.materials.append(bpy.data.materials[ matrialType ] )
+        else :
+            for ide in self.uslesMaterial :
+                me.materials.append(bpy.data.materials[ ide ])
+    
+    vert = bpy.data.objects.new(maps.name+" Hair", me) 
+    vert.location = maps.location
+    context.collection.objects.link(vert)
+    
+    
+    if types == "vertex":
+        vertexMap = HairAddonBody.GenerateHairVertexMap(vert, maps, aDe, [count, ditale], mod)
+        
+        HairAddonBody.VertexSetPose(maps, vert, aDe, vertexMap, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth,mod );
+        
+    else :
+        vertexMap = HairAddonBody.GenerateHairCurveMap(vert, maps, aDe, [count, ditale], mod)
+        c = [];
+        for a in vertexMap :
+            c = HairAddonBody.CurvePose(maps, vert, aDe, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], mod );
+            HairAddonBody.makeSpline(vert.data, "BEZIER", c , size)
+    return vert;
+
+def gen(self, context, scene, maps, mod) : 
+    for Hairs in range(len(self.Presets)) :
+        sel = [];
+        if Hairs == self.MainButtonNumber-1 :
+            types = self.MainCollectionTypeHair
+            #self.MainCollectionSeparate
+            Smooth = self.Smooth 
+            count = self.Count
+            ditale = self.Ditale
+            RangeUv = self.NoiseUv
+            SizeUv  = self.SizeUv
+            LenghtMax = self.LenghtMax
+            LenghtMin = self.LenghtMin
+            LenghtPow = self.LenghtPow
+            use = self.MainActive
+            size = self.HairRadius
+            Separate = self.MainCollectionSeparate
+        else :
+            types =     self.Presets[Hairs][0][0]
+            count =     self.Presets[Hairs][1][0]
+            ditale =    self.Presets[Hairs][1][1]
+            RangeUv =   self.Presets[Hairs][2][0]
+            SizeUv  =   self.Presets[Hairs][2][1]
+            LenghtMax = self.Presets[Hairs][3][0]
+            LenghtMin = self.Presets[Hairs][3][1]
+            LenghtPow = self.Presets[Hairs][3][2]
+            use =       self.Presets[Hairs][5]
+            size =      self.Presets[Hairs][7]
+            Separate =  self.Presets[Hairs][0][1]
+            Smooth =    self.Presets[Hairs][6]
+        #print(Separate)
+        sel = [];
+        
+        if use :
+            if Separate == -1 :
+                a = self.lines
+                sel = [genGeomerti(self, context, maps, Hairs, a, count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, -1, Smooth, mod)]
+            else : 
+                LinesByMatreial = HairAddonBody.SeparateLineToMaterial(self.lines, self.uslesMaterial);
+            if Separate == 0 :
+                for a in range(len(LinesByMatreial)) :
+                    sel.append( genGeomerti(self, context, maps, Hairs, LinesByMatreial[a], count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, mod) )
+            if Separate > 0 :
+                a = LinesByMatreial[Separate-1]
+                sel = [genGeomerti(self, context, maps, Hairs, a, count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[Separate-1], Smooth, mod)]
+        
+        self.selectObject.append(sel);
+            
+
 
 class HairMainOperator(bpy.types.Operator): 
     bl_label = "Generate Hair by object"
@@ -113,6 +196,13 @@ class HairMainOperator(bpy.types.Operator):
     NoiseButtonSetTop: bpy.props.BoolProperty(name="")
     NoiseButtonSetDown: bpy.props.BoolProperty(name="")
     
+    DomenButtonViews: bpy.props.BoolProperty(name="")
+    DomenButtonBuild: bpy.props.BoolProperty(name="")
+    DomenButtonBuildLeft: bpy.props.BoolProperty(name="")
+    DomenButtonBuildRight: bpy.props.BoolProperty(name="")
+    DomenButtonBuildNumber: bpy.props.IntProperty(name="Fractal", default=0, min=0, max=1000)
+    
+    
     string = bpy.props.StringProperty(name="curve")
     
     
@@ -125,85 +215,44 @@ class HairMainOperator(bpy.types.Operator):
     
     
     
+    Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1, 1.,0.01 ] ];
     
-    Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1, 0.,0.01 ] ];
-    
+    uslesMaterial = [];
+    #MainCollectionSeparate = [];
     lines = [];
     vertexMap = [];
+    selectObject = [];
     
     def execute(self, context):
         scene = context.scene
         maps = context.active_object
         mod = bpy.context.mode;
-        floor = "f";
-        selectObject = [];
+        self.selectObject = [];
+          
+        if self.DomenButtonBuild :
+            if (len(self.lines) == 0) :
+                self.lines = HairAddonBody.HairLines(maps, self.DomenButtonBuildNumber, mod);
+                self.uslesMaterial = HairAddonBody.noCopiList(self.lines)
+            
+            gen(self, context, scene, maps, mod)
+            
+            #print(self.selectObject)
+            for sec in range(len(self.selectObject)) :
+                for sel in self.selectObject[sec] :
+                    if sec == self.MainButtonNumber-1 :
+                        sel.select_set(True)
+                    else :
+                        sel.select_set(False)
+            
+            if not self.DomenButtonViews :
+                maps.display_type = 'WIRE'
+                bpy.context.space_data.shading.type = 'MATERIAL'
+                bpy.context.space_data.overlay.show_overlays = False
+            else :
+                bpy.context.space_data.overlay.show_overlays = True
+                bpy.context.space_data.shading.type = 'SOLID'
+            
         
-        if 1 :
-            if len(self.lines) == 0 :
-                self.lines = HairAddonBody.HairLines(maps, "f", mod);
-            
-            
-            for Hairs in range(len(self.Presets)) :
-                if Hairs == self.MainButtonNumber-1 :
-                    types = self.MainCollectionTypeHair
-                    #self.MainCollectionSeparate
-                    #self.Smooth
-                    count = self.Count
-                    ditale = self.Ditale
-                    RangeUv = self.NoiseUv
-                    SizeUv  = self.SizeUv
-                    LenghtMax = self.LenghtMax
-                    LenghtMin = self.LenghtMin
-                    LenghtPow = self.LenghtPow
-                    use = self.MainActive
-                    size = self.HairRadius
-                else :
-                    types = self.Presets[Hairs][0][0]
-                    count = self.Presets[Hairs][1][0]
-                    ditale = self.Presets[Hairs][1][1]
-                    RangeUv = self.Presets[Hairs][2][0]
-                    SizeUv  = self.Presets[Hairs][2][1]
-                    LenghtMax = self.Presets[Hairs][3][0]
-                    LenghtMin = self.Presets[Hairs][3][1]
-                    LenghtPow = self.Presets[Hairs][3][2]
-                    use = self.Presets[Hairs][5]
-                    size = self.Presets[Hairs][7]
-                    
-                if use :
-                    if types == "vertex":
-                        me = bpy.data.meshes.new(maps.name+" Hair")
-                    else :
-                        me = bpy.data.curves.new("HairCurve", "CURVE")
-                        me.dimensions = '3D'
-                        me.resolution_u = 1;
-                        me.bevel_depth = 0.01;
-                        me.bevel_resolution = 0;
-
-                        
-                    vert = bpy.data.objects.new(maps.name+" Hair", me) 
-                    vert.location = maps.location
-                    context.collection.objects.link(vert)
-                    
-                    selectObject.append(vert)
-                    
-                    if types == "vertex":
-                        self.vertexMap = HairAddonBody.GenerateHairVertexMap(vert, maps, self.lines, [count, ditale], mod)
-                        
-                        HairAddonBody.VertexSetPose(maps, vert, self.lines, self.vertexMap, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], mod );
-                        
-                    else :
-                        self.vertexMap =  HairAddonBody.GenerateHairCurveMap(vert, maps, self.lines, [count, ditale], mod)
-                        c = [];
-                        for a in self.vertexMap :
-                            c = HairAddonBody.CurvePose(maps, vert, self.lines, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], mod );
-                            HairAddonBody.makeSpline(vert.data, "BEZIER", c , size)
-                    
-            for sel in range(len(selectObject)) :
-                if sel == self.MainButtonNumber-1 :
-                    selectObject[sel].select_set(True)
-                else :
-                    selectObject[sel].select_set(False)
-                #HairAddonBody.CurveSetPose(maps, vert, self.lines, self.vertexMap, self.SizeUv, [self.LenghtMin, self.LenghtMax, self.LenghtPow ], self.NoiseUv, [self.NoiseHight, self.NoisePower,self.HoiseSize], mod );
         return {'FINISHED'}
     
     def draw(self, context):
@@ -211,192 +260,219 @@ class HairMainOperator(bpy.types.Operator):
         layout = self.layout
         row = layout.row()
         
-        row.label(text="Hair collection: ")
-        row = (layout.box()).row()
+        maps = context.active_object
+        mod = bpy.context.mode;
         
-        row = row.split(factor=0.1, align=True)
-        if Buttons.MainButtonAdd(row, self) :
-            self.MainButtonCount += 1;
-            self.MainButtonNumber += 1;
-            AddHairPreset(self.Presets);
-            ReSetControlPresets(self);
-        
-        row = row.split(factor=0.1, align=True)
-        if Buttons.MainButtonDel(row, self) :
-            if self.MainButtonCount > 1 :
-                DelHairPreset(self.Presets, self.MainButtonNumber-1);
-                self.MainButtonCount -= 1;
-                self.MainButtonNumber -= 1;
-                ReSetControlPresets(self);
-        
-        row.label(text = "Delet thes or add new (count "+str(self.MainButtonCount)+")" )
-        
-        if self.MainButtonCount > 1:
+        if len(self.lines) == 0 :
+            le = len(maps.vertex_groups)
             row = (layout.box()).row()
             row = row.split(factor=0.1, align=True)
-            if Buttons.MainButtonLeft(row, self) :
-                self.MainButtonNumber -= 1;
+            if Buttons.DomenButtonBuildLeft(row, self) :
+                    self.DomenButtonBuildNumber -= 1;
+            row = row.split(factor=0.1, align=True)
+            if Buttons.DomenButtonBuildRight(row, self) :
+                if le-1 > self.DomenButtonBuildNumber :
+                    self.DomenButtonBuildNumber += 1;
+            row = row.split(factor=0.8, align=True)
+            row.label(text="Hair base group "+maps.vertex_groups[self.DomenButtonBuildNumber].name)
+            row = row.split(factor=1, align=True)
+            Buttons.DomenButtonBuild(row,self)
+            
+        else :
+            
+            row.prop(self, "DomenButtonViews",text="View domain ");
+            #row.label(text="View domain ")
+            
+            row = layout.row()
+            
+            row.label(text="Hair collection: ")
+            row = (layout.box()).row()
+            
+            row = row.split(factor=0.1, align=True)
+            if Buttons.MainButtonAdd(row, self) :
+                self.MainButtonCount += 1;
+                self.MainButtonNumber += 1;
+                AddHairPreset(self.Presets);
                 ReSetControlPresets(self);
             
             row = row.split(factor=0.1, align=True)
-            if Buttons.MainButtonRight(row, self) :
-                if self.MainButtonNumber < self.MainButtonCount :
-                    self.MainButtonNumber += 1;
+            if Buttons.MainButtonDel(row, self) :
+                if self.MainButtonCount > 1 :
+                    DelHairPreset(self.Presets, self.MainButtonNumber-1);
+                    self.MainButtonCount -= 1;
+                    self.MainButtonNumber -= 1;
                     ReSetControlPresets(self);
             
-            row.label(text = "Hair preset number "+str(self.MainButtonNumber)+".")
-            row = layout.row()
-        #print(self.MainButtonNumber - 1,self.NoiseButtonNumber - 1);
-        row = layout.row()
-        row.label(text="This collection hair main setings: ")
+            row.label(text = "Delet thes or add new (count "+str(self.MainButtonCount)+")" )
         
-        row = layout.row()
-        row.prop(self, "MainCollectionTypeHair");
-        self.Presets[self.MainButtonNumber-1][0][0] = self.MainCollectionTypeHair;
-        row = layout.row()
-        if "curves" == self.MainCollectionTypeHair :
-            row.prop(self, "HairRadius");
-            self.Presets[self.MainButtonNumber-1][7] = self.HairRadius;
-            row = layout.row()
-        
-        e = context.active_object.material_slots
-        row = (layout.box()).row()
-        row = row.split(factor=0.1, align=True)
-        if Buttons.MainButtonSeparateLeft(row, self) :
-            self.MainCollectionSeparate -= 1;
-        row = row.split(factor=0.1, align=True)
-        if Buttons.MainButtonSeparateRight(row, self) :
-            if len(e) > self.MainCollectionSeparate : 
-                self.MainCollectionSeparate += 1;
-        self.Presets[self.MainButtonNumber-1][0][1] = self.MainCollectionSeparate;
-        if self.MainCollectionSeparate == -1 :
-            row.label(text = "No Separate Object")
-        if self.MainCollectionSeparate == -0 :
-            row.label(text = "Separate All Material")
-        if self.MainCollectionSeparate > 0 :
-            if len(e) > self.MainCollectionSeparate-1 : 
-                row.label(text = "Only "+e[self.MainCollectionSeparate-1].name)
-        
-        row = (layout.box()).row()
-        row = row.split(factor=0.5, align=True)
-        row.prop(self, "Count")
-        self.Presets[self.MainButtonNumber-1][1][0] = self.Count;
-        row.prop(self, "Ditale")
-        self.Presets[self.MainButtonNumber-1][1][1] = self.Ditale;
-        
-        row = layout.row()
-        row.prop(self, "Smooth", text="Use")
-        self.Presets[self.MainButtonNumber-1][6] = self.Smooth;
-        
-        row = layout.row()
-        row.prop(self, "MainActive", text="Use")
-        self.Presets[self.MainButtonNumber-1][5] = self.MainActive;
-        
-        row = layout.row()
-        row = (layout.box()).row()
-        row = row.split(factor=0.5, align=True)
-        row.prop(self, "NoiseUv")
-        self.Presets[self.MainButtonNumber-1][2][0] = self.NoiseUv;
-        row.prop(self, "SizeUv", translate=True)
-        self.Presets[self.MainButtonNumber-1][2][1] = self.SizeUv;
-        
-        row = layout.row()
-        row = (layout.box()).row()
-        row = row.split(factor=0.333, align=True)
-        row.prop(self, "LenghtMax")
-        self.Presets[self.MainButtonNumber-1][3][0] = self.LenghtMax;
-        row.prop(self, "LenghtMin")
-        self.Presets[self.MainButtonNumber-1][3][1] = self.LenghtMin;
-        row.prop(self, "LenghtPow")
-        self.Presets[self.MainButtonNumber-1][3][2] = self.LenghtPow;
-        
-        row = layout.row()
-        
-        row.label(text="Hair noise collection: ")
-        row = (layout.box()).row()
-        
-        row = row.split(factor=0.1, align=True)
-        if Buttons.NoiseButtonAdd(row, self) :
-            AddDeformPreset(self.Presets[self.MainButtonNumber-1]);
-            ReSetControlNoise(self);
-            self.NoiseButtonNumber = self.NoiseButtonCount;
-        
-        row = row.split(factor=0.1, align=True)
-        if Buttons.NoiseButtonDel(row, self) :
-            if self.NoiseButtonCount > 0 :
-                self.NoiseButtonNumber -= 1;
-                DelDeformPreset(self.Presets[self.MainButtonNumber-1], self.NoiseButtonNumber-1);
+            if self.MainButtonCount > 1:
+                row = (layout.box()).row()
+                row = row.split(factor=0.1, align=True)
+                if Buttons.MainButtonLeft(row, self) :
+                    self.MainButtonNumber -= 1;
+                    ReSetControlPresets(self);
                 
-                ReSetControlNoise(self);
-        
-        row.label(text = "Delet thes or add new (count "+str(self.NoiseButtonCount)+") ")
-        
-        if (self.NoiseButtonCount > 1):
+                row = row.split(factor=0.1, align=True)
+                if Buttons.MainButtonRight(row, self) :
+                    if self.MainButtonNumber < self.MainButtonCount :
+                        self.MainButtonNumber += 1;
+                        ReSetControlPresets(self);
+                
+                row.label(text = "Hair preset number "+str(self.MainButtonNumber)+".")
+                row = layout.row()
+            #print(self.MainButtonNumber - 1,self.NoiseButtonNumber - 1);
+            row = layout.row()
+            row.label(text="This collection hair main setings: ")
+            
+            row = layout.row()
+            row.prop(self, "MainCollectionTypeHair");
+            self.Presets[self.MainButtonNumber-1][0][0] = self.MainCollectionTypeHair;
+            row = layout.row()
+            if "curves" == self.MainCollectionTypeHair :
+                row.prop(self, "HairRadius");
+                self.Presets[self.MainButtonNumber-1][7] = self.HairRadius;
+                row = layout.row()
+            
+            e = maps.material_slots
             row = (layout.box()).row()
             row = row.split(factor=0.1, align=True)
-            
-            if Buttons.NoiseButtonTop(row, self) :
-                if self.NoiseButtonNumber > 1 :
-                    self.NoiseButtonNumber -= 1;
-                    ReSetControlNoise(self);
+            if Buttons.MainButtonSeparateLeft(row, self) :
+                self.MainCollectionSeparate -= 1;
             row = row.split(factor=0.1, align=True)
-            if Buttons.NoiseButtonDown(row, self) :
-                if self.NoiseButtonNumber < self.NoiseButtonCount :
-                    self.NoiseButtonNumber += 1;
+            if Buttons.MainButtonSeparateRight(row, self) :
+                if len(self.uslesMaterial) > self.MainCollectionSeparate : 
+                    self.MainCollectionSeparate += 1;
+            self.Presets[self.MainButtonNumber-1][0][1] = self.MainCollectionSeparate;
+            if self.MainCollectionSeparate == -1 :
+                row.label(text = "No Separate Object")
+            if self.MainCollectionSeparate == 0 :
+                row.label(text = "Separate All Material")
+            if self.MainCollectionSeparate > 0 :
+                if len(e) > self.MainCollectionSeparate-1 : 
+                    row.label(text = "Only "+self.uslesMaterial[self.MainCollectionSeparate-1])
+            
+            row = (layout.box()).row()
+            row = row.split(factor=0.5, align=True)
+            row.prop(self, "Count")
+            self.Presets[self.MainButtonNumber-1][1][0] = self.Count;
+            row.prop(self, "Ditale")
+            self.Presets[self.MainButtonNumber-1][1][1] = self.Ditale;
+            
+            row = layout.row()
+            row.prop(self, "Smooth", text="Use")
+            self.Presets[self.MainButtonNumber-1][6] = self.Smooth;
+            
+            row = layout.row()
+            row.prop(self, "MainActive", text="Use")
+            self.Presets[self.MainButtonNumber-1][5] = self.MainActive;
+            
+            row = layout.row()
+            row = (layout.box()).row()
+            row = row.split(factor=0.5, align=True)
+            row.prop(self, "NoiseUv")
+            self.Presets[self.MainButtonNumber-1][2][0] = self.NoiseUv;
+            row.prop(self, "SizeUv", translate=True)
+            self.Presets[self.MainButtonNumber-1][2][1] = self.SizeUv;
+            
+            row = layout.row()
+            row = (layout.box()).row()
+            row = row.split(factor=0.333, align=True)
+            row.prop(self, "LenghtMax")
+            self.Presets[self.MainButtonNumber-1][3][0] = self.LenghtMax;
+            row.prop(self, "LenghtMin")
+            self.Presets[self.MainButtonNumber-1][3][1] = self.LenghtMin;
+            row.prop(self, "LenghtPow")
+            self.Presets[self.MainButtonNumber-1][3][2] = self.LenghtPow;
+            
+            row = layout.row()
+            
+            row.label(text="Hair noise collection: ")
+            row = (layout.box()).row()
+            
+            row = row.split(factor=0.1, align=True)
+            if Buttons.NoiseButtonAdd(row, self) :
+                AddDeformPreset(self.Presets[self.MainButtonNumber-1]);
+                ReSetControlNoise(self);
+                self.NoiseButtonNumber = self.NoiseButtonCount;
+            
+            row = row.split(factor=0.1, align=True)
+            if Buttons.NoiseButtonDel(row, self) :
+                if self.NoiseButtonCount > 0 :
+                    self.NoiseButtonNumber -= 1;
+                    DelDeformPreset(self.Presets[self.MainButtonNumber-1], self.NoiseButtonNumber-1);
+                    
                     ReSetControlNoise(self);
-            row = row.split(factor=0.6, align=True)
-            row.label(text = "Number "+str(self.NoiseButtonNumber))
-            
-            row = row.split(factor=0.3, align=True)
-            if Buttons.NoiseButtonSetTop(row, self) :
-                self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, -1)
-                ReSetControlNoise(self)
-            row = row.split(factor=0.4, align=True)
-            if Buttons.NoiseButtonSetDown(row, self) :
-                self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, 1)
-                ReSetControlNoise(self)
-            
-        if (self.NoiseButtonCount > 0) :
-            for i in range(self.NoiseButtonNumber-1) :
+        
+            row.label(text = "Delet thes or add new (count "+str(self.NoiseButtonCount)+") ")
+        
+            if (self.NoiseButtonCount > 1):
                 row = (layout.box()).row()
-                row.label(text = "Number "+str(i+1)+", Type "+ self.Presets[self.MainButtonNumber-1][4][i][0]+", Size "+str(math.floor( self.Presets[self.MainButtonNumber-1][4][i][1]*10)/10 ))
-            
-            row = layout.row()
-            row.label(text = "Number "+str(self.NoiseButtonNumber))
-            row = layout.row()
-            row = row.split(factor=0.5, align=True)
-            row.prop(self, "NoiseCollectionType")
-            row = layout.row()
-            row = row.split(factor=0.5, align=True)
-            row.prop(self, "NoiseCollectionCoord")
-            row = layout.row()
-            row = row.split(factor=0.5, align=True)
-            row.prop(self, "NoiseHight")
-            row = layout.row()
-            row = row.split(factor=0.5, align=True)
-            row.prop(self, "NoisePower")
-            row = layout.row()
-            row = row.split(factor=0.5, align=True)
-            row.prop(self, "HoiseSize")
-            row = layout.row()
-            row.prop(self, "NoiseActive", text="Use")
-            
-            
-            self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][5] = self.NoiseActive;
-            self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][4] = self.NoiseCollectionCoord;
-            self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][1] = self.NoiseHight;
-            self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][2] = self.NoisePower;
-            self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][3] = self.HoiseSize;
-            self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][0] = self.NoiseCollectionType;
-            
-            for i in range( len( self.Presets[self.MainButtonNumber-1][4] ) -self.NoiseButtonNumber) :
-                row = (layout.box()).row()
-                row.label(text = "Number "+str(i+self.NoiseButtonNumber+1)+", Type "+ self.Presets[self.MainButtonNumber-1][4][i+self.NoiseButtonNumber][0]+", Size "+str(math.floor( self.Presets[self.MainButtonNumber-1][4][i+self.NoiseButtonNumber][1]*10)/10))
+                row = row.split(factor=0.1, align=True)
+                
+                if Buttons.NoiseButtonTop(row, self) :
+                    if self.NoiseButtonNumber > 1 :
+                        self.NoiseButtonNumber -= 1;
+                        ReSetControlNoise(self);
+                row = row.split(factor=0.1, align=True)
+                if Buttons.NoiseButtonDown(row, self) :
+                    if self.NoiseButtonNumber < self.NoiseButtonCount :
+                        self.NoiseButtonNumber += 1;
+                        ReSetControlNoise(self);
+                row = row.split(factor=0.6, align=True)
+                row.label(text = "Number "+str(self.NoiseButtonNumber))
+                
+                row = row.split(factor=0.3, align=True)
+                if Buttons.NoiseButtonSetTop(row, self) :
+                    self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, -1)
+                    ReSetControlNoise(self)
+                row = row.split(factor=0.4, align=True)
+                if Buttons.NoiseButtonSetDown(row, self) :
+                    self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, 1)
+                    ReSetControlNoise(self)
+                
+            if (self.NoiseButtonCount > 0) :
+                for i in range(self.NoiseButtonNumber-1) :
+                    row = (layout.box()).row()
+                    row.label(text = "Number "+str(i+1)+", Type "+ self.Presets[self.MainButtonNumber-1][4][i][0]+", Size "+str(math.floor( self.Presets[self.MainButtonNumber-1][4][i][1]*10)/10 ))
+                
+                row = layout.row()
+                row.label(text = "Number "+str(self.NoiseButtonNumber))
+                row = layout.row()
+                row = row.split(factor=0.5, align=True)
+                row.prop(self, "NoiseCollectionType")
+                row = layout.row()
+                row = row.split(factor=0.5, align=True)
+                row.prop(self, "NoiseCollectionCoord")
+                row = layout.row()
+                row = row.split(factor=0.5, align=True)
+                row.prop(self, "NoiseHight")
+                row = layout.row()
+                row = row.split(factor=0.5, align=True)
+                row.prop(self, "NoisePower")
+                row = layout.row()
+                row = row.split(factor=0.5, align=True)
+                row.prop(self, "HoiseSize")
+                row = layout.row()
+                row.prop(self, "NoiseActive", text="Use")
+                
+                
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][5] = self.NoiseActive;
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][4] = self.NoiseCollectionCoord;
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][1] = self.NoiseHight;
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][2] = self.NoisePower;
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][3] = self.HoiseSize;
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][0] = self.NoiseCollectionType;
+                
+                for i in range( len( self.Presets[self.MainButtonNumber-1][4] ) -self.NoiseButtonNumber) :
+                    row = (layout.box()).row()
+                    row.label(text = "Number "+str(i+self.NoiseButtonNumber+1)+", Type "+ self.Presets[self.MainButtonNumber-1][4][i+self.NoiseButtonNumber][0]+", Size "+str(math.floor( self.Presets[self.MainButtonNumber-1][4][i+self.NoiseButtonNumber][1]*10)/10))
         
     def ttt(self) :
         print("test")
     def invoke(self, context, event):
-        self.Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,0.,0.01  ] ];
+        self.DomenButtonBuild = 0;
+        self.DomenButtonViews = 1;
+        self.Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,1.,0.01  ] ];
         self.MainButtonCount = 0;
         self.MainButtonNumber = 0;
         self.NoiseButtonCount = 0;
