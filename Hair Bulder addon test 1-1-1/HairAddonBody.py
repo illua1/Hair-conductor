@@ -54,6 +54,19 @@ def noCopiList(l) :
             a.append(line[3])
     return a;
 
+def GetMinDest(l) :
+    a = [];
+    
+    for i in range(4) :
+        a.append( [ l[0][i-1], l[1][i] ] )
+    f = 0;
+    id = 0;
+    for g in range(len(a)) :
+        if a[g][0] < f :
+            f == a[g][0]
+            id = g
+    return a[id];
+
 def SeparateLineToMaterial(lines, indexe) :
     a = []
     for e in indexe :
@@ -252,69 +265,168 @@ def GetIdOnBezList(id, oldLine) :
     
     return bezId;
 
-def SetHairVertexCord(vertex, oldLine, dol, size, Smooth) :
+def SetHairVertexCord(oldLine, dol, size, Smooth) :
+    vert = mathutils.Vector((1.0, 2.0, 3.0))
+    
     d = dol * oldLine[1][1] * size;
     id = GetIdOnDistList(d, oldLine[1][2]);
     
     if not id[1] < len(oldLine[0]) :
         id[1] -= 1;
-    #print("-", id)
-    #print("-", oldLine[0])
-    #print("-", len(oldLine[0]))
-    #print("-", len(oldLine[1]))
     
     bezId = GetIdOnBezList(id, oldLine[0])
     
     cord = lerp( oldLine[0][id[0]], oldLine[0][id[1]], id[2] );
     cord = lerp(cord, bezId, Smooth)
-    vertex.x = cord[0];
-    vertex.y = cord[1];
-    vertex.z = cord[2];
+    
+    vert.x = cord[0];
+    vert.y = cord[1];
+    vert.z = cord[2];
+    
+    return vert;
+    
+def VertexNoise(cord, inf, setings, p) :
+    vertex = mathutils.Vector((0, 0, 0))
+    if inf > setings[0] :
+        d = unlerp(setings[0], 1, inf)
+        d = math.pow(d, p)
+        s = lerp([0], [setings[1]], d)[0];
+        #print(1)
+        vertex = mathutils.noise.noise_vector(cord*20 * setings[2]) * s   ;
+    return vertex;
 
-def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGroup, Smooth,mod) :
+def rotateXY(pos, r) :#(gort, ruv[2], ruv[2], NoiseHight, NoisePower, NoiseGrowth);
+    a = [0,0]
+    a[0] = pos[0]*math.cos(r) + pos[1]*math.sin(r)
+    a[1] = pos[1]*math.cos(r) - pos[0]*math.sin(r)
+    return a;
+
+def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGroup, Smooth,TestingActive,mod, type) :
+    if type == "curve" :
+        a = [];
+    
     for v in vertMap :
-        vert = obj.data.vertices[v[0]].co
-        
+        if type == "curve" :
+            vert = mathutils.Vector((1.0, 2.0, 3.0))
+        else :
+            vert = obj.data.vertices[v[0]].co
         uvs = GetHairUvS( v[2], lines[ v[1] ][2], HairLenRange, uvSize, noise );
-        
+        if not v[4] == 0 :
+            ruv = [uvs[0], uvs[1], v[3], v[1]/v[4], uvs[2]]
+        else :
+            ruv = [uvs[0], uvs[1], v[3], 1, uvs[2]]
+        cord = mathutils.Vector((0, 0, 0))
         if len(noiseGroup) == 0:
-            oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], uvs[0:2]);
-            #VertexNoise(vert, vert, v, [ defoalt[1], defoalt[2], defoalt[3] ] );
-            SetHairVertexCord(vert, oldLine, v[3], uvs[2], Smooth);
-        for noise in noiseGroup :
-            
-            oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], uvs[0:2]);
-            
-            SetHairVertexCord(vert, oldLine, v[3], uvs[2], Smooth);
-            
-            if noise[0] == "noise" :
-                if noise[4] == "xyz" :
-                    VertexNoise(vert, vert, v, [ noise[1], noise[2], noise[3] ] );
-                if noise[4] == "id" :
-                    VertexNoise(vert, mathutils.Vector((v[3], v[2][0], v[1])), v, [ noise[1], noise[2], noise[3] ] );
+            oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], ruv[0:2]);
+            cord.xyz = SetHairVertexCord(oldLine, v[3], ruv[4], Smooth).xyz;
+        else :
+            oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], ruv[0:2]);
+            cord.xyz = SetHairVertexCord(oldLine, v[3], ruv[4], Smooth).xyz;
+        for ieni in range(len(noiseGroup)) :
+            noiseParametr = noiseGroup[ieni];
+            yes = 1;
+            if (TestingActive[0]==ieni)*TestingActive[1]  :
+                NoiseHight = TestingActive[2].NoiseHight
+                NoisePower = TestingActive[2].NoisePower
+                NoiseSize = TestingActive[2].NoiseSize
+                NoiseGrowth = TestingActive[2].NoiseGrowth
+                NoiseSpace = [TestingActive[2].NoiseSpace[0],TestingActive[2].NoiseSpace[1],TestingActive[2].NoiseSpace[2]]
+                NoiseCollectionType = TestingActive[2].NoiseCollectionType
+                NoiseActive = TestingActive[2].NoiseActive
+                yes = 0;
+            else :
+                NoiseHight = noiseParametr[1]
+                NoisePower = noiseParametr[2]
+                NoiseSize = noiseParametr[3]
+                NoiseGrowth = noiseParametr[6]
+                NoiseSpace = [noiseParametr[5][0],noiseParametr[5][1],noiseParametr[5][2]]
+                NoiseCollectionType = noiseParametr[0]
+                NoiseActive = noiseParametr[4]
+            if NoiseActive :
+                
+                if NoiseHight <= ruv[2] :
+                    
+                    oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], ruv[0:2]);
+                    newA = SetHairVertexCord(oldLine, v[3], ruv[4], Smooth).xyz;
+                    
+                    vv = unlerp(NoiseHight, 1, ruv[2])
+                    s = math.pow(vv, NoiseGrowth)*NoisePower
+                    gort = [ruv[0],ruv[1],ruv[2]][:]
+                    gortV = mathutils.Vector((gort[0],gort[1],gort[2]));
+                    
+                    if NoiseCollectionType == "noiseXYZ" :
+                        ds = mathutils.Vector(( cord.x,cord.y,cord.z)[:]);
+                        vector = VertexNoise(ds, ruv[2], [NoiseHight, NoisePower, NoiseSize], NoiseGrowth);
+                        gort[0] += vector.x
+                        gort[1] += vector.y
+                        gort[2] += vector.z
+                    if NoiseCollectionType == "noiseUV" :
+                        vector = VertexNoise(gortV, ruv[2], [NoiseHight, NoisePower, NoiseSize], NoiseGrowth);
+                        gort[0] += vector.x
+                        gort[1] += vector.y
+                        gort[2] += vector.z
+                    if NoiseCollectionType == "rotate" :
+                        r = math.pow(vv, NoiseGrowth)*NoiseSize
+                        gort[0] -= 0.5;
+                        gort[1] -= 0.5;
+                        gort = rotateXY(gort[0:2], ruv[2]*NoiseSize);
+                        gort[0] += 0.5;
+                        gort[1] += 0.5;
+                    if NoiseCollectionType == "size" :
+                        for i in [0,1] :
+                            gort[i] -= 0.5;
+                            gort[i] *= NoiseSpace[i]
+                            gort[i] += 0.5;
+                    if NoiseCollectionType == "round" :
+                        for g in [0,1] :
+                            gort[g] -= 0.5;
+                        angle = gort[0] / gort[1]
+                        angle = math.atan(angle);
+                        x = 0;
+                        if gort[1] < 0 :
+                            x == 1;
+                        angle += x;
+                        angle /= 1;
+                        angle += 0.5;
+                        angle *= 0.5;
+                        angle *= 1;#-----
+                        angle = fract(angle)
+                        angle -= 0.5;
+                        angle = abs(angle);
+                        angle *= 2;
+                        angle -= 1;
+                        angle = math.cos(angle);
+                        angle *= 0.44;
+                        angle += 0.5;
+                        angle = 1-angle;
+                        angle *= 1.9;
+                        angle += 1.0;
+                        
+                        for g in [0,1] :
+                            gort[g] *= angle;
+                            gort[g] += 0.5;
+                    if NoiseCollectionType == "voron" :
+                        ds = mathutils.Vector(( gort[0], gort[1], 0)[:])*NoiseSize;
+                        newe = GetMinDest( mathutils.noise.voronoi( ds ) )[1]/NoiseSize
+                        gort[0] = newe.x
+                        gort[1] = newe.y
+                        
+                    oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], gort);
+                    newB = SetHairVertexCord(oldLine, v[3], ruv[4], Smooth).xyz;
+                    cord += (newB-newA) * s
+                
+        vert.xyz = cord.xyz;
+        if type == "curve" :
+            a.append((vert.x, vert.y, vert.z, 1, v[3], v[4]))
+    if type == "curve" : 
+        return a;
+        
     
     bpy.ops.object.select_all(action='DESELECT')
     obj.select_set(True)
     bpy.ops.object.mode_set(mode='EDIT')
     bpy.ops.object.mode_set(mode=mod)
 
-def CurvePose(map, obj, lines, vertMap, uvSize, HairLenRange, UvRange, noiseGroup, Smooth,mod) :
-    a = [];
-    for v in vertMap :
-        vert = mathutils.Vector((1.0, 2.0, 3.0))
-        
-        uvs = GetHairUvS( v[2], lines[ v[1] ][2], HairLenRange, uvSize, UvRange );
-        
-        oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], uvs[0:2]);
-        
-        SetHairVertexCord(vert, oldLine, v[3], uvs[2],Smooth);
-        
-        #VertexNoise(vert, v, ecletSetings);
-        
-        a.append((vert.x, vert.y, vert.z, 1,v[3], v[4]))
-    
-    return a;
- 
 def GetLineVertexOfUv(lineObject, Lines, uv) :
     line = [];
     corLine = [];
@@ -338,18 +450,28 @@ def GetLineVertexOfUv(lineObject, Lines, uv) :
             e.append( d );
     return [corLine, [dist,d,e] ];
 
-def GenerateHairVertexMap(HairObject, GetLineObject, Line, HairProp, mod) :
+def GenerateHairVertexMap(HairObject, GetLineObject, Line, HairProp, DinamickDitale, HairLenRange, uvSize, noise, mod) :
     a = [];
     
     for HairGroup in range(len(Line)) :
         
         count = int(HairProp[0] * Line[HairGroup][2][1])
         for IdEveryHair in range(count) :
-            
-            for IdVertexOfHair in range(HairProp[1]) :
+            if DinamickDitale :
+                map = [ len(HairObject.data.vertices)-1, HairGroup, [1,1], 0, len(Line) ]
+                
+                uv = GetHairUvS( [IdEveryHair,count], Line[ HairGroup ][2], HairLenRange, uvSize, noise)#lines[ v[1] ][2], HairLenRange, uvSize, noise );
+                
+                lengehtLineHair = GetLineVertexOfUv(GetLineObject, Line[ HairGroup ][0], uv[0:2]);
+                lengehtHair= lengehtLineHair[1][1] * uv[2]
+                
+                couneVertex = int(HairProp[1] * lengehtHair);
+            else :
+                couneVertex = HairProp[1];
+            for IdVertexOfHair in range(couneVertex) :
                 
                 HairObject.data.vertices.add(1);
-                a.append([ len(HairObject.data.vertices)-1, HairGroup, [IdEveryHair,(count)], IdVertexOfHair/(HairProp[1]-1) ]);
+                a.append([ len(HairObject.data.vertices)-1, HairGroup, [IdEveryHair,(count)], IdVertexOfHair/(couneVertex-1), len(Line) ]);
                 
                 if not IdVertexOfHair == 0:
                     HairObject.data.edges.add(1);
@@ -373,7 +495,7 @@ def GenerateHairVertex(HairObject, GetLineObject, Line, HairProp, mod) :
                     HairObject.data.edges[len(HairObject.data.edges)-1].vertices = [len(HairObject.data.vertices)-1, len(HairObject.data.vertices)-2]
     
 
-def GenerateHairCurveMap(HairObject, GetLineObject, Line, HairProp, mod) :
+def GenerateHairCurveMap(HairObject, GetLineObject, Line, HairProp, DinamickDitale, HairLenRange, uvSize, noise, mod) :
     d = []
     for HairGroup in range(len(Line)) :
         materialIndex = HairObject.data.materials.find( Line[HairGroup][3] )
@@ -381,14 +503,17 @@ def GenerateHairCurveMap(HairObject, GetLineObject, Line, HairProp, mod) :
         for IdEveryHair in range(count) :
             a = [];
             id = 0;
-            for IdVertexOfHair in range(HairProp[1]) :
-                
+            if DinamickDitale :
+                map = [ id, HairGroup, [1,1], 0, len(Line) ]
+                uv = GetHairUvS( [IdEveryHair,count], Line[ HairGroup ][2], HairLenRange, uvSize, noise)#lines[ v[1] ][2], HairLenRange, uvSize, noise );
+                lengehtLineHair = GetLineVertexOfUv(GetLineObject, Line[ HairGroup ][0], uv[0:2]);
+                lengehtHair= lengehtLineHair[1][1] * uv[2]
+                couneVertex = int(HairProp[1] * lengehtHair);
+            else :
+                couneVertex = HairProp[1];
+            for IdVertexOfHair in range(couneVertex) :
                 id =+ 1;
-                #inf(HairObject.data.materials[ Line[HairGroup][3] ])
-                #inf(HairObject.data.materials.keys)
-                #materialIndex = HairObject.data.materials.find( Line[HairGroup][3] )
-                
-                a.append([ id, HairGroup, [IdEveryHair,(count)], IdVertexOfHair/(HairProp[1]-1), materialIndex ]);
+                a.append([ id, HairGroup, [IdEveryHair,(count)], IdVertexOfHair/(couneVertex-1), materialIndex ]);
                 
             d.append(a)
     
@@ -418,14 +543,6 @@ def GetHairUvS(idHair, prop, HairLenRange, uvSize, noise) :
     a[2] = lerp([HairLenRange[0]], [HairLenRange[1]], r )[0]
     return a;
 
-def VertexNoise(vertex, cord, inf, setings) :
-    
-    if inf[3] > setings[0] :
-        d = unlerp(setings[0], 1, inf[3])
-        s = lerp([0], [setings[1]], d)[0];
-        #print(1)
-        vertex += mathutils.noise.noise_vector(cord*20 * setings[2]) * s  ;
-    
 def makeSpline(cu, typ, points, size):
     spline = cu.splines.new(typ)
     npoints = len(points)

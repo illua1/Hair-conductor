@@ -13,14 +13,14 @@ import Buttons
 import math
 
 def AddHairPreset(h) :
-    return h.append( [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ], 1,1.,0.01 ] );
+    return h.append( [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ], 1,1.,0.01,1 ] );
 def DelHairPreset(h, id) :
     if id < len(h):
         del h[id];
     return h;
 
 def AddDeformPreset(h) :
-    return h[4].append(  ["default",0.7,0.1,0.1,"xyz",1]   );
+    return h[4].append(  ["noiseUV",0.7,0.1,0.1,1, [1.,1.,1.], 1.]   );
 def DelDeformPreset(h, id) :
     if id < len(h[4]):
         del h[4][id];
@@ -49,6 +49,7 @@ def ReSetControlPresets(self) :
     self.MainActive =             self.Presets[n][5];
     self.Smooth =                 self.Presets[n][6];
     self.HairRadius=              self.Presets[n][7];
+    self.DinamickDitale =         self.Presets[n][8];
     ReSetControlNoise(self);
 
 def ReSetControlNoise(self) :
@@ -68,12 +69,16 @@ def ReSetControlNoise(self) :
     if len(self.Presets[n][4]) > 0 :
         self.NoiseHight =             self.Presets[n][4][b][1]
         self.NoisePower =             self.Presets[n][4][b][2]
-        self.HoiseSize =              self.Presets[n][4][b][3]
+        self.NoiseSize =              self.Presets[n][4][b][3]
         self.NoiseCollectionType =    self.Presets[n][4][b][0]
-        self.NoiseCollectionCoord =   self.Presets[n][4][b][4]
-        self.NoiseActive =            self.Presets[n][4][b][5]
+        self.NoiseActive =            self.Presets[n][4][b][4]
+        
+        self.NoiseGrowth =         self.Presets[n][4][b][6]
+        for i in [0,1,2] :
+            self.NoiseSpace[i] =   self.Presets[n][4][b][5][i]
+    
 #HairAddonBody.inf(bpy.data.materials)
-def genGeomerti(self, context, maps, Hairs, aDe, count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types,matrialType,Smooth,mod) :
+def genGeomerti(self, context, maps, Hairs, aDe, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types,matrialType,Smooth,noiseYes,mod) :
     if types == "vertex":
         me = bpy.data.meshes.new(maps.name+" Hair")
     else :
@@ -94,21 +99,24 @@ def genGeomerti(self, context, maps, Hairs, aDe, count,ditale,size,SizeUv,RangeU
     
     
     if types == "vertex":
-        vertexMap = HairAddonBody.GenerateHairVertexMap(vert, maps, aDe, [count, ditale], mod)
+        vertexMap = HairAddonBody.GenerateHairVertexMap(vert, maps, aDe, [count, ditale], DinamickDitale, [LenghtMin, LenghtMax, LenghtPow ], SizeUv, RangeUv, mod)
         
-        HairAddonBody.VertexSetPose(maps, vert, aDe, vertexMap, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth,mod );
+        HairAddonBody.VertexSetPose(        maps, vert, aDe, vertexMap, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth, [self.NoiseButtonNumber-1,noiseYes, self], mod, "" );
         
     else :
-        vertexMap = HairAddonBody.GenerateHairCurveMap(vert, maps, aDe, [count, ditale], mod)
+        vertexMap = HairAddonBody.GenerateHairCurveMap(vert, maps, aDe, [count, ditale], DinamickDitale, [LenghtMin, LenghtMax, LenghtPow ], SizeUv, RangeUv, mod)
         c = [];
         for a in vertexMap :
-            c = HairAddonBody.CurvePose(maps, vert, aDe, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth,mod );
+            
+            c = HairAddonBody.VertexSetPose(maps, vert, aDe, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth, [self.NoiseButtonNumber-1,noiseYes, self], mod, "curve" );
+            #c =    HairAddonBody.CurvePose(maps, vert, aDe, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth,mod );
             HairAddonBody.makeSpline(vert.data, "BEZIER", c , size)
     return vert;
 
 def gen(self, context, scene, maps, mod) : 
     for Hairs in range(len(self.Presets)) :
         sel = [];
+        noiseYes = 0;
         if Hairs == self.MainButtonNumber-1 :
             types = self.MainCollectionTypeHair
             #self.MainCollectionSeparate
@@ -123,6 +131,18 @@ def gen(self, context, scene, maps, mod) :
             use = self.MainActive
             size = self.HairRadius
             Separate = self.MainCollectionSeparate
+            DinamickDitale = self.DinamickDitale
+            noiseYes = 1;
+            
+            if self.MainButtonSeparateRight == 1 :
+                if len(self.uslesMaterial) > self.MainCollectionSeparate : 
+                    Separate += 1;
+                    self.MainCollectionSeparate += 1;
+            if self.MainButtonSeparateLeft == 1 :
+                if not self.MainCollectionSeparate == -1 :
+                    Separate -= 1;
+                self.MainCollectionSeparate -= 1;
+            
         else :
             types =     self.Presets[Hairs][0][0]
             count =     self.Presets[Hairs][1][0]
@@ -136,21 +156,27 @@ def gen(self, context, scene, maps, mod) :
             size =      self.Presets[Hairs][7]
             Separate =  self.Presets[Hairs][0][1]
             Smooth =    self.Presets[Hairs][6]
+            DinamickDitale = self.Presets[Hairs][8]
         #print(Separate)
         sel = [];
+        
+        if self.UsFinishPreset :
+            count *= self.CountFinish
+            ditale *= self.DitaleFinish
+            self.UsFinishPreset = 0;
         
         if use :
             if Separate == -1 :
                 a = self.lines
-                sel = [genGeomerti(self, context, maps, Hairs, a, count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, -1, Smooth, mod)]
+                sel = [genGeomerti(self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, -1, Smooth, noiseYes, mod)]
             else : 
                 LinesByMatreial = HairAddonBody.SeparateLineToMaterial(self.lines, self.uslesMaterial);
             if Separate == 0 :
                 for a in range(len(LinesByMatreial)) :
-                    sel.append( genGeomerti(self, context, maps, Hairs, LinesByMatreial[a], count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, mod) )
+                    sel.append( genGeomerti(self, context, maps, Hairs, LinesByMatreial[a], count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, noiseYes, mod) )
             if Separate > 0 :
                 a = LinesByMatreial[Separate-1]
-                sel = [genGeomerti(self, context, maps, Hairs, a, count,ditale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[Separate-1], Smooth, mod)]
+                sel = [genGeomerti(self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[Separate-1], Smooth, noiseYes, mod)]
         
         self.selectObject.append(sel);
             
@@ -162,22 +188,34 @@ class HairMainOperator(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
     
     Count: bpy.props.IntProperty(name="Count", default=4, min=1, max=1000)
-    Ditale: bpy.props.IntProperty(name="Fractal", default=3, min=2, max=1000)
+    Ditale: bpy.props.IntProperty(name="Number of vertices", default=3, min=2, max=1000)
     MainActive: bpy.props.BoolProperty(name="")
-    Smooth: bpy.props.FloatProperty(name="Smooth", default=0, min=0, max=1)
+    Smooth: bpy.props.FloatProperty(name="Smooth", default=0, min=0, max=1, unit ='NONE', subtype ='FACTOR')
+    DinamickDitale: bpy.props.BoolProperty(name="Dynamic count of vertices")
+    
+    
+    CountHairPreviev: bpy.props.IntProperty(name="Count Hair Previev", default=0, min=0)
+    CountFinish: bpy.props.FloatProperty(name="Count Finish", default=1, min=0.001)
+    DitaleFinish: bpy.props.FloatProperty(name="Ditale Finish", default=1, min=0.001)
+    UsFinishPreset: bpy.props.BoolProperty(name="", description="Us finish preset, use all hair")
+    
+    ReSetPreset: bpy.props.BoolProperty(name="", default=1, description="If true, all setting on new operator is reset")
     
     HairRadius: bpy.props.FloatProperty(name="Hair size", default=0.01, min=0.0001, max=2)
-    NoiseUv: bpy.props.FloatProperty(name="Noise", default=1, min=0, max=1)
+    NoiseUv: bpy.props.FloatProperty(name="Noise", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
     SizeUv: bpy.props.FloatProperty(name="Hair uv size", default=1, min=0, max=2)
-    LenghtMax: bpy.props.FloatProperty(name="Max lenght", default=1, min=0, max=1)
-    LenghtMin: bpy.props.FloatProperty(name="Min lenght", default=1, min=0, max=1)
+    LenghtMax: bpy.props.FloatProperty(name="Max lenght", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
+    LenghtMin: bpy.props.FloatProperty(name="Min lenght", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
     LenghtPow: bpy.props.FloatProperty(name="Lenght range", default=1, min=0.001, max=2)
     
-    NoiseHight: bpy.props.FloatProperty(name="Noise hight", default=1, min=0.001, max=1)
-    NoisePower: bpy.props.FloatProperty(name="Noise power", default=0.2, min=0.001, max=1)
-    HoiseSize: bpy.props.FloatProperty(name="Hoise size", default=0.2, min=0.001, max=5)
-    NoiseCollectionType: bpy.props.EnumProperty( name="Type", items=( ('default', "Gradient", '1', '', 0), ('voron','Voronoise','1','', 1) ) )
-    NoiseCollectionCoord: bpy.props.EnumProperty( name="Coordinate", items=( ('xyz', "XYZ", '1', '', 0), ('id','CiHiVi','1','', 1) ) )
+    NoiseHight: bpy.props.FloatProperty(name="Noise hight", default=0.5, min=0, max=1, unit ='NONE', subtype ='FACTOR')
+    NoisePower: bpy.props.FloatProperty(name="Noise power", default=0.02)
+    
+    NoiseSize: bpy.props.FloatProperty(name="Noise size", default=0.02)
+    NoiseGrowth: bpy.props.FloatProperty(name="Noise growth", default=1, min=0.001, max=6)
+    
+    NoiseSpace: bpy.props.FloatVectorProperty(name="Noise space size", description="", default=(0.0, 0.0, 0.0), subtype='XYZ' )
+    NoiseCollectionType: bpy.props.EnumProperty( name="Type", description ="Type of deform", items=( ('noiseUV', "UV Noise", 'Gradient noise deform by hair data', 'MOD_NOISE', 0), ('noiseXYZ', "XYZ Noise", 'Gradient noise deform by hair cord', 'MOD_NOISE', 1), ('voron','Voronoise','1','IPO_ELASTIC', 2), ('round','Round','1','CURVE_NCIRCLE', 3), ('size','Resize','resize ','SORTSIZE', 5), ('rotate','Rotate','rotate ','MOD_SCREW', 6) ) )
     NoiseActive: bpy.props.BoolProperty(name="")
     
     MainButtonLeft: bpy.props.BoolProperty(name="")
@@ -206,7 +244,7 @@ class HairMainOperator(bpy.types.Operator):
     string = bpy.props.StringProperty(name="curve")
     
     
-    MainCollectionTypeHair: bpy.props.EnumProperty( name="Type", items=( ('vertex', "Object", '1', '', 0), ('curves','Curves','1','', 1) ) )
+    MainCollectionTypeHair: bpy.props.EnumProperty( name="Type", items=( ('vertex', "Object", '1', 'OUTLINER_DATA_HAIR', 0), ('curves','Curves','1','OUTLINER_OB_HAIR', 1) ) )
     #MainCollectionSeparate: bpy.props.EnumProperty( name="Separation", items=( ('not', "Do not separation", '1', '', 0), ('all','All materials','1','', 1), ('one','By ID','2','', 2) ) )
     
     MainCollectionSeparate: bpy.props.IntProperty(name="Fractal", default=0, min=-1, max=100)
@@ -215,7 +253,7 @@ class HairMainOperator(bpy.types.Operator):
     
     
     
-    Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1, 1.,0.01 ] ];
+    Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1, 1.,0.01,1 ] ];
     
     uslesMaterial = [];
     #MainCollectionSeparate = [];
@@ -231,8 +269,12 @@ class HairMainOperator(bpy.types.Operator):
           
         if self.DomenButtonBuild :
             if (len(self.lines) == 0) :
-                self.lines = HairAddonBody.HairLines(maps, self.DomenButtonBuildNumber, mod);
-                self.uslesMaterial = HairAddonBody.noCopiList(self.lines)
+                self.linesOld = HairAddonBody.HairLines(maps, self.DomenButtonBuildNumber, mod);
+            if (not self.UsFinishPreset)*(not self.CountHairPreviev == 0) * ( self.CountHairPreviev < len(self.linesOld) ) :
+                self.lines = self.linesOld[0:self.CountHairPreviev]
+            else :
+                self.lines = self.linesOld;
+            self.uslesMaterial = HairAddonBody.noCopiList(self.lines)
             
             gen(self, context, scene, maps, mod)
             
@@ -246,11 +288,12 @@ class HairMainOperator(bpy.types.Operator):
             
             if not self.DomenButtonViews :
                 maps.display_type = 'WIRE'
-                bpy.context.space_data.shading.type = 'MATERIAL'
-                bpy.context.space_data.overlay.show_overlays = False
+                #bpy.context.space_data.shading.type = 'MATERIAL'
+                #bpy.context.space_data.overlay.show_overlays = False
             else :
-                bpy.context.space_data.overlay.show_overlays = True
-                bpy.context.space_data.shading.type = 'SOLID'
+                #bpy.context.space_data.overlay.show_overlays = True
+                #bpy.context.space_data.shading.type = 'SOLID'
+                maps.display_type = 'TEXTURED'
             
         
         return {'FINISHED'}
@@ -285,7 +328,7 @@ class HairMainOperator(bpy.types.Operator):
             
             row = layout.row()
             
-            row.label(text="Hair collection: ")
+            row.label(text="Hair collection: ", icon="HAIR_DATA")
             row = (layout.box()).row()
             
             row = row.split(factor=0.1, align=True)
@@ -322,10 +365,9 @@ class HairMainOperator(bpy.types.Operator):
                 row = layout.row()
             #print(self.MainButtonNumber - 1,self.NoiseButtonNumber - 1);
             row = layout.row()
-            row.label(text="This collection hair main setings: ")
-            
+            row.label(text="This collection hair main setings: ", icon="OUTLINER_OB_GROUP_INSTANCE")
             row = layout.row()
-            row.prop(self, "MainCollectionTypeHair");
+            row.prop(self, "MainCollectionTypeHair",icon="PARTICLEMODE");
             self.Presets[self.MainButtonNumber-1][0][0] = self.MainCollectionTypeHair;
             row = layout.row()
             if "curves" == self.MainCollectionTypeHair :
@@ -336,12 +378,9 @@ class HairMainOperator(bpy.types.Operator):
             e = maps.material_slots
             row = (layout.box()).row()
             row = row.split(factor=0.1, align=True)
-            if Buttons.MainButtonSeparateLeft(row, self) :
-                self.MainCollectionSeparate -= 1;
+            Buttons.MainButtonSeparateLeft(row, self)
             row = row.split(factor=0.1, align=True)
-            if Buttons.MainButtonSeparateRight(row, self) :
-                if len(self.uslesMaterial) > self.MainCollectionSeparate : 
-                    self.MainCollectionSeparate += 1;
+            Buttons.MainButtonSeparateRight(row, self)
             self.Presets[self.MainButtonNumber-1][0][1] = self.MainCollectionSeparate;
             if self.MainCollectionSeparate == -1 :
                 row.label(text = "No Separate Object")
@@ -350,24 +389,28 @@ class HairMainOperator(bpy.types.Operator):
             if self.MainCollectionSeparate > 0 :
                 if len(e) > self.MainCollectionSeparate-1 : 
                     row.label(text = "Only "+self.uslesMaterial[self.MainCollectionSeparate-1])
-            
-            row = (layout.box()).row()
+            #self.execute(self, context)
+            row = layout.row()
+            #row = (layout.box()).row()
             row = row.split(factor=0.5, align=True)
             row.prop(self, "Count")
             self.Presets[self.MainButtonNumber-1][1][0] = self.Count;
             row.prop(self, "Ditale")
-            self.Presets[self.MainButtonNumber-1][1][1] = self.Ditale;
+            self.Presets[self.MainButtonNumber-1][1][1] = self.Ditale;#DinamickDitale
             
             row = layout.row()
-            row.prop(self, "Smooth", text="Use")
+            row.prop(self, "Smooth")
             self.Presets[self.MainButtonNumber-1][6] = self.Smooth;
+            row = layout.row()
+            row.prop(self, "DinamickDitale")
+            self.Presets[self.DinamickDitale-1][8] = self.DinamickDitale;
             
             row = layout.row()
             row.prop(self, "MainActive", text="Use")
             self.Presets[self.MainButtonNumber-1][5] = self.MainActive;
             
             row = layout.row()
-            row = (layout.box()).row()
+            #row = (layout.box()).row()
             row = row.split(factor=0.5, align=True)
             row.prop(self, "NoiseUv")
             self.Presets[self.MainButtonNumber-1][2][0] = self.NoiseUv;
@@ -375,7 +418,7 @@ class HairMainOperator(bpy.types.Operator):
             self.Presets[self.MainButtonNumber-1][2][1] = self.SizeUv;
             
             row = layout.row()
-            row = (layout.box()).row()
+            #row = (layout.box()).row()
             row = row.split(factor=0.333, align=True)
             row.prop(self, "LenghtMax")
             self.Presets[self.MainButtonNumber-1][3][0] = self.LenghtMax;
@@ -386,22 +429,28 @@ class HairMainOperator(bpy.types.Operator):
             
             row = layout.row()
             
-            row.label(text="Hair noise collection: ")
+            row.separator(factor=2.0)
+            row = layout.row()
+            row.label(text="Hair deform collection: ", icon = "MODIFIER") # , icon = ""
             row = (layout.box()).row()
             
             row = row.split(factor=0.1, align=True)
             if Buttons.NoiseButtonAdd(row, self) :
                 AddDeformPreset(self.Presets[self.MainButtonNumber-1]);
-                ReSetControlNoise(self);
+                self.NoiseButtonCount += 1;
                 self.NoiseButtonNumber = self.NoiseButtonCount;
+                ReSetControlNoise(self);
             
             row = row.split(factor=0.1, align=True)
             if Buttons.NoiseButtonDel(row, self) :
                 if self.NoiseButtonCount > 0 :
-                    self.NoiseButtonNumber -= 1;
-                    DelDeformPreset(self.Presets[self.MainButtonNumber-1], self.NoiseButtonNumber-1);
-                    
-                    ReSetControlNoise(self);
+                    if self.NoiseButtonNumber > 1 :
+                        self.NoiseButtonNumber -= 1;
+                        ReSetControlNoise(self);
+                        DelDeformPreset(self.Presets[self.MainButtonNumber-1], self.NoiseButtonNumber-1);
+                    else :
+                        DelDeformPreset(self.Presets[self.MainButtonNumber-1], self.NoiseButtonNumber-1);
+                        ReSetControlNoise(self);
         
             row.label(text = "Delet thes or add new (count "+str(self.NoiseButtonCount)+") ")
         
@@ -438,48 +487,81 @@ class HairMainOperator(bpy.types.Operator):
                 row = layout.row()
                 row.label(text = "Number "+str(self.NoiseButtonNumber))
                 row = layout.row()
-                row = row.split(factor=0.5, align=True)
-                row.prop(self, "NoiseCollectionType")
+                row = row.split(factor=1, align=True)
+                row.prop(self, "NoiseCollectionType", icon = "PRESET")
                 row = layout.row()
-                row = row.split(factor=0.5, align=True)
-                row.prop(self, "NoiseCollectionCoord")
-                row = layout.row()
-                row = row.split(factor=0.5, align=True)
+                row = row.split(factor=1, align=True)
                 row.prop(self, "NoiseHight")
                 row = layout.row()
-                row = row.split(factor=0.5, align=True)
+                row = row.split(factor=1, align=True)
                 row.prop(self, "NoisePower")
                 row = layout.row()
-                row = row.split(factor=0.5, align=True)
-                row.prop(self, "HoiseSize")
+                row = row.split(factor=1, align=True)
+                row.prop(self, "NoiseSize")
+                if self.NoiseCollectionType == "size" :
+                    row = layout.row()
+                    row = row.grid_flow(row_major = 1);
+                    row.prop(self, "NoiseSpace")
+                row = layout.row()
+                row = row.split(factor=1, align=True)
+                row.prop(self, "NoiseGrowth")
                 row = layout.row()
                 row.prop(self, "NoiseActive", text="Use")
                 
                 
-                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][5] = self.NoiseActive;
-                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][4] = self.NoiseCollectionCoord;
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][4] = self.NoiseActive;
                 self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][1] = self.NoiseHight;
                 self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][2] = self.NoisePower;
-                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][3] = self.HoiseSize;
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][3] = self.NoiseSize;
                 self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][0] = self.NoiseCollectionType;
+                for i in [0,1,2] :
+                    self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][5][i] = self.NoiseSpace[i];
+                self.Presets[self.MainButtonNumber-1][4][self.NoiseButtonNumber-1][6] = self.NoiseGrowth;
                 
                 for i in range( len( self.Presets[self.MainButtonNumber-1][4] ) -self.NoiseButtonNumber) :
                     row = (layout.box()).row()
                     row.label(text = "Number "+str(i+self.NoiseButtonNumber+1)+", Type "+ self.Presets[self.MainButtonNumber-1][4][i+self.NoiseButtonNumber][0]+", Size "+str(math.floor( self.Presets[self.MainButtonNumber-1][4][i+self.NoiseButtonNumber][1]*10)/10))
+            row = layout.row()
+            row.separator(factor=2.0)
+            row = layout.row()
+            row.label(text = "Prewiev setingt", icon="OPTIONS")
+            row = (layout.box()).row()
+            if self.CountHairPreviev == 0 :
+                row = row.split(factor=0.5, align=True)
+                row.label(text = "View full object")
+            row.prop(self, "CountHairPreviev")
+            row = layout.row()
+            row = (layout.box()).row()
+            row = row.split(factor=0.4, align=True)
+            row.prop(self, "CountFinish")
+            row = row.split(factor=4/6, align=True)
+            row.prop(self, "DitaleFinish")
+            row.prop(self, "UsFinishPreset",icon="VIS_SEL_11")
+            row = layout.row()
+            row.prop(self, "ReSetPreset",icon="FILE_REFRESH")
+            
+            
+            
+            
         
     def ttt(self) :
         print("test")
     def invoke(self, context, event):
         self.DomenButtonBuild = 0;
-        self.DomenButtonViews = 1;
-        self.Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,1.,0.01  ] ];
-        self.MainButtonCount = 0;
-        self.MainButtonNumber = 0;
-        self.NoiseButtonCount = 0;
-        self.NoiseButtonNumber = 0;
-        ReSetControlPresets(self);
-        self.lines = [];
-        self.vertexMap = [];
+        if self.ReSetPreset :
+            self.DomenButtonViews = 1;
+            self.Presets = [ [ ["vertex",0], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,1.,0.01,1  ] ];
+            self.MainButtonCount = 0;
+            self.MainButtonNumber = 0;
+            self.NoiseButtonCount = 0;
+            self.NoiseButtonNumber = 0;
+            ReSetControlPresets(self);
+            self.lines = [];
+            self.vertexMap = [];
+            self.DitaleFinish = 1;
+            self.CountFinish = 1;
+            #self.UsFinishPreset = 1;
+            self.CountHairPreviev = 0;
         return {'FINISHED'}
 
 classe = [HairMainOperator];
