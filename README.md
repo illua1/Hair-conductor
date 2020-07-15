@@ -39,8 +39,8 @@ The main function - makes hair styling according to your corridor geometry.
 #### The maximum length of hair.
 #### Minimum hair length.
 #### Scatter (1 - no, 0 or 2 - closer to something)
+## Shelves of deformers (noise).
 # Not supported:
-## Shelves of deformers (noise) - not supported yet.
 ## Skeleton generation (and harness) - not yet started.
 
 # Testing:
