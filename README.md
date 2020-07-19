@@ -18,6 +18,7 @@ The main function - makes hair styling according to your corridor geometry.
 ## Separate pipes must not be connected.
 ## Modifiers are not taken into account.
 ## The object should not be rotated, scaled, have a parent.
+## The object must have at least 1 material
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/731649425130127420/1.png "One hair element cutaway")
 
@@ -44,18 +45,30 @@ The main function - makes hair styling according to your corridor geometry.
 ## Skeleton generation (and harness) - not yet started.
 
 # Testing:
-[![Тут текст](https://cdn.discordapp.com/attachments/340195875399663617/731656260935614525/unknown.png)](https://cdn.discordapp.com/attachments/474472368706945024/731236109610385549/2020-07-10_22-46-10_convert-video-online.com.mp4)
-[![Тут текст](https://cdn.discordapp.com/attachments/340195875399663617/731656260935614525/unknown.png)](https://cdn.discordapp.com/attachments/324814768152248323/731557262295957534/2020-07-11_20-03-58.mp4)
-[![Тут текст](https://cdn.discordapp.com/attachments/340195875399663617/731656260935614525/unknown.png)](https://cdn.discordapp.com/attachments/324814768152248323/731642313515991110/2020-07-12_01-44-22.mp4)
+https://cdn.discordapp.com/attachments/474472368706945024/731236109610385549/2020-07-10_22-46-10_convert-video-online.com.mp4
+https://cdn.discordapp.com/attachments/324814768152248323/731557262295957534/2020-07-11_20-03-58.mp4
+https://cdn.discordapp.com/attachments/324814768152248323/731642313515991110/2020-07-12_01-44-22.mp4
+https://cdn.discordapp.com/attachments/324814768152248323/733407140445945896/2020-07-16_22-35-50.mp4
+https://cdn.discordapp.com/attachments/324814768152248323/733266295583277066/2020-07-16_13-14-52_convert-video-online.com.mp4
+https://cdn.discordapp.com/attachments/324814768152248323/732926506434822194/2020-07-15_14-46-15.mp4
+https://cdn.discordapp.com/attachments/324814768152248323/732690183840858184/all_deformer.mp4
+
+# Usage example (Informal tutorial!) :
+https://youtu.be/ckccCbwuRPk?t=7151
+
+# Demonstration of the finished result :
+https://cdn.discordapp.com/attachments/324814768152248323/734052192402538552/hair_render_test_1-2-1.mp4
 
 # I want it:
-## Get the folder.
-## Open blender
-## User settings
-## Addons
-## Open
-## Folder
-## HairAddonTest.py
-## Activate.
+## Get the ZIP/
+## Open blender/
+## User settings/
+## Addons/
+## Open/
+## This add-on/
+## Activate/
+## View3D/
+## Object/
+##Generate Hair by object.
 ____
-# The addon is still at an early stage of development. I'm not a mater of Python. The code has 2 clockless cycles, object-oriented programming is ignored, all the features of the language and bpy are not used, there is a lot of garbage text, there is no translation.
+# The addon is still at an early stage of development. I'm not a mater of Python. Object-oriented programming is ignored, all the features of the language and bpy are not used, there is a lot of garbage text, there is no translation.
