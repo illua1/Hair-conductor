@@ -1,0 +1,5 @@
+Add-on license.
+- You can sell content made with this add-on.
+- You can use the add-on code in non-commercial projects.
+- You cannot sell parts of the code or the add-on itself.
+- You can use the addon and the content obtained with its help for personal purposes.
