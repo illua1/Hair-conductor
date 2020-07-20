@@ -55,6 +55,7 @@ https://cdn.discordapp.com/attachments/324814768152248323/732690183840858184/all
 
 # Usage example (Informal tutorial!) :
 https://youtu.be/ckccCbwuRPk?t=7151
+https://youtu.be/gzGVE06OEE4
 
 # Demonstration of the finished result :
 https://cdn.discordapp.com/attachments/324814768152248323/734052192402538552/hair_render_test_1-2-1.mp4
