@@ -1,4 +1,4 @@
-# Addon for Blender 2.8 Hair Explorer.
+# Addon for Blender 2.8 Hair Conductor.
 The main function - makes hair styling according to your corridor geometry.
 
 # Using:
