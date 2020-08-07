@@ -1,7 +1,7 @@
 # Addon for Blender 2.8 Hair Conductor.
 
 **The main function**: 
-makes hair styling according to your corridor geometry.
+Makes hair styling according to your corridor geometry.
 
 **Using**: 
  - 1 Call the Generate Hair by object function (from a space search or the Object fold) (An object for building hair should be selected).
@@ -44,6 +44,9 @@ makes hair styling according to your corridor geometry.
  - Shelves of deformers (noise).
  - Not supported:
  - Skeleton generation (and harness) - not yet started.
+ - Saving and loading addon session.
+ - Tool for edit-mode tool - Hair Selecter Floor
+ - Tool for edit-mode tool - Hair Loop Cut Floors
 
 **Demonstration of the finished result**: 
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
