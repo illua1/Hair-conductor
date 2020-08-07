@@ -8,12 +8,22 @@
 #-You cannot use parts of the addon code for commercial purposes.
 
 
+def inf(h):
+    print();
+    print(h);
+    print();
+    print(dir(h));
+    print();
+    print(type(h));
+    print();
+
+
 
 bl_info = {
     "name": "Hair conductor",
     "description": "testing v0.0.2",
     "author": "Mod",
-    "version": (0, 0, 2),
+    "version": (0, 0, 5),
     "blender": (2, 80, 0),
     "location": "View3D > Object > Generate Hair by object",
 }
@@ -39,14 +49,14 @@ OperatorText.append("No bone");
 OperatorText.append("Bone number ");
 OperatorText.append("All hair");
 OperatorText.append("Use");
-OperatorText.append("Prewiev hair setingt");
+OperatorText.append("Prewiev hair setingt: ");
 OperatorText.append("View full object");
 OperatorText.append("Hair deform collection: ");
 OperatorText.append("Delet thes or add new (count ");
 OperatorText.append("Deformer number ");
 OperatorText.append("Number ");
-OperatorText.append("Final hair setingt");
-OperatorText.append("Bone list");
+OperatorText.append("Final hair setingt:");
+OperatorText.append("Bone list:");
 OperatorText.append("Delet thes or add new (count ");
 OperatorText.append("Bone preset number ");
 OperatorText.append("Only ");
@@ -101,6 +111,10 @@ def MainButtonAdd(row, self) :
         self.MainButtonAdd = 0;
         return 1;
 
+def DomenButtonBuild(row, self) :
+    row.prop(self, "DomenButtonBuild",icon="IMPORT")
+    #if self.DomenButtonBuild == 1 :
+    return 1;
 
 
 def NoiseButtonTop(row, self) :
@@ -148,13 +162,6 @@ def MainButtonSeparateRight(row, self) :
         self.MainButtonSeparateRight = 0;
         return 1;
 
-  
-def DomenButtonBuild(row, self) :
-    row.prop(self, "DomenButtonBuild",icon="IMPORT")
-    if self.DomenButtonBuild == 1 :
-        #self.DomenButtonBuild = 0;
-        return 1;
-
 def DomenButtonBuildLeft(row, self) :
     row.prop(self, "DomenButtonBuildLeft",icon="TRIA_LEFT")
     if self.DomenButtonBuildLeft == 1 :
@@ -170,22 +177,22 @@ def DomenButtonBuildRight(row, self) :
 
 
 def DomenButtonViews(row, self) :
-    g = self.DomenButtonViews
-    
-    if self.DomenButtonViews == 1 :
-        row.prop(self, "DomenButtonViews",icon="HIDE_ON")
-    
+    if self.DomenButtonViews == 0 :
+        ico = "HIDE_ON";
     else :
-        row.prop(self, "DomenButtonViews",icon="HIDE_ON")
+        ico = "HIDE_OFF";
     
-    if not g == self.DomenButtonViews :
-        return 1;
+    row.prop(self, "DomenButtonViews",icon=ico)
 
-
-
-
-
+def PresetUsles(row, self) :
+    if self.MainActive == 0 :
+        ico = "FILE_FONT";
+    else :
+        ico = "CHECKMARK";
     
+    row.prop(self, "MainActive",icon=ico)
+
+
 def BoneButtonLeft(row, self) :
     row.prop(self, "BoneButtonLeft",icon="TRIA_LEFT")
     if self.BoneButtonLeft == 1 :
@@ -210,14 +217,7 @@ def BoneButtonDel(row, self) :
     if self.BoneButtonDel == 1 :
         self.BoneButtonDel = 0;
         return 1;
-# BoneButtonCount BoneButtonNumber
-# BoneButtonUseDinamick BoneButtonDitale BoneButtonSepaateMaterials
 
-# [ -1, 0, 5 ]
-
-
-
-    
 def BoneButtonSepaateLeft(row, self) :
     row.prop(self, "BoneButtonSepaateLeft",icon="TRIA_LEFT")
     if self.BoneButtonSepaateLeft == 1 :
@@ -244,6 +244,110 @@ def MainButtonBoneRight(row, self) :
     if self.MainButtonBoneRight == 1 :
         self.MainButtonBoneRight = 0;
         return 1;
+
+
+def LoadOpenTop(row, self) :
+    row.prop(self, "LoadOpenTop",icon="SORT_DESC")
+    if self.LoadOpenTop == 1 :
+        self.LoadOpenTop = 0;
+        if not self.selectedPreset == 0 :
+            self.selectedPreset -= 1;
+            return 1;
+def LoadOpenDown(row, self, max) :
+    row.prop(self, "LoadOpenDown",icon="SORT_ASC")
+    if self.LoadOpenDown == 1 :
+        self.LoadOpenDown = 0;
+        if not max == self.selectedPreset :
+            self.selectedPreset += 1;
+            return 1;
+
+
+
+#########################################################################
+
+def GetConectEdges(e, florE, id):
+    too = 0;
+    for edge in e :
+        yes = 0;
+        for i in [0,1] :
+            if edge.vertices[i] == e[florE[id]].vertices[0] :
+                yes = 1;
+        if yes :
+            yep = 1;
+            for nos in florE :
+                if edge.index == e[nos].index :
+                    yep = 0;
+            if yep :
+                too = edge;
+                break;
+    return too;
+
+
+def FineEnd(self, context) :
+    endList = []
+    group = context.object.vertex_groups.active_index 
+    obj = context.object
+    mod = context.mode;
+    if mod == "EDIT_MESH" or mod == "EDIT":
+        p = obj.data.polygons;
+        bpy.ops.object.mode_set(mode='OBJECT')
+        start = GetAllActive(p)
+        endList = []
+        if 1 :
+            print("find")
+            self.ReFind = 1;
+            for s in start :
+                noUseBuf = []
+                bpy.ops.object.mode_set(mode="EDIT")
+                bpy.ops.mesh.select_all(action='DESELECT')
+                bpy.ops.object.mode_set(mode='OBJECT')
+                
+                p[s].select = 1; 
+                bpy.ops.object.mode_set(mode="EDIT")
+                bpy.ops.mesh.select_linked(delimit={'SEAM'})
+                bpy.ops.mesh.select_all(action='INVERT')
+                bpy.ops.object.mode_set(mode='OBJECT')
+                noUseBuf = GetAllActive(p)
+                bpy.ops.object.mode_set(mode="EDIT")
+                bpy.ops.mesh.select_all(action='DESELECT')
+                bpy.ops.object.mode_set(mode='OBJECT')
+                p[s].select = 1; 
+                bpy.ops.object.mode_set(mode="EDIT")
+                bpy.ops.mesh.select_linked(delimit={'SEAM'})
+                bpy.ops.object.mode_set(mode='OBJECT')
+                allConect = GetAllActive(p)
+                bpy.ops.object.mode_set(mode="EDIT")
+                bpy.ops.mesh.select_all(action='DESELECT')
+                bpy.ops.object.mode_set(mode='OBJECT')
+                p[s].select = 1; 
+                bpy.ops.object.mode_set(mode="EDIT")
+                last = []
+                all = []
+                old = []
+                for a in allConect :
+                    bpy.ops.mesh.select_more()
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    last = GetAllActive(p)
+                    last.sort()
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    if not len(last) == len(all) :
+                        old = all;
+                        all = last;
+                    else : 
+                        bpy.ops.object.mode_set(mode="EDIT")
+                        bpy.ops.mesh.select_all(action='DESELECT')
+                        bpy.ops.object.mode_set(mode='OBJECT')
+                        allSelect(p, old)
+                        
+                        allSelect(p, noUseBuf)
+                        bpy.ops.object.mode_set(mode="EDIT")
+                        bpy.ops.mesh.select_all(action='INVERT')
+                        bpy.ops.object.mode_set(mode='OBJECT')
+                        endList.append( GetAllActive(p)[0] )
+                        break;
+    return endList;
+
+
 
 
 
@@ -721,6 +825,7 @@ def GenerateHairVertexMap(HairObject, GetLineObject, Line, HairProp, DinamickDit
                     couneVertex = 2;
             else :
                 couneVertex = HairProp[1];
+            couneVertex = int(couneVertex)
             for IdVertexOfHair in range(couneVertex) :
                 
                 HairObject.data.vertices.add(1);
@@ -775,7 +880,7 @@ def VertexGroupSet(obj, vertMap, boneMap, VeteLenMap, UsFinishPreset) :
                     for c in range( boneCount ) :
                         if ((c/boneCount) <= vertDol) * (((1+c)/boneCount) >= vertDol) :
                             if UsFinishPreset:
-                                print(ConsoleText[6]+str(v/vertMap))
+                                print(ConsoleText[6], v/vertMap)
                             g1 = obj.vertex_groups.find(boneMap[l][0][c])
                             g2 = obj.vertex_groups.find(boneMap[l][0][c+1])
                             
@@ -952,6 +1057,88 @@ def GetBoneUsles(pres, id) :
             a.append( [i, pres[i][0]] )
     return a;
 
+def SortVertexHairLine(object, lines) :
+    data = object.data;
+    a = []
+    for line in lines :
+        start = -2;
+        for vert in line :
+            edgeCount = 0;
+            
+            for e in data.edges :
+                
+                for i in [0,1] :
+                    
+                    if e.vertices[i] == vert :
+                        edgeCount += 1;
+            if edgeCount == 1 :
+                start = vert;
+                break;
+        if not start == -2 :
+            a.append( sortLineToEdgs(object, start, line) );
+    return a;
+
+
+def ConvertVertToCurve(corveObject, lines) :
+    spline = corveObject.data.splines.new('BEZIER')
+    npoints = len(lines)
+    if 1 :
+        spline.bezier_points.add(npoints-1)
+        for (n,pt) in enumerate(lines):
+            
+            bez = spline.bezier_points[n]
+            #inf(bez)
+            bez.handle_left_type = 'AUTO'
+            bez.handle_right_type = 'AUTO'
+            bez.co.x = pt[0].x
+            bez.co.y = pt[0].y
+            bez.co.z = pt[0].z
+            bez.radius = pt[1]
+            print(pt)
+        if len(lines) > 0 :
+            if len(corveObject.data.materials) == 1 :
+                if not pt[2] == -2 :
+                    spline.material_index = 0
+    return
+
+def GetVertLineData(object, lines) :
+    a = []
+    if not len(object.data.materials) == 0 :
+        matName = object.data.materials[0].name
+    else :
+        matName = -2;
+    for line in lines :
+        d = []
+        for v in line :
+            size = 0;
+            for g in object.data.vertices[v].groups :
+                if g.group == 0 :
+                    size = g.weight
+            cord = object.data.vertices[v].co
+            #matIndex = 0
+            d.append([cord, size, matName]);
+        a.append(d)
+    #inf(a)
+    return a;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #################################################################
 def AddHairPreset(h) :
     return h.append( [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ], 1,1.,0.01,1,0, 0 ] );
@@ -982,13 +1169,16 @@ def DelDeformPreset(h, id) :
     if id < len(h[4]):
         del h[4][id];
     return h;
-def resetIdNoise(r,id,d) :
+def resetIdNoise(self, r,id,d) :
     if d >= 0 :
         if id+d < len(r) :
             r[id], r[d+id] = r[d+id], r[id]
+            self.NoiseButtonNumber += d;
     else :
         if id+d > -1 :
             r[id], r[d+id] = r[d+id], r[id]
+            self.NoiseButtonNumber += d;
+    
     return r;
 
 def ReSetControlPresets(self) :
@@ -1012,7 +1202,7 @@ def ReSetControlPresets(self) :
     self.CountHairPreviev =       self.Presets[n][10];
     ReSetControlNoise(self);
     
-    
+    #DomenButtonReSize
     self.BoneButtonCount = len(self.BonePreset)
     if self.BoneButtonCount > 0 :
         self.BoneButtonUseDinamick =  self.BonePreset[b][1]
@@ -1051,26 +1241,34 @@ def ReSetControlNoise(self) :
             self.NoiseSpace[i] =   self.Presets[n][4][b][5][i]
     
 #HairAddonBody.inf(bpy.data.materials)
-def genGeomerti(mainColect, self, context, maps, Hairs, aDe, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types,matrialType,Smooth,noiseYes,bonesList,BoneId,mod) :
+def genGeomerti(use, mainColect, self, context, maps, Hairs, aDe, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types,matrialType,Smooth,noiseYes,bonesList,BoneId,mod) :
+    
+    if 1 :
+        buildName = "[vert to curve on frameUpdate]"
+    else :
+        buildName = ""
+    
+    
     if types == "vertex":
         me = bpy.data.meshes.new(maps.name+" Hair")
     else :
-        me = bpy.data.curves.new("HairCurve", "CURVE")
+        me = bpy.data.curves.new("HairCurve "+buildName, "CURVE")
         me.dimensions = '3D'
         me.resolution_u = 1;
-        me.bevel_depth = 0.01;
+        if self.DomenButtonReSize :
+            me.bevel_depth = 0.01;
         
         me.bevel_resolution = 0;
-        if not matrialType == -1 :
-            me.materials.append(bpy.data.materials[ matrialType ] )
-        else :
-            for ide in self.uslesMaterial :
-                me.materials.append(bpy.data.materials[ ide ])
+    if not matrialType == -1 :
+        me.materials.append(bpy.data.materials[ matrialType ] )
+    else :
+        for ide in self.uslesMaterial :
+            me.materials.append(bpy.data.materials[ ide ])
     
     vert = bpy.data.objects.new(maps.name+" Hair", me)
     vert.location = maps.location
     
-    if self.UsFinishPreset :
+    if not use or self.UsFinishPreset :
         if not self.DomenButtonReSize :
             if types == "curve":
                 me.bevel_depth = 0;
@@ -1209,10 +1407,10 @@ def gen(self, context, scene, maps, mod) :
             
             print("Preset "+str(Hairs) )
             
-            bpy.context.space_data.shading.type = 'WIREFRAME'
+            #bpy.context.space_data.shading.type = 'WIREFRAME'
             
             mainColect.append( bpy.data.collections.new("Finish hair") )
-            HairMainColection.children.link( mainColect[0] )
+            HairMainColection.children.link( mainColect[-1] )
         else : 
             mainColect.append( HairMainColection )
         if use or self.UsFinishPreset :
@@ -1223,7 +1421,7 @@ def gen(self, context, scene, maps, mod) :
                     a = self.lines
                 if self.UsFinishPreset: 
                     print("All Element")
-                sel = [genGeomerti(mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, -1, Smooth, noiseYes, bonesList, BoneId, mod)]
+                sel = [genGeomerti(use, mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, -1, Smooth, noiseYes, bonesList, BoneId, mod)]
             else : 
                 LinesByMatreial =  SeparateLineToMaterial(self.lines, self.uslesMaterial);
             if Separate == 0 :
@@ -1234,22 +1432,286 @@ def gen(self, context, scene, maps, mod) :
                         LinesByMatreialF = LinesByMatreial[a];
                     if self.UsFinishPreset: 
                         print("Element "+str(a))
-                    sel.append( genGeomerti(mainColect, self, context, maps, Hairs, LinesByMatreialF, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, noiseYes, bonesList, BoneId, mod) )
+                    sel.append( genGeomerti(use, mainColect, self, context, maps, Hairs, LinesByMatreialF, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, noiseYes, bonesList, BoneId, mod) )
             if Separate > 0 :
                 a = LinesByMatreial[Separate-1]
                 if (not self.UsFinishPreset)*(not SliseLines == 0) * ( SliseLines < len(self.lines) ) :
                     a = a[0:SliseLines]
                 if self.UsFinishPreset: 
                     print("Element "+str(Separate-1))
-                sel = [genGeomerti(mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[Separate-1], Smooth, noiseYes, bonesList, BoneId, mod)]
+                sel = [genGeomerti(use, mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[Separate-1], Smooth, noiseYes, bonesList, BoneId, mod)]
         
         self.selectObject.append(sel);
+
+
+
+import os;
+import addon_utils;
+
+def GetTextOnVord(text,fv,tv) :
+    if len(text.split(fv)) > 1 :
+        return text.split(fv)[1].split(tv)[0]
+    else :
+        return "";
+
+
+def GetMyLoader(path) :
+    a = [];
+    
+    saveName = "hair_preset_file.txt";
+    
+    Spatr = path.replace("__init__.py", saveName)
+    Fpatr = path.replace("\__init__.py", "")
+    
+    if not os.path.isfile(Spatr) :
+        a = os.walk(Fpatr)
+        open(os.path.join(Fpatr, saveName), 'w').close()
+    
+    fileGet = open(os.path.join(Fpatr, saveName), 'r')
+    test = fileGet.read()
+    fileGet.close()
+    
+    
+    elem = test.replace("True","1").replace("False","0").split('Hairs: ');
+    del elem[0];
+    
+    for element in elem :
+        d = []
+        d.append( float ( (element.split(" #renderCount = ")[1]).split("\n")[0] ) );
+        d.append( float ( (element.split(" #renderDitale = ")[1]).split("\n")[0] ) );
+        d.append( (element.split(" #names = ")[1]).split("\n")[0] );
+        d.append( (element.split(" #discript = ")[1]).split("\n")[0] );
+        
+        ml = GetTextOnVord(element, " #Materials: "," #MaterialsEnd;").split("  #material = ")
+        mlist = []
+        for m in ml :
+            if not m.replace("\n","") == "" :
+                mlist.append(m.replace("\n",""))
+        d.append(mlist)
+        
+        pres = GetTextOnVord(element," #MaterialsEnd;","#HairsEnd;").split(' #Preset: ');
+        
+        del pres[0];
+        pere = []
+        for preset in pres :
+            presetSetings = [];
+            #print(preset)
+            presetSetings.append(  (preset.split("  #types = ")[1]).split("\n")[0] );
+            presetSetings.append( float ( (preset.split("  #separate =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #count =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #ditale =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #noiseUv =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #noiseSize =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #maxLenght =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #minLenght =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #powLenght =")[1]).split("\n")[0] ) );
+            presetSetings.append( int ( (preset.split("  #active =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #smooth =")[1]).split("\n")[0] ) );
+            presetSetings.append( float ( (preset.split("  #radiuse =")[1]).split("\n")[0] ) );
+            presetSetings.append( int ( (preset.split("  #dinamick =")[1]).split("\n")[0] ) );
+            presetSetings.append( int ( (preset.split("  #boneNumber =")[1]).split("\n")[0] ) );
+            presetSetings.append( int ( (preset.split("  #countPreview =")[1]).split("\n")[0] ) );
             
+            
+            deformers = GetTextOnVord(preset, "  #Deformers: \n","  #DeformersEnd;").split("   #noiseType =");
+            #deforms = []
+            del deformers[0];
+            #print(deformers)
+            defeder = []
+            for deform in deformers :
+                deforms = []
+                #print(deform)
+                deforms.append( ( deform.split("\n")[0] ).replace(" ", "") ) # [0,1,2,3,4, [6,7,8], 5]
+                deforms.append( float ( (deform.split("   #noiseHight =")[1]).split("\n")[0] ) )
+                deforms.append( float ( (deform.split("   #noisePower =")[1]).split("\n")[0] ) )
+                deforms.append( float ( (deform.split("   #noiseSize =")[1]).split("\n")[0] ) )
+                deforms.append( int ( (deform.split("   #noiseActive =")[1]).split("\n")[0] ) )
+                deforms.append( float ( (deform.split("   #noiseGrowth =")[1]).split("\n")[0] ) )
+                deforms.append( float ( (deform.split("   #noiseSpaceX =")[1]).split("\n")[0] ) )
+                deforms.append( float ( (deform.split("   #noiseSpaceY =")[1]).split("\n")[0] ) )
+                deforms.append( float ( (deform.split("   #noiseSpaceZ =")[1]).split("\n")[0] ) )
+                defeder.append(deforms)
+            presetSetings.append(defeder)
+            pere.append(presetSetings)
+        d.append(pere)
+        
+        bon = GetTextOnVord(element," #Bonse: "," #BonseEnd;").split("  #boneSepaate =")
+        del bon[0];
+        
+        bones = []
+        for bb in bon :
+            gbon = []
+            #print(bb)
+            gbon.append( int (bb.split("  #boneUseDinamick =")[0] ) );
+            gbon.append( int ( (bb.split("  #boneUseDinamick =")[1]).split("\n")[0] ) );
+            gbon.append( float ( (bb.split("  #boneDitale =")[1]).split("\n")[0] ) );
+            bones.append(gbon) # [ -1, 0, 5 ]
+        d.append(bones)
+        d.append( int ( (element.split(" #domenView = ")[1]).split("\n")[0] ) );
+        a.append(d)
+    return a;
+
+
+def DelSavePreset(path, id) :
+    saveName = "hair_preset_file.txt";
+    
+    Fpatr = path.replace("\__init__.py", "")
+    
+    fileGet = open(os.path.join(Fpatr, saveName), 'r')
+    text = fileGet.read()
+    fileGet.close()
+    newText = "";
+    old = text.split("#Hairs: ")
+    del old[0];
+    for e in range(len( old )) :
+        if not e == id :
+            newText += "#Hairs: "+old[e]
+    
+    fileGet = open(os.path.join(Fpatr, saveName), 'w')
+    fileGet.write(newText)
+    fileGet.close()
+
+
+def SavePreset(path, self) :
+    saveName = "hair_preset_file.txt";
+    
+    Fpatr = path.replace("\__init__.py", "")
+    
+    fileGet = open(os.path.join(Fpatr, saveName), 'r')
+    text = fileGet.read()
+    fileGet.close()
+    fileGet = open(os.path.join(Fpatr, saveName), 'w')
+    
+    
+    
+    if not len(self.Presets) == 0 :
+        genSave = "";
+        genSave += "#Hairs: ";
+        genSave += '\n' + " #renderCount = " + str( self.CountFinish);
+        genSave += '\n' + " #renderDitale = " + str( self.DitaleFinish);
+        genSave += '\n' + " #names = " + str( self.NamePreset ).replace("#","!");
+        genSave += '\n' + " #discript = " + str( self.DescriptPreset ).replace("#","!");
+        genSave += '\n' + " #domenView = " + str( int ( self.DomenButtonViews ) );
+        
+        genSave += '\n' + " #Materials: ";
+        for m in range(len(self.uslesMaterial)) :
+            genSave += '\n' + "  #material = " + str( m );
+        genSave += '\n' + " #MaterialsEnd;";
+        
+        for n in range(len(self.Presets)) :
+            genSave += '\n' + " #Preset: "
+            genSave += '\n' + "  #types = " + str( self.Presets[n][0][0] );
+            genSave += '\n' + "  #separate = " + str( self.Presets[n][0][1] );
+            genSave += '\n' + "  #count = " + str( self.Presets[n][1][0] );
+            genSave += '\n' + "  #ditale = " + str( self.Presets[n][1][1] );
+            genSave += '\n' + "  #noiseUv = " + str( self.Presets[n][2][0] );
+            genSave += '\n' + "  #noiseSize = " + str( self.Presets[n][2][1] );
+            genSave += '\n' + "  #maxLenght = " + str( self.Presets[n][3][0] );
+            genSave += '\n' + "  #minLenght = " + str( self.Presets[n][3][1] );
+            genSave += '\n' + "  #powLenght = " + str( self.Presets[n][3][2] );
+            genSave += '\n' + "  #active = " + str( self.Presets[n][5] );
+            genSave += '\n' + "  #smooth = " + str( self.Presets[n][6] );
+            genSave += '\n' + "  #radiuse = " + str( self.Presets[n][7] );
+            genSave += '\n' + "  #dinamick = " + str( self.Presets[n][8] );
+            genSave += '\n' + "  #boneNumber = " + str( self.Presets[n][9] );
+            genSave += '\n' + "  #countPreview = " + str( self.Presets[n][10] );
+            
+            genSave += '\n' + "  #Deformers: ";
+            for n2 in range(len(self.Presets[n][4])) :  #["noiseUV",0.7,0.1,0.1,1, [1.,1.,1.], 1.]
+                genSave += '\n' + "   #noiseType = " + str( self.Presets[n][4][n2][0] );
+                genSave += '\n' + "   #noiseHight = " + str( self.Presets[n][4][n2][1] );
+                genSave += '\n' + "   #noisePower = " + str( self.Presets[n][4][n2][2] );
+                genSave += '\n' + "   #noiseSize = " + str( self.Presets[n][4][n2][3] );
+                genSave += '\n' + "   #noiseActive = " + str( self.Presets[n][4][n2][4] );
+                genSave += '\n' + "   #noiseGrowth = " + str( self.Presets[n][4][n2][6] );
+                genSave += '\n' + "   #noiseSpaceX = " + str( self.Presets[n][4][n2][5][0] );
+                genSave += '\n' + "   #noiseSpaceY = " + str( self.Presets[n][4][n2][5][1] );
+                genSave += '\n' + "   #noiseSpaceZ = " + str( self.Presets[n][4][n2][5][2] );
+            genSave += '\n' + "  #DeformersEnd;";
+            
+            
+            genSave += '\n' + " #PresetEnd;";
+        for b in self.BonePreset :
+            genSave += '\n' + " #Bonse: "
+            genSave += '\n' + "  #boneSepaate = " + str( b[0] );
+            genSave += '\n' + "  #boneUseDinamick = " + str( b[1] );
+            genSave += '\n' + "  #boneDitale = " + str( b[2] );
+            genSave += '\n' + " #BonseEnd;"
+        
+        genSave += '\n' + "#HairsEnd;";
+        #genSave += '\n';
+        newText = text+genSave+'\n'
+        fileGet.write(newText)
+    fileGet.close()
+    
+def OpendPreset(self, data) :
+    print(data)
+    #print(data[5])
+    self.MainButtonBuferOld = 0;
+    self.ReSetPreset = 0;
+    self.Presets = []
+    for pres in data[5] :
+        #print(pres[15])
+        defer = []
+        for deform in pres[15] :
+            print(deform)
+            defer.append( [deform[0],deform[1],deform[2],deform[3],deform[4], [deform[6],deform[7],deform[8]], deform[5]] )
+        self.Presets.append( [ [pres[0],pres[1]], [pres[2], pres[3]], [pres[4],pres[5]], [pres[6],pres[7],pres[8]], defer,pres[9],pres[10],pres[11],pres[12],pres[13], pres[14]  ] )
+    
+    self.BonePreset = [];
+    for bo in data[6] :
+        self.BonePreset.append([bo[0],bo[1],bo[2]]) 
+    
+    print(self.Presets)
+    print(self.BonePreset)
+    
+    self.vertexMap = [];
+    #self.BonePreset = [];
+    self.MainButtonCount = len(self.Presets);
+    self.MainButtonNumber = 0;
+    self.NoiseButtonCount = len(self.Presets[0][4]);
+    if 0 == len(self.Presets[0][4]) :
+        self.NoiseButtonNumber = 0;
+    else :
+        self.NoiseButtonNumber = 1;
+    #ReSetControlPresets(self);
+    self.DitaleFinish = data[1]
+    self.CountFinish = data[0]
+    self.CountHairPreviev = 0;
+    self.BoneButtonNumber = 0;
+    self.BoneButtonCount = len(self.BonePreset)
+    print(data[7])
+    self.DomenButtonViews = data[7]
+    self.DescriptPreset = data[3]
+    self.NamePreset = data[2]
+    #self.DomenButtonViews
+
+def resetPreset(self) :
+    #self.DomenButtonBuild = 0;
+    self.MainButtonBuferOld = 0;
+    self.ReSetPreset = 0;
+    self.Presets = [ [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,1.,0.01,1,0, 0  ] ];
+    self.vertexMap = [];
+    self.BonePreset = [];
+    self.MainButtonCount = 0;
+    self.MainButtonNumber = 0;
+    self.NoiseButtonCount = 0;
+    self.NoiseButtonNumber = 0;
+    ReSetControlPresets(self);
+    self.DitaleFinish = 1;
+    self.CountFinish = 1;
+    self.CountHairPreviev = 0;
+    self.BoneButtonNumber = 0;
+    self.BoneButtonCount = 0;
+    self.DomenButtonViews = 1;
+    self.DescriptPreset = "Hair descripts";
+    self.NamePreset = "Hair name";
 
 
 class HairMainOperator(bpy.types.Operator): 
     bl_label = "Generate Hair by object"
     bl_idname = "object.hair"
+    bl_description = "Generate hair by geometry"
     bl_options = {'REGISTER', 'UNDO'}
     
     Count: bpy.props.IntProperty(name="Count", default=4, min=1, max=1000)
@@ -1264,9 +1726,9 @@ class HairMainOperator(bpy.types.Operator):
     DitaleFinish: bpy.props.FloatProperty(name="Ditale Finish", default=1, min=0.001)
     UsFinishPreset: bpy.props.BoolProperty(name="", description="Us finish preset, use all hair, all preset")
     
-    ReSetPreset: bpy.props.BoolProperty(name="", default=1, description="If true, all setting on new operator is reset")
     
-    HairRadius: bpy.props.FloatProperty(name="Hair size", default=0.01, min=0.0001, max=2)
+    
+    HairRadius: bpy.props.FloatProperty(name="Hair size", default=0.01, min=0.0001)
     NoiseUv: bpy.props.FloatProperty(name="Noise", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
     SizeUv: bpy.props.FloatProperty(name="Hair uv size", default=1, min=0, max=2)
     LenghtMax: bpy.props.FloatProperty(name="Max lenght", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
@@ -1302,7 +1764,7 @@ class HairMainOperator(bpy.types.Operator):
     DomenButtonConsole: bpy.props.BoolProperty(name="", default=1, description="If trye, console opened and demonstrate progress")
     DomenButtonReSize: bpy.props.BoolProperty(name="", default=0, description="If trye, curve use geometry volume")
     DomenButtonViews: bpy.props.BoolProperty(name="")
-    DomenButtonBuild: bpy.props.BoolProperty(name="")
+    
     DomenButtonBuildLeft: bpy.props.BoolProperty(name="")
     DomenButtonBuildRight: bpy.props.BoolProperty(name="")
     DomenButtonBuildNumber: bpy.props.IntProperty(name="Fractal", default=0, min=0, max=1000)
@@ -1318,15 +1780,26 @@ class HairMainOperator(bpy.types.Operator):
     BoneButtonSepaateRight: bpy.props.BoolProperty(name="")
     
     BoneButtonUseDinamick: bpy.props.BoolProperty(name="Use dinamick ditale")
-    BoneButtonDitale: bpy.props.FloatProperty(name="", default=1, min=1)
+    BoneButtonDitale: bpy.props.FloatProperty(name="", default=2, min=2)
     BoneButtonSepaateMaterials: bpy.props.IntProperty(name="", default=0, min=0, max=1000 )
     
     MainButtonBoneLeft: bpy.props.BoolProperty(name="")
     MainButtonBoneRight: bpy.props.BoolProperty(name="")
     MainButtonBoneNumber: bpy.props.IntProperty(name="", default=0, min=0, max=1000)
     
+    DomenButtonBuild: bpy.props.BoolProperty(name="", description="Build new map")
+    ReSetPreset: bpy.props.BoolProperty(name="", default=0)
     
     
+    LevelOfDrive: bpy.props.IntProperty(name="", default=0, min=0)
+    
+    
+    NewPreset: bpy.props.BoolProperty(name="", description="New hair") # NewPreset LastPreset OpenPreset
+    OpenPreset: bpy.props.BoolProperty(name="", description="Open seves")
+    
+    
+    SavePreset: bpy.props.BoolProperty(name="", description="Save hair")
+    SaveDelPreset: bpy.props.BoolProperty(name="", description="Delet activ preset")
     
     
     string = bpy.props.StringProperty(name="curve")
@@ -1339,44 +1812,93 @@ class HairMainOperator(bpy.types.Operator):
     MainButtonSeparateLeft: bpy.props.BoolProperty(name="")
     MainButtonSeparateRight: bpy.props.BoolProperty(name="")
     
+    LoadOpenTop: bpy.props.BoolProperty(name="") # selectedPreset LoadOpenTop LoadOpenDown
+    LoadOpenDown: bpy.props.BoolProperty(name="")
     
+    # NamePreset DescriptPreset
+    NamePreset: bpy.props.StringProperty(name="", default="Name")
+    DescriptPreset: bpy.props.StringProperty(name="", default="Desctrip to hair")
+    
+    
+    MySavesLoader = []
     
     Presets = [ [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1, 1.,0.01,1,0, 0 ] ];
     BonePreset = [ ];
     
     uslesMaterial = [];
-    #MainCollectionSeparate = [];
     lines = [];
     vertexMap = [];
     selectObject = [];
+    
+    genYea = 0;
+    
+    counter = 0;
+    
+    selectedPreset = 0;
+    
+    path = ""
+    
+    OnSaveStupit = 0;
     
     def execute(self, context):
         scene = context.scene
         maps = context.active_object
         mod = bpy.context.mode;
         self.selectObject = [];
-          
+        
+        self.OnSaveStupit = 1;
+        
+        for addon in addon_utils.modules(refresh=False) :
+            if addon.bl_info["name"] == "Hair conductor" :
+                path = addon.__file__
+        
+        if self.SavePreset :
+            SavePreset(path, self);
+            self.SavePreset = 0;
+            bpy.ops.wm.console_toggle()
+            print("Save hair "+self.NamePreset)
+            bpy.ops.wm.console_toggle()
+            self.OnSaveStupit = 0;
+            
+        
         if self.DomenButtonBuild :
-            if (len(self.lines) == 0) :
+            if self.counter == 0 :
+                self.counter = 1;
+                self.DomenButtonViews = 1;
                 self.lines =  HairLines(maps, self.DomenButtonBuildNumber, mod);
                 self.BonePreset = [];
                 self.BoneButtonNumber = 0;
-                self.BoneButtonCount = 0;
-                
-            self.uslesMaterial =  noCopiList(self.lines)
+                self.uslesMaterial =  noCopiList(self.lines)
+                self.MySavesLoader = GetMyLoader(path);
+            if self.SaveDelPreset :
+                DelSavePreset(path, self.selectedPreset)
+                if not self.selectedPreset == 0 :
+                    self.selectedPreset -= 1;
+                self.MySavesLoader = GetMyLoader(path);
+                self.SaveDelPreset = 0;
+            
             if self.UsFinishPreset and self.DomenButtonConsole :
                 bpy.ops.wm.console_toggle()
-            gen(self, context, scene, maps, mod)
+            
+            if self.NewPreset :
+                if self.genYea == 0:
+                    resetPreset(self);
+                    self.genYea = 1;
+            
+            if self.OpenPreset :
+                if self.genYea == 0:
+                    OpendPreset(self, self.MySavesLoader[self.selectedPreset]);
+                    self.genYea = 1;
+            
+            if self.genYea :
+                gen(self, context, scene, maps, mod)
+            
             if self.UsFinishPreset and self.DomenButtonConsole : 
                 bpy.ops.wm.console_toggle()
-            #print(self.selectObject)
             for sec in range(len(self.selectObject)) :
                 for sel in self.selectObject[sec] :
                     if not self.UsFinishPreset :
                         sel.select_set(True)
-                        
-                  #  else :
-                #        sel.select_set(False)
             bpy.ops.object.mode_set(mode='EDIT')
             bpy.ops.object.mode_set(mode=mod)
             
@@ -1396,8 +1918,18 @@ class HairMainOperator(bpy.types.Operator):
         maps = context.active_object
         mod = bpy.context.mode;
         
-        if len(self.lines) == 0 :
-            if len(maps.data.materials) > 0 :
+        self.openButtonId = 0;
+        
+        
+        if self.DomenButtonBuild == 0 :
+            self.LevelOfDrive = 1;
+        else : 
+            self.LevelOfDrive = 2;
+        if not self.NewPreset + self.LastPreset + self.OpenPreset == 0 :
+            self.LevelOfDrive = 3;
+        
+        if self.LevelOfDrive == 1 : 
+            if len(maps.data.materials) > 0:
                 
                 le = len(maps.vertex_groups)
                 row = (layout.box()).row()
@@ -1410,21 +1942,103 @@ class HairMainOperator(bpy.types.Operator):
                         self.DomenButtonBuildNumber += 1;
                 row = row.split(factor=0.8, align=True)
                 if not len(maps.vertex_groups) == 0 :
-                    row.label(text=OperatorText[0]+maps.vertex_groups[self.DomenButtonBuildNumber].name)
+                    row.label(text=OperatorText[0]+maps.vertex_groups[self.DomenButtonBuildNumber].name, icon="GROUP_VERTEX")
+                    row = row.split(factor=1, align=True)
+                    DomenButtonBuild(row,self)
                 else :
+                    row = layout.row()
                     row.label(text=OperatorText[1])
-                row = row.split(factor=1, align=True)
-                DomenButtonBuild(row,self)
+                
+                
             else :
                 row.label(text=OperatorText[2], icon="SHADING_TEXTURE")
+        
+        if self.LevelOfDrive == 2 :
+            row.separator(factor=2.0)
+            row = (layout.box()).row()
+            row.label(text="Count of hair elements "+str(len(self.lines)), icon="MENU_PANEL")
+            row = layout.row()
+            row.label(text="Floor group "+maps.vertex_groups[self.DomenButtonBuildNumber].name, icon="GROUP_VERTEX")
+            row = layout.row()
+            row = (layout.box()).row()
+            row.label(text="Now have "+str(len(self.uslesMaterial))+" materials:")
+            for m in self.uslesMaterial:
+                row = layout.row()
+                row.separator(factor=2.0)
+                row.label(text="Matrial "+m, icon="MATERIAL")
+            row = layout.row()
+            #row.separator(factor=4.0)
             
-        else :
-            
-            row.prop(self, "DomenButtonViews",text="View domain ");
-            #row.label(text="View domain ")
+            if not len( self.MySavesLoader ) == 0 :
+                row = row.split(factor=0.5, align=True)
+            else :
+                row = row.split(factor=1, align=True)
+            row.prop(self, "NewPreset",icon="PRESET_NEW");
+            if not len( self.MySavesLoader ) == 0 :
+                row.prop(self, "OpenPreset",icon="FILE_FOLDER");
+                
+            if not 0 == (self.NewPreset + self.LastPreset) :
+                self.LevelOfDrive = 3;
             
             row = layout.row()
+            row.label(text="Saves "+str(len( self.MySavesLoader ))+" :", icon="FILE_FOLDER")
+            if not len( self.MySavesLoader ) == 0 :
+                row = layout.row()
+                row.label(text="Active hair : "+self.MySavesLoader[self.selectedPreset][2])
+            row = layout.row()
+            linesW = [];
+            bufW = "Descript :";
+            contW = len(bufW);
+            if not len( self.MySavesLoader ) == 0 :
+                for tharacter in list( self.MySavesLoader[self.selectedPreset][3] ) :
+                    contW += 1;
+                    bufW += tharacter;
+                    if contW == 50 :
+                        linesW.append(bufW)
+                        bufW = "";
+                        contW = 0;
+                if not contW == 0 :
+                    linesW.append(bufW)
+                for liW in linesW :
+                    row.label(text=liW)
+                    row = layout.row()
+                row.label(icon = "ALIGN_FLUSH", text="Preset count : "+str(len(self.MySavesLoader[self.selectedPreset][5] )))
+                row = layout.row()
+                row.label(icon = "MOD_HUE_SATURATION", text="Hair final count * : "+str( self.MySavesLoader[self.selectedPreset][0] ))
+                row = layout.row()
+                row.label(icon = "MOD_NOISE", text="Vertex final count * : "+str( self.MySavesLoader[self.selectedPreset][1] ))
+                row = layout.row()
+            if len( self.MySavesLoader ) > 1 :
+                row = layout.row()
+                row = row.split(factor=0.2, align=True)
+                LoadOpenTop(row, self);
+                row = row.split(factor=0.25, align=True)
+                LoadOpenDown(row, self, len( self.MySavesLoader )-1);
+            if not len( self.MySavesLoader ) == 0 :
+                row = row.split(factor=0.3, align=True)
+                row.prop(self, "SaveDelPreset",icon="TRASH");
+            row = layout.row()
+            for e in range(len( self.MySavesLoader )) :
+                row = layout.row()
+                if self.selectedPreset == e :
+                    row = (layout.box()).row()
+                row.separator(factor=2.0)
+                row = row.split(factor=0.4, align=True)
+                row.label(text=self.MySavesLoader[e][2], icon="TRIA_RIGHT")
+                for savmat in self.MySavesLoader[e][4] :
+                    row.label(text="", icon="MATERIAL")
+                if len(self.uslesMaterial) == len(self.MySavesLoader[e][4]) :
+                    row.label(text="", icon="CHECKMARK")
+                else :
+                    row.label(text="", icon="ERROR")
+                
             
+        
+        if self.LevelOfDrive == 3 :
+            DomenButtonViews(row, self)
+            
+            row.separator(factor=2.0)
+            row = layout.row()
             row.label(text=OperatorText[3], icon="HAIR_DATA")
             row = (layout.box()).row()
             
@@ -1471,21 +2085,21 @@ class HairMainOperator(bpy.types.Operator):
                 row.prop(self, "HairRadius");
                 self.Presets[self.MainButtonNumber-1][7] = self.HairRadius;
                 row = layout.row()
-            
-            e = maps.material_slots
-            row = (layout.box()).row()
-            row = row.split(factor=0.1, align=True)
-            MainButtonSeparateLeft(row, self)
-            row = row.split(factor=0.1, align=True)
-            MainButtonSeparateRight(row, self)
-            self.Presets[self.MainButtonNumber-1][0][1] = self.MainCollectionSeparate;
-            if self.MainCollectionSeparate == -1 :
-                row.label(text = OperatorText[7])
-            if self.MainCollectionSeparate == 0 :
-                row.label(text = OperatorText[8])
-            if self.MainCollectionSeparate > 0 :
-                if len(e) > self.MainCollectionSeparate-1 : 
-                    row.label(text = OperatorText[9]+self.uslesMaterial[self.MainCollectionSeparate-1])
+            if not 1 == len(self.uslesMaterial) :
+                e = maps.material_slots
+                row = (layout.box()).row()
+                row = row.split(factor=0.1, align=True)
+                MainButtonSeparateLeft(row, self)
+                row = row.split(factor=0.1, align=True)
+                MainButtonSeparateRight(row, self)
+                self.Presets[self.MainButtonNumber-1][0][1] = self.MainCollectionSeparate;
+                if self.MainCollectionSeparate == -1 :
+                    row.label(text = OperatorText[7])
+                if self.MainCollectionSeparate == 0 :
+                    row.label(text = OperatorText[8])
+                if self.MainCollectionSeparate > 0 :
+                    if len(e) > self.MainCollectionSeparate-1 : 
+                        row.label(text = OperatorText[9]+self.uslesMaterial[self.MainCollectionSeparate-1])
             
             if self.MainCollectionTypeHair == "vertex" :
                 row = layout.row()
@@ -1520,7 +2134,9 @@ class HairMainOperator(bpy.types.Operator):
             self.Presets[self.MainButtonNumber-1][8] = self.DinamickDitale;
             
             row = layout.row()
-            row.prop(self, "MainActive", text=OperatorText[13])
+            PresetUsles(row, self)
+            row.label(text = OperatorText[13])
+            #row.prop(self, "MainActive", text=OperatorText[13])
             self.Presets[self.MainButtonNumber-1][5] = self.MainActive;
             
             row = layout.row()
@@ -1599,11 +2215,11 @@ class HairMainOperator(bpy.types.Operator):
                 
                 row = row.split(factor=0.3, align=True)
                 if  NoiseButtonSetTop(row, self) :
-                    self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, -1)
+                    self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self, self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, -1)
                     ReSetControlNoise(self)
                 row = row.split(factor=0.4, align=True)
                 if  NoiseButtonSetDown(row, self) :
-                    self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, 1)
+                    self.Presets[self.MainButtonNumber-1][4] = resetIdNoise(self, self.Presets[self.MainButtonNumber-1][4], self.NoiseButtonNumber-1, 1)
                     ReSetControlNoise(self)
                 
             if (self.NoiseButtonCount > 0) :
@@ -1733,46 +2349,383 @@ class HairMainOperator(bpy.types.Operator):
             row = layout.row()
             row.separator(factor=2.0)
             row = layout.row()
-            row.prop(self, "ReSetPreset",icon="FILE_REFRESH")
+            row.label(text = "Hair info: ", icon="COPY_ID")
+            row = layout.row()
+            row = (layout.box()).row()
+            row = row.split(factor=0.4, align=True)
+            row.prop(self, "NamePreset");
+            row.prop(self, "DescriptPreset");
+            row = layout.row()
+            row.label(text="Now using "+str(len(self.uslesMaterial))+" materials:")
+            for m in self.uslesMaterial:
+                row = layout.row()
+                row.separator(factor=2.0)
+                row.label(text="Matrial "+m, icon="MATERIAL")
+            if self.OnSaveStupit :
+                row = layout.row()
+                row = row.split(factor=0.7, align=True)
+                row.label(text = "Save this hair", icon="FILE_BLANK")
+                row.prop(self, "SavePreset",icon="PINNED")
             
-        
-    def ttt(self) :
-        print("test")
+    
     def invoke(self, context, event):
+        
+        self.NewPreset = 0;
+        self.LastPreset = 0;
+        self.OpenPreset = 0;
+        
+        self.SavePreset = 0;
         self.DomenButtonBuild = 0;
-        if self.ReSetPreset :
-            self.DomenButtonViews = 1;
-            self.Presets = [ [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,1.,0.01,1,0, 0  ] ];
-            self.lines = [];
-            self.vertexMap = [];
-            self.BonePreset = [];
-            self.MainButtonCount = 0;
-            self.MainButtonNumber = 0;
-            self.NoiseButtonCount = 0;
-            self.NoiseButtonNumber = 0;
-            ReSetControlPresets(self);
-            self.DitaleFinish = 1;
-            self.CountFinish = 1;
-            self.CountHairPreviev = 0;
-            self.BoneButtonNumber = 0;
-            self.BoneButtonCount = 0;
-            
+        self.selectedPreset = 0;
+        
+        self.SaveDelPreset
+        #self.DomenButtonBuild = 0;
+        self.OnSaveStupit = 0;
+        #resetPreset(self);
+        
         return {'FINISHED'}
 
-classe = [HairMainOperator];
+class UpDateUslesPanelData(bpy.types.Operator):
+    bl_label = "NoUsles"
+    bl_idname = "object.simple_operator"
+    
+    
+    
+    UslesUpdate: bpy.props.BoolProperty(name="")
+    systemUpdate: bpy.props.BoolProperty(name="")
+    GenCurve: bpy.props.BoolProperty(name="")
+    
+    def execute(self, context):
+        if context.scene.HairUpdate and self.systemUpdate == 0 :
+            self.systemUpdate = 0;
+            self.systemUpdate = 1;
+        if self.systemUpdate == 1 and context.scene.HairUpdate == 1 :
+            bpy.app.handlers.frame_change_post.append(testUpDate)
+            print("-Update registered")
+        if self.systemUpdate == 1 and context.scene.HairUpdate == 0 :
+            bpy.app.handlers.frame_change_post.remove(testUpDate)
+            print("-Update unregistered")
+        return {'FINISHED'}
+    def draw(self, context):
+        return
 
-def menu_func(self, context):
+
+
+
+
+class UpDateUslesPanel(bpy.types.Panel):
+    bl_idname = "HairUpdatePanel"
+    bl_label = "Hair update"
+    bl_space_type = 'PROPERTIES'
+    bl_region_type = 'WINDOW'
+    bl_context = 'scene'
+    
+    def draw_header(self, context):
+        layout = self.layout
+        self.layout.prop(context.scene, "HairUpdate")
+    
+    
+    def draw(self, context):
+        layout = self.layout
+        data = layout.operator(UpDateUslesPanelData.bl_idname)
+        row = layout.row()
+        
+        row.label(text = "1")
+        row = layout.row()
+        
+        self.UslesUpdate = 0;
+        row = layout.row()
+        row.prop(data, "GenCurve", icon="FILE_REFRESH", text="Update curve geomerti")
+        self.GenCurve = 0;
+
+
+def getNewPos(p1, p2, cof) :
+    a = [[0,0,0],[0,0,0]]
+    a[0] = lerp(p1[:], p2[:], cof[0])
+    a[1] = lerp(p1[:], p2[:], cof[1])
+    
+    return a;
+
+
+class HairLoopCut(bpy.types.Operator): 
+    bl_label = "Hair LoopCutFloors"
+    bl_idname = "mesh.hair_loop_cut"
+    bl_description = "Create loop cut and floor this"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    #SetSelectToVertGroup: bpy.props.BoolProperty(name="")
+    CountCut: bpy.props.IntProperty(name="", default=1, min=1, max=100)
+    SizeAll: bpy.props.FloatProperty(name="", default=1.)
+    DistAll: bpy.props.FloatProperty(name="", default=1.)
+    SizeEll: bpy.props.FloatProperty(name="", default=1.)
+    CloopGo: bpy.props.BoolProperty(name="")
+    
+    copyPoly = []
+    endSelect = []
+    first = 1;
+    
+    def execute(self, context):
+        obj = context.object
+        mod = bpy.context.mode;
+        
+        e = obj.data.edges;
+        p = obj.data.polygons;
+        v = obj.data.vertices;
+        
+        f = 0;
+        objId = bpy.data.objects.find(obj.name)
+        if (mod == "EDIT_MESH" or mod == "EDIT" ) and not self.CountCut == 0 :
+            bpy.ops.mesh.select_mode(type="FACE")
+            bpy.ops.object.mode_set(mode='OBJECT')
+            idp = GetAllActive(p)
+            for flor in range(len(idp)) :
+                #if len(self.copyPoly) == 0 :
+                self.copyPoly = [ [idp[flor], 0] ];
+                self.endSelect = []
+                for copyId in range(self.CountCut -1) :
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.select_all(action='DESELECT')
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    p[idp[flor]].select = 1;
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.select_mode(type="VERT")
+                    bpy.ops.mesh.select_linked(delimit={'SEAM'})
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    usles = GetAllActive(v)
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.duplicate()
+                    bpy.ops.mesh.select_all(action='DESELECT')
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    for pol in p :
+                        yes = 1;
+                        for pole in self.copyPoly :
+                            if pol.index == pole[0] :
+                                yes = 0;
+                        if yes :
+                            yep = 0;
+                            for ve in pol.vertices :
+                                for veo in p[idp[flor]].vertices :
+                                    if v[ve].co.xyz == v[veo].co.xyz :
+                                        yep += 1;
+                            if yep == 4:
+                                    self.copyPoly.append( [ pol.index, 1+copyId])
+                bpy.ops.object.mode_set(mode='OBJECT')
+                for cop in self.copyPoly :
+                    size = 1/(self.CountCut/self.SizeAll)*self.SizeEll;
+                    add = cop[1]/(self.CountCut/self.SizeAll)*self.DistAll;
+                    start = cop[0];
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    p[start].select = 1;
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.select_mode(type="VERT")
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    noSel = p[start].vertices
+                    f = noSel;
+                    noSel = []
+                    for ede in f :
+                        noSel.append(ede);
+                    noSel = sortLineToEdgs(obj, noSel[0], noSel);
+                    
+                    florE = [];
+                    for fv in range(len( noSel )) :
+                        for egd in e :
+                            if fv == len( noSel )-1 :
+                                fv = -1
+                            if egd.vertices[0] == noSel[fv] and egd.vertices[1] == noSel[fv+1] :
+                                    florE.append(egd.index)
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.select_all(action='DESELECT')
+                    bpy.ops.mesh.select_mode(type="EDGE")
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    e[florE[int(self.CloopGo)]].select = 1;
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.loop_multi_select(ring=True)
+                    bpy.ops.mesh.select_mode(type="EDGE")
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    Lines = GetAllActive(e)
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.select_all(action='DESELECT')
+                    bpy.ops.mesh.select_mode(type="VERT")
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    GetConectEdges(e, florE, 1+int(self.CloopGo)).select = 1;
+                    GetConectEdges(e, florE, 2+int(self.CloopGo)).select = 1;
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.loop_multi_select(ring=False)
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    left = GetAllActive(p)
+                    toLeft = []
+                    for le in left :
+                        for ver in p[le].vertices :
+                            toLeft.append(ver)
+                    toLeft = list(set(toLeft))
+                    Lines.sort()
+                    edgeList = []
+                    for lin in Lines :
+                        yes = 1;
+                        for lef in toLeft :
+                            if e[lin].vertices[0] == lef :
+                                yes = 0;
+                        if yes :
+                            edgeList.append( [ e[lin].vertices[0], e[lin].vertices[1]  ] )#, e[lin].vertices[1] 
+                        else :
+                            edgeList.append( [ e[lin].vertices[1], e[lin].vertices[0]  ] )#, e[lin].vertices[0] 
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.select_all(action='DESELECT')
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    for edg in edgeList :
+                        posos1 = v[edg[0]].co.xyz;
+                        posos2 = v[edg[1]].co.xyz;
+                        cord = getNewPos([posos1.x,posos1.y,posos1.z][:],[posos2.x,posos2.y,posos2.z][:],[add+size, add]);
+                        for i in [0,1] :
+                            v[edg[i]].co.x = cord[i][0]
+                            v[edg[i]].co.y = cord[i][1]
+                            v[edg[i]].co.z = cord[i][2]
+                    self.endSelect.append(cop[0])
+                if 1 :
+                    bpy.ops.object.mode_set(mode="EDIT")
+                    bpy.ops.mesh.select_all(action='DESELECT')
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    for cop in self.endSelect :
+                        p[cop].select = 1;
+                bpy.ops.object.mode_set(mode="EDIT")
+                bpy.ops.mesh.select_mode(type="FACE")
+                if self.first :
+                    self.first = 0;
+                
+        return {'FINISHED'}
+    def invoke(self, context, event):
+        self.CountCut = 1;
+        self.CloopGo = 1- self.CloopGo
+        return {'FINISHED'}
+
+class HairSelecterFoor(bpy.types.Operator): 
+    bl_label = "Hair Selecter Floor"
+    bl_idname = "mesh.hair_selecter_root"
+    bl_description = "Get floor gor this hair end"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    SetSelectToVertGroup: bpy.props.BoolProperty(name="")
+    ReFind: bpy.props.BoolProperty(name="")
+    endList = [];
+    def execute(self, context):
+        mod = context.mode;
+        obj = context.object
+        p = obj.data.polygons;
+        group = context.object.vertex_groups.active_index
+        if mod == "EDIT_MESH" or mod == "EDIT":
+            bpy.ops.mesh.select_all(action='DESELECT')
+            bpy.ops.object.mode_set(mode='OBJECT')
+            if not len(self.endList) == 0 :
+                if self.SetSelectToVertGroup :
+                    if not len(obj.vertex_groups) == 0 :
+                        for eni in self.endList :
+                            p[eni].select = 1
+                            obj.vertex_groups[group].add(p[eni].vertices, 1, "ADD")
+            bpy.ops.object.mode_set(mode="EDIT")
+        return {'FINISHED'}
+    def invoke(self, context, event):
+        self.ReFind = 0;
+        mod = context.mode;
+        group = context.object.vertex_groups.active_index 
+        if mod == "EDIT_MESH" or mod == "EDIT":
+            obj = context.object
+            p = obj.data.polygons;
+            self.endList = FineEnd(self, context)
+            bpy.ops.object.mode_set(mode="EDIT")
+            bpy.ops.mesh.select_all(action='DESELECT')
+            bpy.ops.object.mode_set(mode='OBJECT')
+            allSelect(p, self.endList)
+            if self.SetSelectToVertGroup :
+                if not len(obj.vertex_groups) == 0 :
+                    for eni in self.endList :
+                        obj.vertex_groups[group].add(p[eni].vertices, 1, "ADD")
+            bpy.ops.object.mode_set(mode="EDIT")
+        return {'FINISHED'}
+    def draw(self, context):
+        obj = context.object
+        layout = self.layout
+        row = layout.row()
+        group = context.object.vertex_groups.active_index
+        if not len(obj.vertex_groups) == 0 :
+            row.label(text = "Auto set selection to active vertex group "+obj.vertex_groups[group].name)
+            row = layout.row()
+            row.prop(self, "SetSelectToVertGroup", icon = "GROUP_VERTEX")
+        else :
+            row.label(text = "Object not have vertex group")
+        
+
+
+def testUpDate(scene):
+    allObject = bpy.data.objects
+    mod = bpy.context.mode;
+    for object in allObject :
+        if not object.name.find("[Curve Render]") == -1 :
+            allObject.remove(object, do_unlink=True)
+    for object in allObject :
+        if not object.name.find("[vert to curve on frameUpdate]") == -1 :
+            me = bpy.data.curves.new("HairCurve render", "CURVE")
+            me.dimensions = '3D'
+            me.resolution_u = 1;
+            me.bevel_depth = 0.01;
+            me.bevel_resolution = 0;
+            NewCyrve = bpy.data.objects.new(object.name+" [Curve Render]", me)
+            if not len(object.data.materials) == 0:
+                NewCyrve.data.materials.append(object.data.materials[0] )
+            object.users_collection[0].objects.link(NewCyrve)
+            bpy.ops.object.select_all(action='DESELECT')
+            bpy.context.view_layer.objects.active = object
+            lines = GetObjectPart(object.data.vertices, mod)
+            lines = SortVertexHairLine(object, lines)
+            cord = GetVertLineData(object, lines)
+            for lineData in cord :
+                ConvertVertToCurve(NewCyrve, lineData);
+
+def menu_func_Main(self, context):
     self.layout.operator(HairMainOperator.bl_idname)
 
+def menu_func_Selecter(self, context):
+    self.layout.operator(HairSelecterFoor.bl_idname)
+    self.layout.operator(HairLoopCut.bl_idname)
+
+
+func = [[menu_func_Main,"object"], [menu_func_Selecter,"edit"]];
+
+classe = [HairMainOperator, UpDateUslesPanel, UpDateUslesPanelData, HairSelecterFoor, HairLoopCut];
+
+#addon_keymaps = []
+
 def register():
+    
     for c in classe :
         bpy.utils.register_class(c)
-    bpy.types.VIEW3D_MT_object.append(menu_func)
+    for fun in func :
+        if fun[1] == "object" :
+            bpy.types.VIEW3D_MT_object.append(fun[0])
+        if fun[1] == "edit" :
+            bpy.types.VIEW3D_MT_edit_mesh_faces.append(fun[0])
+    bpy.types.Scene.HairUpdate = bpy.props.BoolProperty(name="")
+    
+    #  Hair conductor keys
+  #  wm = bpy.context.window_manager
+  #  km = wm.keyconfigs.active.keymaps["Window"]
+  #  km = wm.keyconfigs.addon.keymaps.new(name='Edit Mode', space_type='EMPTY')
+  #  km = km.keymap_items.new('object.hair_selecter_root', 'R', 'PRESS', shift=0, ctrl=1, alt = 1)
+    #kmi = km.keymap_items.new(HairSelecterFoor.bl_idname, 'J', 'PRESS', ctrl=True, shift=0)
+    #kmi.properties.total = 4
+   # addon_keymaps.append(km)
+    
+    
     
 def unregister():
     for c in classe :
         bpy.utils.unregister_class(c)
     bpy.types.VIEW3D_MT_object.remove(menu_func)
+    bpy.app.handlers.frame_change_post.remove(testUpDate)
+    
+  #  wm = bpy.context.window_manager
+  #  for km in addon_keymaps:
+  #      wm.keyconfigs.addon.keymaps.remove(km)
+   # addon_keymaps.clear()
 
 if __name__ == "__main__":
     register()
