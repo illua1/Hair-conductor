@@ -1,6 +1,6 @@
 # Addon for Blender 2.8 Hair Conductor.
 
-**The main function: **
+**The main function**: 
 makes hair styling according to your corridor geometry.
 
 **Using**: 
@@ -9,7 +9,7 @@ makes hair styling according to your corridor geometry.
  - 3 Press the button to build a hair plan (this may take some time. For safety, you will be shown a console with a report.) (Buildings are needed to interpret your geometry into a  simple view that can be used for laying hair).
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
-## Usage example :
+**Usage example**: 
  - Hair geometry requirements:
  - Strictly 4x carbon tube.
  - The ends are filled.
@@ -24,7 +24,7 @@ makes hair styling according to your corridor geometry.
  - The object must have at least 1 material
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/731649425130127420/1.png "One hair element cutaway")
 
-## Supported features:
+**Supported features**: 
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
  - One or more types of hair at the same time.
  - Hair type may be:
@@ -44,14 +44,26 @@ makes hair styling according to your corridor geometry.
  - Shelves of deformers (noise).
  - Not supported:
  - Skeleton generation (and harness) - not yet started.
- 
-# Usage example (Informal tutorial!) :
-https://youtu.be/ckccCbwuRPk?t=7151
-https://youtu.be/gzGVE06OEE4
 
-# Demonstration of the finished result :
-https://cdn.discordapp.com/attachments/324814768152248323/734052192402538552/hair_render_test_1-2-1.mp4
- - I want it:
+**Demonstration of the finished result**: 
+![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
+![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/814/large/mod-____-man-1-1-3.jpg?1596463531 "One hair element cutaway")
+![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/102/674/large/mod-____-girl-1-1-2.jpg?1596469609 "One hair element cutaway")
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/029/102/671/large/mod-____-girl-1-1-3.jpg?1596469594 "One hair element cutaway")
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/445/large/mod-____-render-test-1-1-1.jpg?1595249808 "One hair element cutaway")
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/463/large/mod-____-render-test-1-2-1.jpg?1595249822 "One hair element cutaway")
+![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/780/large/mod-____-srgvzsaerv-1-1-1.jpg?1595518164 "One hair element cutaway")
+![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/788/large/mod-____-srgvzsaerv-1-2-1.jpg?1595518172 "One hair element cutaway")
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/791/795/large/mod-____-srgvzsaerv-1-3-1.jpg?1595518179 "One hair element cutaway")
+![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/804/large/mod-____-srgvzsaerv-1-4-1.jpg?1595518187 "One hair element cutaway")
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/791/823/large/mod-____-srgvzsaerv-1-6-1.jpg?1595518201 "One hair element cutaway")
+![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/832/large/mod-____-srgvzsaerv-1-7-1.jpg?1595518208 "One hair element cutaway")
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/791/839/large/mod-____-srgvzsaerv-1-8-1.jpg?1595518216 "One hair element cutaway")
+
+**Addon Discussion Location**:
+- https://blenderartists.org/t/addon-hair-conductor-blender-2-8/1242182
+
+**I want it**: 
  - Get the ZIP/
  - Open blender/
  - User settings/
