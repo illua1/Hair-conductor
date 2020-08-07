@@ -3,7 +3,7 @@
 **The main function: **
 makes hair styling according to your corridor geometry.
 
-**Using: **
+**Using**: 
  - 1 Call the Generate Hair by object function (from a space search or the Object fold) (An object for building hair should be selected).
  - 2 In the operator (a new menu on the screen), select (using the left-right buttons) the vertex group with which you marked the base of the hair.
  - 3 Press the button to build a hair plan (this may take some time. For safety, you will be shown a console with a report.) (Buildings are needed to interpret your geometry into a  simple view that can be used for laying hair).
