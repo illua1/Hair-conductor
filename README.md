@@ -74,5 +74,8 @@ makes hair styling according to your corridor geometry.
  - View3D/
  - Object/
  -Generate Hair by object.
+ **Warning**:
+ - Extreme parameters, such as the amount of hair or their fragmentation, can not only make you wait a long time for the result, but also destroy your memory! both graphics card and RAM, if you're not careful, you can lose your blender session.
+ - If you are using this hair for rendering, then you are using curves, but it is not hair! and if you render them in cycles you could lose your computer to gpu! Don't risk it! Use eevee!
 ____
 # The addon is still at an early stage of development. I'm not a mater of Python. Object-oriented programming is ignored, all the features of the language and bpy are not used, there is a lot of garbage text, there is no translation.
