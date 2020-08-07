@@ -42,11 +42,10 @@ Makes hair styling according to your corridor geometry.
  - Minimum hair length.
  - Scatter (1 - no, 0 or 2 - closer to something)
  - Shelves of deformers (noise).
- - Not supported:
- - Skeleton generation (and harness) - not yet started.
+ - Skeleton generation (and harness).
  - Saving and loading addon session.
- - Tool for edit-mode tool - Hair Selecter Floor
- - Tool for edit-mode tool - Hair Loop Cut Floors
+ - Tool for edit-mode tool - Hair Selecter Floor.
+ - Tool for edit-mode tool - Hair Loop Cut Floors.
 
 **Demonstration of the finished result**: 
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
