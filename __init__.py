@@ -1400,6 +1400,9 @@ def gen(self, context, scene, maps, mod) :
             
         sel = [];
         
+        
+        
+        
         mainColect = [];
         if self.UsFinishPreset :
             count *= self.CountFinish
@@ -1434,6 +1437,7 @@ def gen(self, context, scene, maps, mod) :
                         print("Element "+str(a))
                     sel.append( genGeomerti(use, mainColect, self, context, maps, Hairs, LinesByMatreialF, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, noiseYes, bonesList, BoneId, mod) )
             if Separate > 0 :
+                #print("--", Separate, "+++", LinesByMatreial)
                 a = LinesByMatreial[Separate-1]
                 if (not self.UsFinishPreset)*(not SliseLines == 0) * ( SliseLines < len(self.lines) ) :
                     a = a[0:SliseLines]
@@ -1888,8 +1892,10 @@ class HairMainOperator(bpy.types.Operator):
             if self.OpenPreset :
                 if self.genYea == 0:
                     OpendPreset(self, self.MySavesLoader[self.selectedPreset]);
+                    print("++", self.Presets)
+                    ReSetControlPresets(self);
                     self.genYea = 1;
-            
+            #print("=+", self.Presets)
             if self.genYea :
                 gen(self, context, scene, maps, mod)
             
