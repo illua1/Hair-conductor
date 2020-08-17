@@ -78,87 +78,87 @@ Makes hair styling according to your corridor geometry.
  
 **Use Of Deformers**:
 
--No deformers 
+No deformers 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006060909232219/first_1-1-1.png "No deformers")
 
--**Type**: Noise in hair space : 
+**Type**: Noise in hair space : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006064189046874/first_1-2-1.png "Noise in hair space")
 
--The size
+ - The size
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006067578175590/first_1-2-2.png "The size")
 
--Drop
+ - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006070820372540/first_1-2-3.png "Drop")
 
--**Type**: Coordinate noise : 
+**Type**: Coordinate noise : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006074742177912/first_1-3-1.png "Coordinate noise")
 
--Power
+ - Power
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006076528951387/first_1-3-2.png "Power")
 
--The size
+ - The size
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006103720362126/first_1-3-3.png "The size")
 
--Drop
+ - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006106580877343/first_1-3-4.png "Drop")
 
--**Type**: Voronoise (clusters) : 
+**Type**: Voronoise (clusters) : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006111022907482/first_1-4-1a.png "Voronoise clusters")
 
--Power
+ - Power
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006113216397352/first_1-4-2a.png "Power")
 
--The size
+ - The size
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006116206936134/first_1-4-3a.png "The size")
 
--Drop
+ - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006120275410994/first_1-4-4a.png "Drop")
 
--**Type**: Size (in width) : 
+**Type**: Size (in width) : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006143977553971/first_1-5-1.png "Size (in width)")
 
--Size vector
+ - Size vector
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006146372501544/first_1-5-2.png "Size vector")
 
--The size
+ - The size
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006150096912384/first_1-5-3.png "The size")
 
--Drop
+ - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006154400399580/first_1-5-4.png "Drop")
 
--**Type**: Rotation (To lenght) : 
+**Type**: Rotation (To lenght) : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006158015889480/first_1-6-1.png "Rotation (To lenght)")
 
--Power
+ - Power
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006161157423184/first_1-6-2.png "Power")
 
--The size
+ - The size
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006180665131238/first_1-6-3.png "The size")
 
--Drop
+ - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006181684215938/first_1-6-4.png "Drop")
 
--Combination example
+Combination example
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006184716566579/first_1-7-1.png "Combination example")
 
