@@ -294,11 +294,11 @@ No deformers
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006181684215938/first_1-6-4.png "Drop")
 
-</details>
-
 Combination example
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006184716566579/first_1-7-1.png "Combination example")
+
+</details>
 
  **Warning**:
  - Extreme parameters, such as the amount of hair or their fragmentation, can not only make you wait a long time for the result, but also destroy your memory! both graphics card and RAM, if you're not careful, you can lose your blender session.
