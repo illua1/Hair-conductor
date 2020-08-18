@@ -9,7 +9,7 @@ Makes hair styling according to your corridor geometry.
  - 3 Press the button to build a hair plan (this may take some time. For safety, you will be shown a console with a report.) (Buildings are needed to interpret your geometry into a  simple view that can be used for laying hair).
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
-**Hair geometry requirements**:
+**Hair geometry requirements**: >>> 
  - Strictly 4x carbon tube.
  - The ends are filled.
  - No holes or tears.
@@ -22,6 +22,8 @@ Makes hair styling according to your corridor geometry.
  - The object should not be rotated, scaled, have a parent.
  - The object must have at least 1 material
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/731649425130127420/1.png "One hair element cutaway")
+
+<<<
 
 **Supported features**: 
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
@@ -47,7 +49,6 @@ Makes hair styling according to your corridor geometry.
  - Tool for edit-mode tool - Hair Loop Cut Floors.
 
 >>>
-fyctyhvyj
 
 **Demonstration of the finished result**: 
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
