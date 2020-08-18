@@ -260,6 +260,9 @@ No deformers
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006060909232219/first_1-1-1.png "No deformers")
 
+<details>
+  <summary>    UVZ noise</summary>
+
 **Type**: Noise in hair space : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006064189046874/first_1-2-1.png "Noise in hair space")
@@ -271,6 +274,11 @@ No deformers
  - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006070820372540/first_1-2-3.png "Drop")
+
+</details>
+
+<details>
+  <summary>    XYZ noise</summary>
 
 **Type**: Coordinate noise : 
 
@@ -288,6 +296,11 @@ No deformers
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006106580877343/first_1-3-4.png "Drop")
 
+</details>
+
+<details>
+  <summary>    Voronoise</summary>
+
 **Type**: Voronoise (clusters) : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006111022907482/first_1-4-1a.png "Voronoise clusters")
@@ -303,6 +316,11 @@ No deformers
  - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006120275410994/first_1-4-4a.png "Drop")
+
+</details>
+
+<details>
+  <summary>    Resize</summary>
 
 **Type**: Size (in width) : 
 
@@ -320,6 +338,11 @@ No deformers
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006154400399580/first_1-5-4.png "Drop")
 
+</details>
+
+<details>
+  <summary>    Rotate</summary>
+
 **Type**: Rotation (To lenght) : 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006158015889480/first_1-6-1.png "Rotation (To lenght)")
@@ -335,6 +358,8 @@ No deformers
  - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006181684215938/first_1-6-4.png "Drop")
+
+</details>
 
 Combination example
 
