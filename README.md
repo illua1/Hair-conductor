@@ -10,7 +10,7 @@ Makes hair styling according to your corridor geometry.
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
 <details>
-  <summary>#Hair geometry requirements:</summary>
+  <summary>Hair geometry requirements:</summary>
 
  - Strictly 4x carbon tube.
  - The ends are filled.
@@ -28,7 +28,7 @@ Makes hair styling according to your corridor geometry.
 </details>
 
 <details>
-  <summary>#Supported features: </summary>
+  <summary>Supported features: </summary>
 
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
  - One or more types of hair at the same time.
@@ -55,7 +55,7 @@ Makes hair styling according to your corridor geometry.
 </details>
 
 <details>
-  <summary>#Demonstration of the finished result: </summary>
+  <summary>Demonstration of the finished result: </summary>
 
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/814/large/mod-____-man-1-1-3.jpg?1596463531 "One hair element cutaway")
@@ -87,7 +87,7 @@ Makes hair styling according to your corridor geometry.
  - Activate/
  
 <details>
-  <summary>#Start use: </summary>
+  <summary>Start use: </summary>
 
 - What do you want
 
@@ -113,8 +113,10 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364806525124718/first_1-8-6.png "To add your hair to the save list, click this")
 
+</details>
+
 <details>
-  <summary>#Hair preset: </summary>
+  <summary>Hair preset: </summary>
 
  - Don't see the geometry of the map 
 
@@ -207,9 +209,10 @@ Makes hair styling according to your corridor geometry.
  - Record of the number of different presets
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377218384887848/first_1-12-5.png "Record of the number of different presets")
+</details>
 
 <details>
-  <summary>#Use Of Deformers: </summary>
+  <summary>Use Of Deformers: </summary>
 
 No deformers 
 
@@ -290,6 +293,8 @@ No deformers
  - Drop
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006181684215938/first_1-6-4.png "Drop")
+
+</details>
 
 Combination example
 
