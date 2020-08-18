@@ -47,6 +47,7 @@ Makes hair styling according to your corridor geometry.
  - Tool for edit-mode tool - Hair Loop Cut Floors.
 
 >>>
+
 **Demonstration of the finished result**: 
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/814/large/mod-____-man-1-1-3.jpg?1596463531 "One hair element cutaway")
@@ -61,6 +62,7 @@ Makes hair styling according to your corridor geometry.
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/791/823/large/mod-____-srgvzsaerv-1-6-1.jpg?1595518201 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/832/large/mod-____-srgvzsaerv-1-7-1.jpg?1595518208 "One hair element cutaway")
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/791/839/large/mod-____-srgvzsaerv-1-8-1.jpg?1595518216 "One hair element cutaway")
+
 <<<
 
 **Addon Discussion Location**:
