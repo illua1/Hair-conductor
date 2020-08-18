@@ -73,9 +73,6 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-**Addon Discussion Location**:
-- https://blenderartists.org/t/addon-hair-conductor-blender-2-8/1242182
-
 <details>
   <summary>#I want it: </summary>
 
@@ -366,6 +363,9 @@ Combination example
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006184716566579/first_1-7-1.png "Combination example")
 
 </details>
+
+**Addon Discussion Location**:
+- https://blenderartists.org/t/addon-hair-conductor-blender-2-8/1242182
 
  **Warning**:
  - Extreme parameters, such as the amount of hair or their fragmentation, can not only make you wait a long time for the result, but also destroy your memory! both graphics card and RAM, if you're not careful, you can lose your blender session.
