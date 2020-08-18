@@ -103,19 +103,19 @@ Makes hair styling according to your corridor geometry.
  
 **Hair preset**:
 
- - See the geometry of the map
+ - Don't see the geometry of the map 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368401761009694/first_1-9-1.png "See the geometry of the map")
 
- - Don't see the geometry of the map
+ - See the geometry of the map
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368402712854609/first_1-9-2.png "Don't see the geometry of the map")
 
- - Switch hair type: mesh
+ - Switch hair type: curve 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368404952743936/first_1-9-3.png "Switch hair type: mesh")
 
-- Switch hair type: curve
+- Switch hair type: mesh
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368407473651762/first_1-9-4.png "Switch hair type: curve")
 
