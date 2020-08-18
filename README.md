@@ -122,7 +122,7 @@ Makes hair styling according to your corridor geometry.
   <summary>Hair preset: </summary>
 
 <details>
-  <summary>See the geometry of the map</summary>
+  <summary>    See the geometry of the map</summary>
 
  - Don't see the geometry of the map 
 
@@ -134,6 +134,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+<details>
+  <summary>    Switch hair type</summary>
+
  - Switch hair type: curve 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368404952743936/first_1-9-3.png "Switch hair type: mesh")
@@ -141,6 +144,11 @@ Makes hair styling according to your corridor geometry.
  - Switch hair type: mesh
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368407473651762/first_1-9-4.png "Switch hair type: curve")
+
+</details>
+
+<details>
+  <summary>    Split by materials</summary>
 
  - Do not split by materials
 
@@ -158,6 +166,11 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368416633749556/first_1-9-8.png "Select 1 material")
 
+</details>
+
+<details>
+  <summary>    Length range</summary>
+
  - Scatter location 1.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374827312840854/first_1-10-1.png "Scatter location 1.")
@@ -174,6 +187,11 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374832530555010/first_1-10-4.png "High minimum")
 
+</details>
+
+<details>
+  <summary>    Hair width</summary>
+
  - Large width
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374835076497498/first_1-11-1.png "Large width")
@@ -181,6 +199,11 @@ Makes hair styling according to your corridor geometry.
  - Small width
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374837001945501/first_1-11-2.png "Small width")
+
+</details>
+
+<details>
+  <summary>    Hair scatter</summary>
 
  - The spread is high
 
@@ -190,6 +213,11 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374840629887097/first_1-11-4.png "Low spread")
 
+</details>
+
+<details>
+  <summary>    Dynamic number of vertices</summary>
+
  - Dynamic number of vertices taking into account length
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377207798595694/first_1-11-5.png "Dynamic number of vertices taking into account length")
@@ -197,6 +225,11 @@ Makes hair styling according to your corridor geometry.
  - Constant length
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377208331403304/first_1-11-6.png "Constant length")
+
+</details>
+
+<details>
+  <summary>    Preset count</summary>
 
  - 2 different presets created
 
@@ -217,6 +250,7 @@ Makes hair styling according to your corridor geometry.
  - Record of the number of different presets
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377218384887848/first_1-12-5.png "Record of the number of different presets")
+</details>
 </details>
 
 <details>
