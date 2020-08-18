@@ -9,7 +9,8 @@ Makes hair styling according to your corridor geometry.
  - 3 Press the button to build a hair plan (this may take some time. For safety, you will be shown a console with a report.) (Buildings are needed to interpret your geometry into a  simple view that can be used for laying hair).
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
- ### Hair geometry requirements: <details>
+ ### Hair geometry requirements: 
+ <details>
   <summary></summary>
  
  - Strictly 4x carbon tube.
@@ -27,8 +28,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+ ### Supported features: 
 <details>
-  <summary>Supported features: </summary>
+  <summary></summary>
 
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
  - One or more types of hair at the same time.
@@ -54,8 +56,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+ ### Demonstration of the finished result: 
 <details>
-  <summary>Demonstration of the finished result: </summary>
+  <summary></summary>
 
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/445/large/mod-____-render-test-1-1-1.jpg?1595249808 "One hair element cutaway")
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/463/large/mod-____-render-test-1-2-1.jpg?1595249822 "One hair element cutaway")
@@ -73,8 +76,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+ ### I want it: 
 <details>
-  <summary>#I want it: </summary>
+  <summary></summary>
 
  - Get the ZIP/
  - Open blender/
@@ -86,8 +90,9 @@ Makes hair styling according to your corridor geometry.
  
  </details>
  
+  ### Start use: 
 <details>
-  <summary>Start use: </summary>
+  <summary></summary>
 
 - What do you want
 
@@ -117,9 +122,10 @@ Makes hair styling according to your corridor geometry.
 
 <details>
   <summary>Hair preset: </summary>
-
+ 
+  #### See the geometry of the map
   <details>
-    <summary>    See the geometry of the map</summary>
+    <summary>    </summary>
 
  - Don't see the geometry of the map 
 
