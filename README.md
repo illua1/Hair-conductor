@@ -57,12 +57,12 @@ Makes hair styling according to your corridor geometry.
 <details>
   <summary>Demonstration of the finished result: </summary>
 
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/445/large/mod-____-render-test-1-1-1.jpg?1595249808 "One hair element cutaway")
+![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/463/large/mod-____-render-test-1-2-1.jpg?1595249822 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/814/large/mod-____-man-1-1-3.jpg?1596463531 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/102/674/large/mod-____-girl-1-1-2.jpg?1596469609 "One hair element cutaway")
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/029/102/671/large/mod-____-girl-1-1-3.jpg?1596469594 "One hair element cutaway")
-![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/445/large/mod-____-render-test-1-1-1.jpg?1595249808 "One hair element cutaway")
-![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/463/large/mod-____-render-test-1-2-1.jpg?1595249822 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/780/large/mod-____-srgvzsaerv-1-1-1.jpg?1595518164 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/788/large/mod-____-srgvzsaerv-1-2-1.jpg?1595518172 "One hair element cutaway")
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/791/795/large/mod-____-srgvzsaerv-1-3-1.jpg?1595518179 "One hair element cutaway")
