@@ -28,9 +28,8 @@ Makes hair styling according to your corridor geometry.
 </details>
 
 <details>
-<summary>
-**Supported features**: 
-</summary>
+  <summary> ** Supported features ** : </summary>
+
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
  - One or more types of hair at the same time.
  - Hair type may be:
@@ -56,9 +55,8 @@ Makes hair styling according to your corridor geometry.
 </details>
 
 <details>
-<summary>
-**Demonstration of the finished result**: 
-</summary>
+  <summary> ** Demonstration of the finished result **: </summary>
+
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/814/large/mod-____-man-1-1-3.jpg?1596463531 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/102/674/large/mod-____-girl-1-1-2.jpg?1596469609 "One hair element cutaway")
