@@ -105,7 +105,7 @@ Makes hair styling according to your corridor geometry.
 
 - To add your hair to the save list, click this
 
-![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364806525124718/first_1-8-6.png "To add your hair to the save list, click this")
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745397157376426014/re_1-1-1.png "To add your hair to the save list, click this")
 
 </details>
 
