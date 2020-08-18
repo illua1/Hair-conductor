@@ -11,7 +11,7 @@ Makes hair styling according to your corridor geometry.
 
 <details>
   <summary>
-     **Hair geometry requirements**:</summary>
+**Hair geometry requirements**:</summary>
 
  - Strictly 4x carbon tube.
  - The ends are filled.
