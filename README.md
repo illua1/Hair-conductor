@@ -121,8 +121,8 @@ Makes hair styling according to your corridor geometry.
 <details>
   <summary>Hair preset: </summary>
 
-<details>
-  <summary>    See the geometry of the map</summary>
+  <details>
+    <summary>    See the geometry of the map</summary>
 
  - Don't see the geometry of the map 
 
@@ -229,7 +229,7 @@ Makes hair styling according to your corridor geometry.
 </details>
 
 <details>
-  <summary>    Preset count</summary>
+  <summary>    Count of preset</summary>
 
  - 2 different presets created
 
