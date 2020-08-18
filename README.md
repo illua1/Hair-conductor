@@ -77,7 +77,8 @@ Makes hair styling according to your corridor geometry.
 - https://blenderartists.org/t/addon-hair-conductor-blender-2-8/1242182
 
 <details>
-  <summary>#I want it: 
+  <summary>#I want it: </summary>
+
  - Get the ZIP/
  - Open blender/
  - User settings/
@@ -118,6 +119,9 @@ Makes hair styling according to your corridor geometry.
 <details>
   <summary>Hair preset: </summary>
 
+<details>
+  <summary>See the geometry of the map</summary>
+
  - Don't see the geometry of the map 
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368401761009694/first_1-9-1.png "See the geometry of the map")
@@ -125,6 +129,8 @@ Makes hair styling according to your corridor geometry.
  - See the geometry of the map
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368402712854609/first_1-9-2.png "Don't see the geometry of the map")
+
+</details>
 
  - Switch hair type: curve 
 
