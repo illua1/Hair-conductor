@@ -74,17 +74,29 @@ Makes hair styling according to your corridor geometry.
  - Activate/
  
 **Start use**:
- - What do you want
+
+- What do you want
+
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364795779317861/first_1-8-1.png "What do you want")
- - Materials required
+
+- Materials required
+
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364797687595028/first_1-8-2.png "Materials required")
- - Select a root group
+
+- Select a root group
+
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364798899749034/first_1-8-3.png "Select a root group")
- - Cause Mapping
+
+- Cause Mapping
+
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364801114603640/first_1-8-4.png "Cause Mapping")
- - Create your first hair
+
+- Create your first hair
+
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364803349905560/first_1-8-5.png "Create your first hair")
- - To add your hair to the save list, click this
+
+- To add your hair to the save list, click this
+
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745364806525124718/first_1-8-6.png "To add your hair to the save list, click this")
 
 
