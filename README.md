@@ -120,12 +120,13 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+ ### Hair preset: 
 <details>
-  <summary>Hair preset: </summary>
+  <summary></summary>
  
-  #### See the geometry of the map
+  ####    See the geometry of the map
   <details>
-    <summary>    </summary>
+    <summary></summary>
 
  - Don't see the geometry of the map 
 
@@ -137,8 +138,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+  ####    Switch hair type
 <details>
-  <summary>    Switch hair type</summary>
+  <summary></summary>
 
  - Switch hair type: curve 
 
@@ -150,8 +152,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+  ####    Split by materials
 <details>
-  <summary>    Split by materials</summary>
+  <summary></summary>
 
  - Do not split by materials
 
@@ -171,8 +174,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+  ####    Length range
 <details>
-  <summary>    Length range</summary>
+  <summary></summary>
 
  - Scatter location 1.
 
@@ -192,8 +196,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+  ####    Hair width
 <details>
-  <summary>    Hair width</summary>
+  <summary></summary>
 
  - Large width
 
@@ -205,8 +210,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+  ####    Hair scatter
 <details>
-  <summary>    Hair scatter</summary>
+  <summary></summary>
 
  - The spread is high
 
@@ -218,8 +224,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+  ####    Dynamic number of vertices
 <details>
-  <summary>    Dynamic number of vertices</summary>
+  <summary></summary>
 
  - Dynamic number of vertices taking into account length
 
@@ -231,8 +238,9 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+  ####    Count of preset
 <details>
-  <summary>    Count of preset</summary>
+  <summary></summary>
 
  - 2 different presets created
 
@@ -256,8 +264,9 @@ Makes hair styling according to your corridor geometry.
 </details>
 </details>
 
+ ### Use Of Deformers: 
 <details>
-  <summary>Use Of Deformers: </summary>
+  <summary></summary>
 
 No deformers 
 
