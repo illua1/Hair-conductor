@@ -3,9 +3,8 @@
 **The main function**: 
 Makes hair styling according to your corridor geometry.
 
- ### Hair geometry requirements: 
  <details>
-  <summary></summary>
+  <summary>Hair geometry requirements: </summary>
  
  - Strictly 4x carbon tube.
  - The ends are filled.
@@ -22,9 +21,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
- ### Supported features: 
 <details>
-  <summary></summary>
+  <summary>Supported features: </summary>
 
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
  - One or more types of hair at the same time.
@@ -50,9 +48,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
- ### Demonstration of the finished result: 
 <details>
-  <summary></summary>
+  <summary>Demonstration of the finished result: </summary>
 
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/445/large/mod-____-render-test-1-1-1.jpg?1595249808 "One hair element cutaway")
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/696/463/large/mod-____-render-test-1-2-1.jpg?1595249822 "One hair element cutaway")
@@ -70,9 +67,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
- ### I want it: 
 <details>
-  <summary></summary>
+  <summary>I want it: </summary>
 
  - Get the ZIP/
  - Open blender/
@@ -84,9 +80,8 @@ Makes hair styling according to your corridor geometry.
  
  </details>
  
-  ### Start use: 
 <details>
-  <summary></summary>
+  <summary>Start use: </summary>
 
 - What do you want
 
@@ -114,13 +109,11 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
- ### Hair preset: 
 <details>
-  <summary></summary>
+  <summary>Hair preset: </summary>
  
-  ####.    See the geometry of the map
   <details>
-    <summary></summary>
+    <summary>    See the geometry of the map</summary>
 
  - Don't see the geometry of the map 
 
@@ -132,9 +125,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-  ####    Switch hair type
 <details>
-  <summary></summary>
+  <summary>    Switch hair type</summary>
 
  - Switch hair type: curve 
 
@@ -146,9 +138,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-  ####    Split by materials
 <details>
-  <summary></summary>
+  <summary>    Split by materials</summary>
 
  - Do not split by materials
 
@@ -168,9 +159,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-  ####    Length range
 <details>
-  <summary></summary>
+  <summary>    Length range</summary>
 
  - Scatter location 1.
 
@@ -190,9 +180,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-  ####    Hair width
 <details>
-  <summary></summary>
+  <summary>    Hair width</summary>
 
  - Large width
 
@@ -204,9 +193,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-  ####    Hair scatter
 <details>
-  <summary></summary>
+  <summary>    Hair scatter</summary>
 
  - The spread is high
 
@@ -218,9 +206,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-  ####    Dynamic number of vertices
 <details>
-  <summary></summary>
+  <summary>    Dynamic number of vertices</summary>
 
  - Dynamic number of vertices taking into account length
 
@@ -232,9 +219,8 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-  ####    Count of preset
 <details>
-  <summary></summary>
+  <summary>    Count of preset</summary>
 
  - 2 different presets created
 
@@ -258,9 +244,8 @@ Makes hair styling according to your corridor geometry.
 </details>
 </details>
 
- ### Use Of Deformers: 
 <details>
-  <summary></summary>
+  <summary>Use Of Deformers: </summary>
 
 No deformers 
 
