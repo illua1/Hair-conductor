@@ -167,6 +167,34 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374840629887097/first_1-11-4.png "Low spread")
 
+ - Dynamic number of vertices taking into account length
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377207798595694/first_1-11-5.png "Dynamic number of vertices taking into account length")
+
+ - Constant length
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377208331403304/first_1-11-6.png "Constant length")
+
+ - 2 different presets created
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377211145650178/first_1-12-1.png "2 different presets created")
+
+ - All presets disabled
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377212433301615/first_1-12-2.png "All presets disabled")
+
+ - Preset 1 only
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377214316544011/first_1-12-3.png "Preset 1 only")
+
+ - Preset 2 only
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377216124158012/first_1-12-4.png "Preset 2 only")
+
+ - Record of the number of different presets
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745377218384887848/first_1-12-5.png "Record of the number of different presets")
+
  
 **Use Of Deformers**:
 
