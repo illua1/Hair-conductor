@@ -10,7 +10,9 @@ Makes hair styling according to your corridor geometry.
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
 <details>
-<summary>**Hair geometry requirements**:</summary>
+<summary>
+**Hair geometry requirements**:
+</summary>
 
  - Strictly 4x carbon tube.
  - The ends are filled.
@@ -27,7 +29,10 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+<details>
+<summary>
 **Supported features**: 
+</summary>
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
  - One or more types of hair at the same time.
  - Hair type may be:
@@ -50,9 +55,12 @@ Makes hair styling according to your corridor geometry.
  - Tool for edit-mode tool - Hair Selecter Floor.
  - Tool for edit-mode tool - Hair Loop Cut Floors.
 
->>>
+</details>
 
+<details>
+<summary>
 **Demonstration of the finished result**: 
+</summary>
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/810/large/mod-____-man-1-1-2.jpg?1596463522 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/099/814/large/mod-____-man-1-1-3.jpg?1596463531 "One hair element cutaway")
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/029/102/674/large/mod-____-girl-1-1-2.jpg?1596469609 "One hair element cutaway")
@@ -67,7 +75,7 @@ Makes hair styling according to your corridor geometry.
 ![Alt-текст](https://cdna.artstation.com/p/assets/images/images/028/791/832/large/mod-____-srgvzsaerv-1-7-1.jpg?1595518208 "One hair element cutaway")
 ![Alt-текст](https://cdnb.artstation.com/p/assets/images/images/028/791/839/large/mod-____-srgvzsaerv-1-8-1.jpg?1595518216 "One hair element cutaway")
 
-<<<
+</details>
 
 **Addon Discussion Location**:
 - https://blenderartists.org/t/addon-hair-conductor-blender-2-8/1242182
