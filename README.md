@@ -115,11 +115,11 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368404952743936/first_1-9-3.png "Switch hair type: mesh")
 
-- Switch hair type: mesh
+ - Switch hair type: mesh
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368407473651762/first_1-9-4.png "Switch hair type: curve")
 
-- Do not split by materials
+ - Do not split by materials
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368411495727107/first_1-9-5.png "Do not split by materials")
 
@@ -135,6 +135,37 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745368416633749556/first_1-9-8.png "Select 1 material")
 
+ - Scatter location 1.
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374827312840854/first_1-10-1.png "Scatter location 1.")
+
+ - Scatter location 2.
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374829099745280/first_1-10-2.png "Scatter location 2.")
+
+ - Scatter location 0.
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374830538522714/first_1-10-3.png "Scatter location 0.")
+
+ - High minimum
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374832530555010/first_1-10-4.png "High minimum")
+
+ - Large width
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374835076497498/first_1-11-1.png "Large width")
+
+ - Small width
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374837001945501/first_1-11-2.png "Small width")
+
+ - The spread is high
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374838830399548/first_1-11-3.png "The spread is high")
+
+ - Low spread
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374840629887097/first_1-11-4.png "Low spread")
 
  
 **Use Of Deformers**:
