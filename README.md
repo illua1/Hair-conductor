@@ -10,7 +10,8 @@ Makes hair styling according to your corridor geometry.
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
 <details>
-  <summary>**Hair geometry requirements**:</summary>
+  <summary>
+     **Hair geometry requirements**:</summary>
 
  - Strictly 4x carbon tube.
  - The ends are filled.
