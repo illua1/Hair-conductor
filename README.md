@@ -10,9 +10,8 @@ Makes hair styling according to your corridor geometry.
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
 <details>
-<summary>
+<summary>**Hair geometry requirements**:</summary>
 
-**Hair geometry requirements**:
  - Strictly 4x carbon tube.
  - The ends are filled.
  - No holes or tears.
@@ -26,7 +25,6 @@ Makes hair styling according to your corridor geometry.
  - The object must have at least 1 material
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/731649425130127420/1.png "One hair element cutaway")
 
-</summary>
 </details>
 
 **Supported features**: 
