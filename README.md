@@ -87,6 +87,8 @@ Makes hair styling according to your corridor geometry.
  - This add-on/
  - Activate/
  
+ </details>
+ 
 <details>
   <summary>Start use: </summary>
 
