@@ -9,6 +9,7 @@ Makes hair styling according to your corridor geometry.
  - 3 Press the button to build a hair plan (this may take some time. For safety, you will be shown a console with a report.) (Buildings are needed to interpret your geometry into a  simple view that can be used for laying hair).
  - 4 Management of hair through settings in real time (due to the way the menu is created, it is necessary to manually update the parameters additionally, after introduction).
 
+<details>
 <summary>
 
 **Hair geometry requirements**:
@@ -26,6 +27,7 @@ Makes hair styling according to your corridor geometry.
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/731649425130127420/1.png "One hair element cutaway")
 
 </summary>
+</details>
 
 **Supported features**: 
  - View of the object (the object is initially visible / render material, the object is a grid, the overlay is off.)
