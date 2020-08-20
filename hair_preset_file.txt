@@ -82,7 +82,7 @@
   #maxLenght = 1.0
   #minLenght = 0.699999988079071
   #powLenght = 1.7000000476837158
-  #active = True
+  #active = False
   #smooth = 1.0
   #radiuse = 1.209999918937683
   #dinamick = True
@@ -130,7 +130,7 @@
   #maxLenght = 1.0
   #minLenght = 0.699999988079071
   #powLenght = 1.7000000476837158
-  #active = True
+  #active = False
   #smooth = 1.0
   #radiuse = 1.3299999237060547
   #dinamick = True
@@ -158,7 +158,7 @@
   #maxLenght = 1.0
   #minLenght = 0.699999988079071
   #powLenght = 1.7000000476837158
-  #active = True
+  #active = False
   #smooth = 1.0
   #radiuse = 0.7599999904632568
   #dinamick = True
