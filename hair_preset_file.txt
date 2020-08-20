@@ -1,64 +1,44 @@
 #Hairs: 
- #renderCount = 9.0
- #renderDitale = 2.0
- #names = Mex
- #discript = This hair have 2 preset for mace hair like noise
+ #renderCount = 2.0
+ #renderDitale = 1.600000023841858
+ #names = First hair
+ #discript = This hair use only one material, and demonstrate any hairs deformers and preset like curve
  #domenView = 0
  #Materials: 
   #material = 0
-  #material = 1
-  #material = 2
  #MaterialsEnd;
  #Preset: 
   #types = curves
   #separate = -1
-  #count = 10
-  #ditale = 4
+  #count = 3
+  #ditale = 7
   #noiseUv = 1.0
   #noiseSize = 1.100000023841858
   #maxLenght = 1.0
-  #minLenght = 0.699999988079071
-  #powLenght = 0.1700000762939453
+  #minLenght = 1.0
+  #powLenght = 0.7700000405311584
   #active = False
   #smooth = 1.0
-  #radiuse = 1.2400000095367432
+  #radiuse = 1.8399999141693115
   #dinamick = True
   #boneNumber = 0
-  #countPreview = 1
+  #countPreview = 0
   #Deformers: 
-   #noiseType = voron
-   #noiseHight = 0.06501898169517517
-   #noisePower = 1.0
-   #noiseSize = 2.0
-   #noiseActive = True
-   #noiseGrowth = 0.2200000286102295
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-   #noiseType = noiseUV
-   #noiseHight = 0.3159695565700531
-   #noisePower = 1.0
-   #noiseSize = 0.10000000149011612
-   #noiseActive = True
-   #noiseGrowth = 1.0
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
    #noiseType = rotate
-   #noiseHight = 0.699999988079071
-   #noisePower = 0.2800000309944153
-   #noiseSize = 40.0
+   #noiseHight = 0.019391626119613647
+   #noisePower = 0.05999999865889549
+   #noiseSize = 70.0
    #noiseActive = True
-   #noiseGrowth = 1.5
+   #noiseGrowth = 0.4000000059604645
    #noiseSpaceX = 1.0
    #noiseSpaceY = 1.0
    #noiseSpaceZ = 1.0
-   #noiseType = noiseXYZ
-   #noiseHight = 0.19999998807907104
-   #noisePower = 0.30000001192092896
-   #noiseSize = 0.10899999737739563
+   #noiseType = noiseUV
+   #noiseHight = 0.24752849340438843
+   #noisePower = 1.2100000381469727
+   #noiseSize = 0.10000000149011612
    #noiseActive = True
-   #noiseGrowth = 0.5
+   #noiseGrowth = 3.2799999713897705
    #noiseSpaceX = 1.0
    #noiseSpaceY = 1.0
    #noiseSpaceZ = 1.0
@@ -67,292 +47,128 @@
  #Preset: 
   #types = curves
   #separate = -1
-  #count = 10
-  #ditale = 4
+  #count = 6
+  #ditale = 2
   #noiseUv = 1.0
-  #noiseSize = 1.4900000095367432
+  #noiseSize = 1.7599999904632568
   #maxLenght = 1.0
-  #minLenght = 0.6120879054069519
-  #powLenght = 0.8000000715255737
-  #active = False
-  #smooth = 1.0
-  #radiuse = 1.2400000095367432
-  #dinamick = True
-  #boneNumber = 0
-  #countPreview = 1
-  #Deformers: 
-   #noiseType = noiseXYZ
-   #noiseHight = 0.13181816041469574
-   #noisePower = 0.2889999747276306
-   #noiseSize = 0.10000000149011612
-   #noiseActive = True
-   #noiseGrowth = 0.20000000298023224
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-   #noiseType = noiseUV
-   #noiseHight = 0.5446969270706177
-   #noisePower = 1.0
-   #noiseSize = 0.10000000149011612
-   #noiseActive = True
-   #noiseGrowth = 1.0
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-  #DeformersEnd;
- #PresetEnd;
-#HairsEnd;
-#Hairs: 
- #renderCount = 1.0
- #renderDitale = 1.0
- #names = test save
- #discript = test on stypit
- #domenView = 1
- #Materials: 
-  #material = 0
-  #material = 1
-  #material = 2
- #MaterialsEnd;
- #Preset: 
-  #types = vertex
-  #separate = -1
-  #count = 10
-  #ditale = 4
-  #noiseUv = 1.0
-  #noiseSize = 1.100000023841858
-  #maxLenght = 1.0
-  #minLenght = 0.699999988079071
-  #powLenght = 1.7000000476837158
-  #active = True
-  #smooth = 1.0
-  #radiuse = 0.01
-  #dinamick = True
-  #boneNumber = 0
-  #countPreview = 0
-  #Deformers: 
-  #DeformersEnd;
- #PresetEnd;
-#HairsEnd;
-#Hairs: 
- #renderCount = 3.0
- #renderDitale = 1.0
- #names = Mex2
- #discript = This hair have 2 preset for mace hair like noise 2
- #domenView = 0
- #Materials: 
-  #material = 0
-  #material = 1
-  #material = 2
- #MaterialsEnd;
- #Preset: 
-  #types = vertex
-  #separate = -1
-  #count = 10
-  #ditale = 4
-  #noiseUv = 1.0
-  #noiseSize = 1.100000023841858
-  #maxLenght = 1.0
-  #minLenght = 0.699999988079071
-  #powLenght = 0.4100000858306885
-  #active = True
-  #smooth = 1.0
-  #radiuse = 1.2400000095367432
-  #dinamick = True
-  #boneNumber = 0
-  #countPreview = 1
-  #Deformers: 
-   #noiseType = noiseUV
-   #noiseHight = 0.5
-   #noisePower = 0.019999999552965164
-   #noiseSize = 0.019999999552965164
-   #noiseActive = True
-   #noiseGrowth = 1.0
-   #noiseSpaceX = 0.0
-   #noiseSpaceY = 0.0
-   #noiseSpaceZ = 0.0
-   #noiseType = noiseUV
-   #noiseHight = 0.3159695565700531
-   #noisePower = 1.0
-   #noiseSize = 0.10000000149011612
-   #noiseActive = True
-   #noiseGrowth = 1.0
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-   #noiseType = rotate
-   #noiseHight = 0.699999988079071
-   #noisePower = 0.2800000309944153
-   #noiseSize = 40.0
-   #noiseActive = True
-   #noiseGrowth = 1.5
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-   #noiseType = noiseXYZ
-   #noiseHight = 0.19999998807907104
-   #noisePower = 0.30000001192092896
-   #noiseSize = 0.10899999737739563
-   #noiseActive = True
-   #noiseGrowth = 0.5
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-  #DeformersEnd;
- #PresetEnd;
- #Preset: 
-  #types = curves
-  #separate = -1
-  #count = 10
-  #ditale = 4
-  #noiseUv = 1.0
-  #noiseSize = 1.4900000095367432
-  #maxLenght = 1.0
-  #minLenght = 0.6120879054069519
-  #powLenght = 0.8000000715255737
-  #active = True
-  #smooth = 1.0
-  #radiuse = 1.2400000095367432
-  #dinamick = True
-  #boneNumber = 0
-  #countPreview = 1
-  #Deformers: 
-   #noiseType = noiseXYZ
-   #noiseHight = 0.13181816041469574
-   #noisePower = 0.2889999747276306
-   #noiseSize = 0.10000000149011612
-   #noiseActive = True
-   #noiseGrowth = 0.20000000298023224
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-   #noiseType = noiseUV
-   #noiseHight = 0.5446969270706177
-   #noisePower = 1.0
-   #noiseSize = 0.10000000149011612
-   #noiseActive = True
-   #noiseGrowth = 1.0
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-  #DeformersEnd;
- #PresetEnd;
-#HairsEnd;
-#Hairs: 
- #renderCount = 1.0
- #renderDitale = 1.0
- #names = Hair name
- #discript = Hair descripts
- #domenView = 1
- #Materials: 
-  #material = 0
-  #material = 1
-  #material = 2
- #MaterialsEnd;
- #Preset: 
-  #types = vertex
-  #separate = -1
-  #count = 10
-  #ditale = 4
-  #noiseUv = 1.0
-  #noiseSize = 1.100000023841858
-  #maxLenght = 1.0
-  #minLenght = 0.699999988079071
-  #powLenght = 1.7000000476837158
-  #active = True
-  #smooth = 1.0
-  #radiuse = 0.01
-  #dinamick = True
-  #boneNumber = 0
-  #countPreview = 0
-  #Deformers: 
-  #DeformersEnd;
- #PresetEnd;
-#HairsEnd;
-#Hairs: 
- #renderCount = 1.0
- #renderDitale = 1.0
- #names = New hair
- #discript = thai hair for video and save
- #domenView = 0
- #Materials: 
-  #material = 0
- #MaterialsEnd;
- #Preset: 
-  #types = curves
-  #separate = -1
-  #count = 14
-  #ditale = 5
-  #noiseUv = 1.0
-  #noiseSize = 1.100000023841858
-  #maxLenght = 1.0
-  #minLenght = 0.9527472257614136
-  #powLenght = 0.1400001049041748
-  #active = False
-  #smooth = 1.0
-  #radiuse = 0.32799994945526123
-  #dinamick = True
-  #boneNumber = 0
-  #countPreview = 0
-  #Deformers: 
-   #noiseType = voron
-   #noiseHight = 0.18106061220169067
-   #noisePower = 1.0
-   #noiseSize = 1.0
-   #noiseActive = True
-   #noiseGrowth = 0.40000003576278687
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-   #noiseType = noiseUV
-   #noiseHight = 0.29469695687294006
-   #noisePower = 1.0299999713897705
-   #noiseSize = 0.10000000149011612
-   #noiseActive = True
-   #noiseGrowth = 1.75
-   #noiseSpaceX = 1.0
-   #noiseSpaceY = 1.0
-   #noiseSpaceZ = 1.0
-  #DeformersEnd;
- #PresetEnd;
- #Preset: 
-  #types = curves
-  #separate = -1
-  #count = 10
-  #ditale = 4
-  #noiseUv = 1.0
-  #noiseSize = 1.2999999523162842
-  #maxLenght = 1.0
-  #minLenght = 0.9599999785423279
+  #minLenght = 0.9555555582046509
   #powLenght = 1.7000000476837158
   #active = False
   #smooth = 1.0
-  #radiuse = 0.328000009059906
+  #radiuse = 0.8799999952316284
   #dinamick = True
   #boneNumber = 0
   #countPreview = 0
   #Deformers: 
    #noiseType = size
-   #noiseHight = 0.1230769231915474
-   #noisePower = 1.0
+   #noiseHight = 0.699999988079071
+   #noisePower = 2.5299997329711914
    #noiseSize = 0.10000000149011612
    #noiseActive = True
-   #noiseGrowth = 1.0
-   #noiseSpaceX = 4.179999828338623
-   #noiseSpaceY = 4.179999828338623
+   #noiseGrowth = 5.259999752044678
+   #noiseSpaceX = 1.8700000047683716
+   #noiseSpaceY = 1.8700000047683716
    #noiseSpaceZ = 1.0
-   #noiseType = noiseXYZ
-   #noiseHight = 0.05000000447034836
-   #noisePower = 0.6000000238418579
-   #noiseSize = 0.30000001192092896
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 6
+  #ditale = 2
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 1.209999918937683
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.0
+   #noisePower = 1.0
+   #noiseSize = 3.0
    #noiseActive = True
-   #noiseGrowth = 0.30000001192092896
+   #noiseGrowth = 0.1899999976158142
    #noiseSpaceX = 1.0
    #noiseSpaceY = 1.0
    #noiseSpaceZ = 1.0
    #noiseType = noiseUV
-   #noiseHight = 0.5192307233810425
-   #noisePower = 1.0
+   #noiseHight = 0.4338403046131134
+   #noisePower = 0.8799999952316284
    #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 2.319999933242798
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 2.0
+ #renderDitale = 1.0
+ #names = Use separate
+ #discript = Use separate to materials and get to the different preset
+ #domenView = 0
+ #Materials: 
+  #material = 0
+  #material = 1
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = 1
+  #count = 3
+  #ditale = 3
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 1.3299999237060547
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.1924242377281189
+   #noisePower = 1.4199999570846558
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = 2
+  #count = 7
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.7599999904632568
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = rotate
+   #noiseHight = 0.24924242496490479
+   #noisePower = 1.0
+   #noiseSize = 30.0
    #noiseActive = True
    #noiseGrowth = 2.0
    #noiseSpaceX = 1.0
@@ -360,4 +176,121 @@
    #noiseSpaceZ = 1.0
   #DeformersEnd;
  #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = Bones used
+ #discript = This example creates one strand with bones from different divisions.
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = vertex
+  #separate = -1
+  #count = 2
+  #ditale = 9
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 1.0
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.01
+  #dinamick = False
+  #boneNumber = 1
+  #countPreview = 0
+  #Deformers: 
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = vertex
+  #separate = -1
+  #count = 18
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.01
+  #dinamick = False
+  #boneNumber = 2
+  #countPreview = 0
+  #Deformers: 
+  #DeformersEnd;
+ #PresetEnd;
+ #Bonse: 
+  #boneSepaate = 0
+  #boneUseDinamick = False
+  #boneDitale = 4.099999904632568
+ #BonseEnd;
+ #Bonse: 
+  #boneSepaate = 0
+  #boneUseDinamick = True
+  #boneDitale = 2.0
+ #BonseEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = Bones and materials
+ #discript = This example shows how bones can be snapped to split materials.
+ #domenView = 0
+ #Materials: 
+  #material = 0
+  #material = 1
+ #MaterialsEnd;
+ #Preset: 
+  #types = vertex
+  #separate = 0
+  #count = 3
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.01
+  #dinamick = False
+  #boneNumber = 1
+  #countPreview = 0
+  #Deformers: 
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = vertex
+  #separate = 2
+  #count = 4
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.01
+  #dinamick = False
+  #boneNumber = 2
+  #countPreview = 0
+  #Deformers: 
+  #DeformersEnd;
+ #PresetEnd;
+ #Bonse: 
+  #boneSepaate = 1
+  #boneUseDinamick = False
+  #boneDitale = 5.0
+ #BonseEnd;
+ #Bonse: 
+  #boneSepaate = 2
+  #boneUseDinamick = False
+  #boneDitale = 2.2100000381469727
+ #BonseEnd;
 #HairsEnd;
