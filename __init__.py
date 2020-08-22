@@ -1613,7 +1613,7 @@ def SavePreset(path, self) :
             genSave += '\n' + "  #maxLenght = " + str( self.Presets[n][3][0] );
             genSave += '\n' + "  #minLenght = " + str( self.Presets[n][3][1] );
             genSave += '\n' + "  #powLenght = " + str( self.Presets[n][3][2] );
-            genSave += '\n' + "  #active = " + str( int( self.Presets[n][5] ) );
+            genSave += '\n' + "  #active = " + str( self.Presets[n][5] );
             genSave += '\n' + "  #smooth = " + str( self.Presets[n][6] );
             genSave += '\n' + "  #radiuse = " + str( self.Presets[n][7] );
             genSave += '\n' + "  #dinamick = " + str( self.Presets[n][8] );
@@ -1626,7 +1626,7 @@ def SavePreset(path, self) :
                 genSave += '\n' + "   #noiseHight = " + str( self.Presets[n][4][n2][1] );
                 genSave += '\n' + "   #noisePower = " + str( self.Presets[n][4][n2][2] );
                 genSave += '\n' + "   #noiseSize = " + str( self.Presets[n][4][n2][3] );
-                genSave += '\n' + "   #noiseActive = " + str( int( self.Presets[n][4][n2][4] ) );
+                genSave += '\n' + "   #noiseActive = " + str( self.Presets[n][4][n2][4] );
                 genSave += '\n' + "   #noiseGrowth = " + str( self.Presets[n][4][n2][6] );
                 genSave += '\n' + "   #noiseSpaceX = " + str( self.Presets[n][4][n2][5][0] );
                 genSave += '\n' + "   #noiseSpaceY = " + str( self.Presets[n][4][n2][5][1] );
@@ -2530,6 +2530,7 @@ class HairLoopCut(bpy.types.Operator):
                     noSel = []
                     for ede in f :
                         noSel.append(ede);
+                    #print(noSel)
                     noSel = sortLineToEdgs(obj, noSel[0], noSel);
                     
                     florE = [];
@@ -2537,8 +2538,11 @@ class HairLoopCut(bpy.types.Operator):
                         for egd in e :
                             if fv == len( noSel )-1 :
                                 fv = -1
-                            if egd.vertices[0] == noSel[fv] and egd.vertices[1] == noSel[fv+1] :
+                            if (egd.vertices[1] == noSel[fv] and egd.vertices[0] == noSel[fv+1]) or (egd.vertices[0] == noSel[fv] and egd.vertices[1] == noSel[fv+1]) :
                                     florE.append(egd.index)
+                  #  print(noSel)
+                  #  print("++++")
+                  #  print(florE)
                     bpy.ops.object.mode_set(mode="EDIT")
                     bpy.ops.mesh.select_all(action='DESELECT')
                     bpy.ops.mesh.select_mode(type="EDGE")
