@@ -1032,7 +1032,6 @@ def GenerateBoneHairs(maps, Armature, ditale, dinamic, materisl, uslesMaterial, 
     return [Armature.name, a];
 
 def HairLines(input_object, intutStart_name, mod) :
-    inf(bpy.types.Scene.ConsoleUse[0])
     if bpy.context.scene.ConsoleUse :
         bpy.ops.wm.console_toggle()
         print(ConsoleText[2]);
