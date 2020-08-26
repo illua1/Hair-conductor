@@ -26,6 +26,7 @@ bl_info = {
     "version": (0, 0, 5),
     "blender": (2, 80, 0),
     "location": "View3D > Object > Generate Hair by object",
+    'wiki_url': "https://github.com/illua1/Hair-conductor/blob/master/README.md",
 }
 
 import bpy
@@ -1031,8 +1032,10 @@ def GenerateBoneHairs(maps, Armature, ditale, dinamic, materisl, uslesMaterial, 
     return [Armature.name, a];
 
 def HairLines(input_object, intutStart_name, mod) :
-    bpy.ops.wm.console_toggle()
-    print(ConsoleText[2]);
+    inf(bpy.types.Scene.ConsoleUse[0])
+    if bpy.context.scene.ConsoleUse :
+        bpy.ops.wm.console_toggle()
+        print(ConsoleText[2]);
     
     #floorGroupIndex = input_object.vertex_groups[intutStart_name].index;
     floorGroupIndex = intutStart_name
@@ -1047,7 +1050,8 @@ def HairLines(input_object, intutStart_name, mod) :
     for part in range(len(ObjectPart)) :
         print(ConsoleText[3], str(part/len(ObjectPart)));
         VertexLine.append( GetLine(input_object, ObjectPart[part], floorGroupIndex, mod) );
-    bpy.ops.wm.console_toggle()
+    if bpy.context.scene.ConsoleUse :
+        bpy.ops.wm.console_toggle()
     return VertexLine;
 
 def GetBoneUsles(pres, id) :
@@ -2428,10 +2432,17 @@ class UpDateUslesPanel(bpy.types.Panel):
     
     def draw_header(self, context):
         layout = self.layout
-        self.layout.prop(context.scene, "HairUpdate")
+        #self.layout.prop(context.scene, "HairUpdate")
     
     
     def draw(self, context):
+        #bpy.types.Scene.ConsoleUse
+        conse = ""
+        if bpy.types.Scene.ConsoleUse :
+            conse = "CONSOLE";
+        else :
+            conse = "CHECKBOX_DEHLT";
+        self.layout.prop(context.scene, "ConsoleUse", text = "Console use", icon = "CONSOLE")
         layout = self.layout
         data = layout.operator(UpDateUslesPanelData.bl_idname)
         row = layout.row()
@@ -2697,6 +2708,10 @@ def menu_func_Selecter(self, context):
     self.layout.operator(HairSelecterFoor.bl_idname)
     self.layout.operator(HairLoopCut.bl_idname)
 
+#def TestLoaderBlock(self, context):
+#    self.layout.label(text = "1")
+    #self.layout.operator(BR_OT_seams_to_sewingpatterns.bl_idname)
+
 
 func = [[menu_func_Main,"object"], [menu_func_Selecter,"edit"]];
 
@@ -2714,7 +2729,8 @@ def register():
         if fun[1] == "edit" :
             bpy.types.VIEW3D_MT_edit_mesh_faces.append(fun[0])
     bpy.types.Scene.HairUpdate = bpy.props.BoolProperty(name="")
-    
+    bpy.types.Scene.ConsoleUse = bpy.props.BoolProperty(name="", default=1)
+  #  bpy.types.VIEW3D_MT_object_quick_effects.append(TestLoaderBlock)
     #  Hair conductor keys
   #  wm = bpy.context.window_manager
   #  km = wm.keyconfigs.active.keymaps["Window"]
@@ -2731,7 +2747,9 @@ def unregister():
         bpy.utils.unregister_class(c)
     bpy.types.VIEW3D_MT_object.remove(menu_func)
     bpy.app.handlers.frame_change_post.remove(testUpDate)
-    
+    del bpy.types.Scene.ConsoleUse
+    del bpy.types.Scene.HairUpdate
+  #  bpy.types.VIEW3D_MT_object_quick_effects.remove(TestLoaderBlock)
   #  wm = bpy.context.window_manager
   #  for km in addon_keymaps:
   #      wm.keyconfigs.addon.keymaps.remove(km)
