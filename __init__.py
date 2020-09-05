@@ -21,9 +21,9 @@ def inf(h):
 
 bl_info = {
     "name": "Hair conductor",
-    "description": "testing v0.0.2",
+    "description": "testing v0.0.3",
     "author": "Mod",
-    "version": (0, 0, 5),
+    "version": (0, 0, 75),
     "blender": (2, 80, 0),
     "location": "View3D > Object > Generate Hair by object",
     'wiki_url': "https://github.com/illua1/Hair-conductor/blob/master/README.md",
@@ -86,6 +86,7 @@ DeformNames.append(["Voronoise","Voronoise noise use"])
 DeformNames.append(["Round","Not worcking!"])
 DeformNames.append(["Resize","Use for reset size uv xy"])
 DeformNames.append(["Rotate","Use for rotate hair"])
+DeformNames.append(["Gravity","Use for add physics like effect"])
 
 
 ########################################
@@ -596,7 +597,7 @@ def GetIdOnDistList(d, o) :
   #  print([c-1, c, x])
     
     
-    print(">>")
+  #  print(">>")
     
     return [c-1, c, x];
 
@@ -606,7 +607,7 @@ def GetIdOnBezList(id, oldLine) :
     dist = [];
     g = 0;
     
-    print(">> ", id)
+   # print(">> ", id)
     
     if id[2] < 0.5 :
         d = id[0]
@@ -616,7 +617,7 @@ def GetIdOnBezList(id, oldLine) :
     else :
         d = id[1]
         l = id[2] - 0.5;
-    print(id)
+    #print(id)
     if d == 0 :
         elem = [d,d,d+1];
     else :
@@ -624,6 +625,7 @@ def GetIdOnBezList(id, oldLine) :
             elem = [d-1,d,d];
         else :
             elem = [d-1,d,d+1];
+    
     if id[0] == id[1] == len(oldLine)-1 :
         
         l = id[2] + 1.5;
@@ -647,11 +649,18 @@ def SetHairVertexCord(oldLine, dol, size, Smooth) :
     
     d = dol * oldLine[1][1] * size;
     
-  #  print(d, oldLine[1][2])
+    #print(d, oldLine[1][2])
     
     id = GetIdOnDistList(d, oldLine[1][2]);
     
-    #print(id)
+   # print(id)
+    
+    #print(id, d, oldLine[1][2], len(oldLine[0])-1)
+    
+    if id[1] == len(oldLine[0]) :
+        #print(id[2], d, oldLine[1][2])
+        id[2] *= oldLine[1][2][-1];
+    
     
     add = 0;
     
@@ -689,7 +698,7 @@ def rotateXY(pos, r) :#(gort, ruv[2], ruv[2], NoiseHight, NoisePower, NoiseGrowt
 def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGroup, Smooth,TestingActive,mod, type, GenUse) :
     a= [];
     
-  #  print("=+++", HairLenRange)
+   # print("=+++")
     
     for v in vertMap :
        # print(v[4],v[1], v[3] )
@@ -761,11 +770,18 @@ def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGr
                         gort = rotateXY(gort[0:2], ruv[2]*NoiseSize);
                         gort[0] += 0.5;
                         gort[1] += 0.5;
-                    if NoiseCollectionType == "size" :
+                    if NoiseCollectionType == "size" : 
                         for i in [0,1] :
                             gort[i] -= 0.5;
                             gort[i] *= NoiseSpace[i]
                             gort[i] += 0.5;
+                    if NoiseCollectionType == "gravity" : 
+                        cord.x -= NoiseSpace[0] * s
+                        cord.y -= NoiseSpace[1] * s
+                        cord.z -= NoiseSpace[2] * s
+                            
+                        
+                    
                     if NoiseCollectionType == "round" :
                         for g in [0,1] :
                             gort[g] -= 0.5;
@@ -1790,10 +1806,10 @@ class HairMainOperator(bpy.types.Operator):
     NoisePower: bpy.props.FloatProperty(name="Noise power", default=0.02)
     
     NoiseSize: bpy.props.FloatProperty(name="Noise size", default=0.02)
-    NoiseGrowth: bpy.props.FloatProperty(name="Noise growth", default=1, min=0.001, max=6)
+    NoiseGrowth: bpy.props.FloatProperty(name="Noise growth", default=1, min=0.001, soft_max=6)
     
-    NoiseSpace: bpy.props.FloatVectorProperty(name="Noise space size", description="", default=(0.0, 0.0, 0.0), subtype='XYZ' )
-    NoiseCollectionType: bpy.props.EnumProperty( name="Type", description ="Type of deform", items=( ('noiseUV', DeformNames[0][0], DeformNames[0][1], 'MOD_NOISE', 0), ('noiseXYZ', DeformNames[1][0], DeformNames[1][1], 'MOD_NOISE', 1), ('voron',DeformNames[2][0],DeformNames[3][1],'IPO_ELASTIC', 2), ('round',DeformNames[3][0],DeformNames[3][1],'CURVE_NCIRCLE', 3), ('size',DeformNames[4][0],DeformNames[4][1],'SORTSIZE', 5), ('rotate',DeformNames[5][0],DeformNames[5][1],'MOD_SCREW', 6) ) )
+    NoiseSpace: bpy.props.FloatVectorProperty(name="", description="", default=(0.0, 0.0, 0.0), subtype='XYZ' )
+    NoiseCollectionType: bpy.props.EnumProperty( name="Type", description ="Type of deform", items=( ('noiseUV', DeformNames[0][0], DeformNames[0][1], 'MOD_NOISE', 0), ('noiseXYZ', DeformNames[1][0], DeformNames[1][1], 'MOD_NOISE', 1), ('voron',DeformNames[2][0],DeformNames[3][1],'IPO_ELASTIC', 2), ('round',DeformNames[3][0],DeformNames[3][1],'CURVE_NCIRCLE', 3), ('size',DeformNames[4][0],DeformNames[4][1],'SORTSIZE', 5), ('rotate',DeformNames[5][0],DeformNames[5][1],'MOD_SCREW', 6), ('gravity',DeformNames[6][0],DeformNames[6][1],'PHYSICS', 7) ) )
     NoiseActive: bpy.props.BoolProperty(name="")
     
     MainButtonLeft: bpy.props.BoolProperty(name="")
@@ -2298,7 +2314,12 @@ class HairMainOperator(bpy.types.Operator):
                 row = layout.row()
                 row = row.split(factor=1, align=True)
                 row.prop(self, "NoiseSize")
-                if self.NoiseCollectionType == "size" :
+                if self.NoiseCollectionType == "size" or self.NoiseCollectionType == "gravity" :
+                    row = layout.row()
+                    if self.NoiseCollectionType == "size" :
+                        row.label(text = "Noise space size")
+                    if self.NoiseCollectionType == "gravity" :
+                        row.label(text = "Gravity direction")
                     row = layout.row()
                     row = row.grid_flow(row_major = 1);
                     row.prop(self, "NoiseSpace")
@@ -2793,7 +2814,7 @@ def unregister():
     for c in classe :
         bpy.utils.unregister_class(c)
     #bpy.types.VIEW3D_MT_object.remove(menu_func)
-    bpy.app.handlers.frame_change_post.remove(testUpDate)
+    #bpy.app.handlers.frame_change_post.remove(testUpDate)
     del bpy.types.Scene.ConsoleUse
     del bpy.types.Scene.HairUpdate
   #  bpy.types.VIEW3D_MT_object_quick_effects.remove(TestLoaderBlock)
