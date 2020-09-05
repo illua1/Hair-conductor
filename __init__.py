@@ -579,11 +579,25 @@ def GetIdOnDistList(d, o) :
     v.sort();
     c = 0;
     
+ #   print(d)
+ #   print(o)
+    
     for i in range(len(g)) :
         if not v[i] == g[i] :
             c = i;
             break
     x = ( d - g[c-1] ) / ( g[c] - g[c-1] )
+    
+ #   print("! ",x)
+    x = abs(x)
+ #   print(x)
+    
+    
+  #  print([c-1, c, x])
+    
+    
+    print(">>")
+    
     return [c-1, c, x];
 
 def GetIdOnBezList(id, oldLine) :
@@ -592,14 +606,17 @@ def GetIdOnBezList(id, oldLine) :
     dist = [];
     g = 0;
     
+    print(">> ", id)
+    
     if id[2] < 0.5 :
         d = id[0]
-        l = id[2]+0.5
-        
+        l = id[2]
+        if not d == 0 :
+            l += 0.5;
     else :
         d = id[1]
-        l = id[2]-0.5
-    
+        l = id[2] - 0.5;
+    print(id)
     if d == 0 :
         elem = [d,d,d+1];
     else :
@@ -607,12 +624,19 @@ def GetIdOnBezList(id, oldLine) :
             elem = [d-1,d,d];
         else :
             elem = [d-1,d,d+1];
+    if id[0] == id[1] == len(oldLine)-1 :
+        
+        l = id[2] + 1.5;
+        d = id[0];
+        elem = [d-2,d-1,d];
+        
     
     l1 = lerp(oldLine[elem[0]], oldLine[elem[1]], 0.5)
     l2 = lerp(oldLine[elem[1]], oldLine[elem[2]], 0.5)
     
     p1 = lerp(l1, oldLine[elem[1]], l)
     p2 = lerp(oldLine[elem[1]], l2, l)
+        
     
     bezId = lerp(p1, p2, l);
     
@@ -622,14 +646,22 @@ def SetHairVertexCord(oldLine, dol, size, Smooth) :
     vert = mathutils.Vector((1.0, 2.0, 3.0))
     
     d = dol * oldLine[1][1] * size;
+    
+  #  print(d, oldLine[1][2])
+    
     id = GetIdOnDistList(d, oldLine[1][2]);
+    
+    #print(id)
+    
+    add = 0;
     
     if not id[1] < len(oldLine[0]) :
         id[1] -= 1;
+        add = 1;
     
     bezId = GetIdOnBezList(id, oldLine[0])
     
-    cord = lerp( oldLine[0][id[0]], oldLine[0][id[1]], id[2] );
+    cord = lerp( oldLine[0][id[0]-add], oldLine[0][id[1]], id[2] + add );
     cord = lerp(cord, bezId, Smooth)
     
     vert.x = cord[0];
@@ -657,7 +689,10 @@ def rotateXY(pos, r) :#(gort, ruv[2], ruv[2], NoiseHight, NoisePower, NoiseGrowt
 def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGroup, Smooth,TestingActive,mod, type, GenUse) :
     a= [];
     
+  #  print("=+++", HairLenRange)
+    
     for v in vertMap :
+       # print(v[4],v[1], v[3] )
         if type == "curve" :
             vert = mathutils.Vector((1.0, 2.0, 3.0))
         else :
@@ -703,13 +738,13 @@ def VertexSetPose(map, obj, lines, vertMap, uvSize, HairLenRange, noise, noiseGr
                     oldLine = GetLineVertexOfUv(map, lines[ v[1] ][0], ruv[0:2]);
                     newA = SetHairVertexCord(oldLine, v[3], ruv[4], Smooth).xyz;
                     
-                    vv = unlerp(NoiseHight, 1, ruv[2])
+                    vv = unlerp(NoiseHight, 1.1, ruv[2])
                     s = math.pow(vv, NoiseGrowth)*NoisePower
                     gort = [ruv[0],ruv[1],ruv[2]][:]
-                    gortV = mathutils.Vector((gort[0],gort[1],gort[2]));
+                    gortV = mathutils.Vector((gort[0],gort[1],gort[2] + v[1] ));
                     
                     if NoiseCollectionType == "noiseXYZ" :
-                        ds = mathutils.Vector(( cord.x,cord.y,cord.z)[:]);
+                        ds = mathutils.Vector(( cord.x,cord.y,cord.z + v[1] )[:]);
                         vector = VertexNoise(ds, ruv[2], [NoiseHight, NoisePower, NoiseSize], NoiseGrowth);
                         gort[0] += vector.x
                         gort[1] += vector.y
@@ -944,23 +979,24 @@ def GetHairUvS(idHair, prop, HairLenRange, uvSize, noise) :
         a[i] -= 0.5;
         a[i] *= uvSize;
         a[i] += 0.5;
-    r = GetRandomX( [c*100,5,0] )-0.5;
-    if r > 0.001 :
-        r = math.pow(r, HairLenRange[2] );
- ##   if a[2] >= 0 :
- #       a[2] = 0.1;
- #   if a[2] <= 1 :
- #       a[2] = 0.9999;
     
-    a[2] = lerp([HairLenRange[0]], [HairLenRange[1]], r )[0]
- #   if a[2] >= 0 :
- #       a[2] = 0.1;
- #   if a[2] <= 1 :
-#        a[2] = 0.9999;
+    r = GetRandomX( [c*100,5,0] )-0.5;
+    HairMin = 1-HairLenRange[0];
+    HairMax = HairLenRange[1];
+    HairRang = HairLenRange[2];
+    
+    d = HairMax - (HairMax*HairMin);
+    
+  #  print(HairMin,HairMax,HairRang, r)
+    if r > 0.001 :
+        r = math.pow( r, HairRang );
+    r *= d;
+    
+    a[2] = lerp([ HairMax ], [ HairMax - d ], r )[0]
     
     return a;
 
-def makeSpline(cu, typ, points, size, vertexMap, aperentBone, VeteLenMap, UsFinishPreset):
+def makeSpline(cu, typ, points, size, RadiusPow, vertexMap, aperentBone, VeteLenMap, UsFinishPreset):
     spline = cu.data.splines.new(typ)
     npoints = len(points)
     if typ == 'BEZIER':
@@ -976,7 +1012,7 @@ def makeSpline(cu, typ, points, size, vertexMap, aperentBone, VeteLenMap, UsFini
             bez.co.x = pt[0]
             bez.co.y = pt[1]
             bez.co.z = pt[2]
-            bez.radius = (1-pt[4])*size
+            bez.radius = math.pow( (1-pt[4]), RadiusPow ) * size
             #inf(bez)
         if len(points) > 0 :
             if len(cu.data.materials) > 0 :
@@ -1032,6 +1068,7 @@ def GenerateBoneHairs(maps, Armature, ditale, dinamic, materisl, uslesMaterial, 
     return [Armature.name, a];
 
 def HairLines(input_object, intutStart_name, mod) :
+    inf(bpy.types.Scene.ConsoleUse[0])
     if bpy.context.scene.ConsoleUse :
         bpy.ops.wm.console_toggle()
         print(ConsoleText[2]);
@@ -1144,7 +1181,7 @@ def GetVertLineData(object, lines) :
 
 #################################################################
 def AddHairPreset(h) :
-    return h.append( [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ], 1,1.,0.01,1,0, 0 ] );
+    return h.append( [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ], 1,1.,0.01,1,0, 0, 1 ] );
 def DelHairPreset(h, id) :
     if id < len(h):
         del h[id];
@@ -1203,6 +1240,7 @@ def ReSetControlPresets(self) :
     self.DinamickDitale =         self.Presets[n][8];
     self.MainButtonBoneNumber =   self.Presets[n][9];
     self.CountHairPreviev =       self.Presets[n][10];
+    self.HairRadiusPow =          self.Presets[n][11];
     ReSetControlNoise(self);
     
     #DomenButtonReSize
@@ -1244,7 +1282,7 @@ def ReSetControlNoise(self) :
             self.NoiseSpace[i] =   self.Presets[n][4][b][5][i]
     
 #HairAddonBody.inf(bpy.data.materials)
-def genGeomerti(use, mainColect, self, context, maps, Hairs, aDe, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types,matrialType,Smooth,noiseYes,bonesList,BoneId,mod) :
+def genGeomerti(use, RadiusPow, mainColect, self, context, maps, Hairs, aDe, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types,matrialType,Smooth,noiseYes,bonesList,BoneId,mod) :
     
     if 1 :
         buildName = "[vert to curve on frameUpdate]"
@@ -1308,7 +1346,7 @@ def genGeomerti(use, mainColect, self, context, maps, Hairs, aDe, count,ditale, 
         c = [];
         for a in vertexMap :
             c = VertexSetPose(maps, vert, aDe, a, SizeUv, [LenghtMin, LenghtMax, LenghtPow ], RangeUv, self.Presets[Hairs][4], Smooth, [self.NoiseButtonNumber-1,noiseYes, self], mod, "curve", self.UsFinishPreset);
-            makeSpline(vert, "BEZIER", c , size, vertexMap, aperentBone, VeteLenMap, self.UsFinishPreset)
+            makeSpline(vert, "BEZIER", c , size, RadiusPow, vertexMap, aperentBone, VeteLenMap, self.UsFinishPreset)
             
     return vert;
 def gen(self, context, scene, maps, mod) : 
@@ -1357,6 +1395,7 @@ def gen(self, context, scene, maps, mod) :
             size = self.HairRadius
             DinamickDitale = self.DinamickDitale
             noiseYes = 1;
+            RadiusPow = self.HairRadiusPow;
             
             BoneId = self.MainButtonBoneNumber
             Separate = self.MainCollectionSeparate
@@ -1400,6 +1439,7 @@ def gen(self, context, scene, maps, mod) :
             DinamickDitale = self.Presets[Hairs][8]
             BoneId =    self.Presets[Hairs][9]
             SliseLines =self.Presets[Hairs][10]
+            RadiusPow =self.Presets[Hairs][11]
             
         sel = [];
         
@@ -1427,7 +1467,7 @@ def gen(self, context, scene, maps, mod) :
                     a = self.lines
                 if self.UsFinishPreset: 
                     print("All Element")
-                sel = [genGeomerti(use, mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, -1, Smooth, noiseYes, bonesList, BoneId, mod)]
+                sel = [genGeomerti(use, RadiusPow, mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, -1, Smooth, noiseYes, bonesList, BoneId, mod)]
             else : 
                 LinesByMatreial =  SeparateLineToMaterial(self.lines, self.uslesMaterial);
             if Separate == 0 :
@@ -1438,7 +1478,7 @@ def gen(self, context, scene, maps, mod) :
                         LinesByMatreialF = LinesByMatreial[a];
                     if self.UsFinishPreset: 
                         print("Element "+str(a))
-                    sel.append( genGeomerti(use, mainColect, self, context, maps, Hairs, LinesByMatreialF, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, noiseYes, bonesList, BoneId, mod) )
+                    sel.append( genGeomerti(use, RadiusPow, mainColect, self, context, maps, Hairs, LinesByMatreialF, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[a], Smooth, noiseYes, bonesList, BoneId, mod) )
             if Separate > 0 :
                 #print("--", Separate, "+++", LinesByMatreial)
                 a = LinesByMatreial[Separate-1]
@@ -1446,7 +1486,7 @@ def gen(self, context, scene, maps, mod) :
                     a = a[0:SliseLines]
                 if self.UsFinishPreset: 
                     print("Element "+str(Separate-1))
-                sel = [genGeomerti(use, mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[Separate-1], Smooth, noiseYes, bonesList, BoneId, mod)]
+                sel = [genGeomerti(use, RadiusPow, mainColect, self, context, maps, Hairs, a, count,ditale, DinamickDitale,size,SizeUv,RangeUv,LenghtMin,LenghtMax,LenghtPow,types, self.uslesMaterial[Separate-1], Smooth, noiseYes, bonesList, BoneId, mod)]
         
         self.selectObject.append(sel);
 
@@ -1518,7 +1558,10 @@ def GetMyLoader(path) :
             presetSetings.append( int ( (preset.split("  #dinamick =")[1]).split("\n")[0] ) );
             presetSetings.append( int ( (preset.split("  #boneNumber =")[1]).split("\n")[0] ) );
             presetSetings.append( int ( (preset.split("  #countPreview =")[1]).split("\n")[0] ) );
-            
+            if 1 < len(preset.split("  #radiusePow =")):
+                presetSetings.append( float ( (preset.split("  #radiusePow =")[1]).split("\n")[0] ) );
+            else :
+                presetSetings.append(1);
             
             deformers = GetTextOnVord(preset, "  #Deformers: \n","  #DeformersEnd;").split("   #noiseType =");
             #deforms = []
@@ -1622,6 +1665,7 @@ def SavePreset(path, self) :
             genSave += '\n' + "  #dinamick = " + str( self.Presets[n][8] );
             genSave += '\n' + "  #boneNumber = " + str( self.Presets[n][9] );
             genSave += '\n' + "  #countPreview = " + str( self.Presets[n][10] );
+            genSave += '\n' + "  #radiusePow = " + str( self.Presets[n][11] );
             
             genSave += '\n' + "  #Deformers: ";
             for n2 in range(len(self.Presets[n][4])) :  #["noiseUV",0.7,0.1,0.1,1, [1.,1.,1.], 1.]
@@ -1652,7 +1696,7 @@ def SavePreset(path, self) :
     fileGet.close()
     
 def OpendPreset(self, data) :
-    print(data)
+#    print(data)
     #print(data[5])
     self.MainButtonBuferOld = 0;
     self.ReSetPreset = 0;
@@ -1660,10 +1704,10 @@ def OpendPreset(self, data) :
     for pres in data[5] :
         #print(pres[15])
         defer = []
-        for deform in pres[15] :
-            print(deform)
+        for deform in pres[16] :
+         #   print(deform)
             defer.append( [deform[0],deform[1],deform[2],deform[3],deform[4], [deform[6],deform[7],deform[8]], deform[5]] )
-        self.Presets.append( [ [pres[0],pres[1]], [pres[2], pres[3]], [pres[4],pres[5]], [pres[6],pres[7],pres[8]], defer,pres[9],pres[10],pres[11],pres[12],pres[13], pres[14]  ] )
+        self.Presets.append( [ [pres[0],pres[1]], [pres[2], pres[3]], [pres[4],pres[5]], [pres[6],pres[7],pres[8]], defer,pres[9],pres[10],pres[11],pres[12],pres[13], pres[14], pres[15]  ] )
     
     self.BonePreset = [];
     for bo in data[6] :
@@ -1697,7 +1741,7 @@ def resetPreset(self) :
     #self.DomenButtonBuild = 0;
     self.MainButtonBuferOld = 0;
     self.ReSetPreset = 0;
-    self.Presets = [ [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,1.,0.01,1,0, 0  ] ];
+    self.Presets = [ [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1,1.,0.01,1,0, 0, 1  ] ];
     self.vertexMap = [];
     self.BonePreset = [];
     self.MainButtonCount = 0;
@@ -1734,13 +1778,13 @@ class HairMainOperator(bpy.types.Operator):
     UsFinishPreset: bpy.props.BoolProperty(name="", description="Us finish preset, use all hair, all preset")
     
     
-    
+    HairRadiusPow: bpy.props.FloatProperty(name="Pow radius", default=1, min=0.0001, soft_max=2, unit ='NONE', subtype ='FACTOR')
     HairRadius: bpy.props.FloatProperty(name="Hair size", default=0.01, min=0.0001)
     NoiseUv: bpy.props.FloatProperty(name="Noise", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
     SizeUv: bpy.props.FloatProperty(name="Hair uv size", default=1, min=0, max=2)
-    LenghtMax: bpy.props.FloatProperty(name="Max lenght", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
+    LenghtMax: bpy.props.FloatProperty(name="Max lenght", default=1, min=0, soft_max=1, unit ='NONE', subtype ='FACTOR')
     LenghtMin: bpy.props.FloatProperty(name="Min lenght", default=1, min=0, max=1, unit ='NONE', subtype ='FACTOR')
-    LenghtPow: bpy.props.FloatProperty(name="Lenght range", default=1, min=0.001, max=2)
+    LenghtPow: bpy.props.FloatProperty(name="Lenght range", default=1, min=0.001, soft_max=2)
     
     NoiseHight: bpy.props.FloatProperty(name="Noise hight", default=0.5, min=0, max=1, unit ='NONE', subtype ='FACTOR')
     NoisePower: bpy.props.FloatProperty(name="Noise power", default=0.02)
@@ -1769,7 +1813,7 @@ class HairMainOperator(bpy.types.Operator):
     NoiseButtonSetDown: bpy.props.BoolProperty(name="")
     
     DomenButtonConsole: bpy.props.BoolProperty(name="", default=1, description="If trye, console opened and demonstrate progress")
-    DomenButtonReSize: bpy.props.BoolProperty(name="", default=0, description="If trye, curve use geometry volume")
+    DomenButtonReSize: bpy.props.BoolProperty(name="", default=1, description="If trye, curve use geometry volume")
     DomenButtonViews: bpy.props.BoolProperty(name="")
     
     DomenButtonBuildLeft: bpy.props.BoolProperty(name="")
@@ -1829,7 +1873,7 @@ class HairMainOperator(bpy.types.Operator):
     
     MySavesLoader = []
     
-    Presets = [ [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1, 1.,0.01,1,0, 0 ] ];
+    Presets = [ [ ["vertex",-1], [10, 4], [1.,1.1], [1.,0.7,1.7], [  ],1, 1.,0.01,1,0, 0, 1 ] ];
     BonePreset = [ ];
     
     uslesMaterial = [];
@@ -2091,8 +2135,12 @@ class HairMainOperator(bpy.types.Operator):
             self.Presets[self.MainButtonNumber-1][0][0] = self.MainCollectionTypeHair;
             row = layout.row()
             if "curves" == self.MainCollectionTypeHair :
+                row = row.split(factor=0.5, align=True)
                 row.prop(self, "HairRadius");
+                row.prop(self, "HairRadiusPow");
+                print(len(self.Presets[self.MainButtonNumber-1]))
                 self.Presets[self.MainButtonNumber-1][7] = self.HairRadius;
+                self.Presets[self.MainButtonNumber-1][11] = self.HairRadiusPow;
                 row = layout.row()
             if not 1 == len(self.uslesMaterial) :
                 e = maps.material_slots
@@ -2744,7 +2792,7 @@ def register():
 def unregister():
     for c in classe :
         bpy.utils.unregister_class(c)
-    bpy.types.VIEW3D_MT_object.remove(menu_func)
+    #bpy.types.VIEW3D_MT_object.remove(menu_func)
     bpy.app.handlers.frame_change_post.remove(testUpDate)
     del bpy.types.Scene.ConsoleUse
     del bpy.types.Scene.HairUpdate

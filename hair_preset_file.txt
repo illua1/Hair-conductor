@@ -82,7 +82,7 @@
   #maxLenght = 1.0
   #minLenght = 0.699999988079071
   #powLenght = 1.7000000476837158
-  #active = False
+  #active = True
   #smooth = 1.0
   #radiuse = 1.209999918937683
   #dinamick = True
@@ -130,7 +130,7 @@
   #maxLenght = 1.0
   #minLenght = 0.699999988079071
   #powLenght = 1.7000000476837158
-  #active = False
+  #active = True
   #smooth = 1.0
   #radiuse = 1.3299999237060547
   #dinamick = True
@@ -158,7 +158,7 @@
   #maxLenght = 1.0
   #minLenght = 0.699999988079071
   #powLenght = 1.7000000476837158
-  #active = False
+  #active = True
   #smooth = 1.0
   #radiuse = 0.7599999904632568
   #dinamick = True
@@ -293,4 +293,1950 @@
   #boneUseDinamick = False
   #boneDitale = 2.2100000381469727
  #BonseEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 8.0
+ #renderDitale = 1.0
+ #names = render for git
+ #discript = test hard preset
+ #domenView = 0
+ #Materials: 
+  #material = 0
+  #material = 1
+  #material = 2
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = 1
+  #count = 27
+  #ditale = 10
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.9967032670974731
+  #powLenght = 0.5900000333786011
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.27399998903274536
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.10909092426300049
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 0.04000002145767212
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.4727272689342499
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.059999942779541
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = voron
+   #noiseHight = 0.49545449018478394
+   #noisePower = 1.0
+   #noiseSize = 1.0
+   #noiseActive = True
+   #noiseGrowth = 2.8299999237060547
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.0674242377281189
+   #noisePower = 0.7299999594688416
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = rotate
+   #noiseHight = 0.25303027033805847
+   #noisePower = -0.30000001192092896
+   #noiseSize = 25.790000915527344
+   #noiseActive = True
+   #noiseGrowth = 4.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.574999988079071
+   #noisePower = 3.130000114440918
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 3.0399999618530273
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = 2
+  #count = 30
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.3100000619888306
+  #maxLenght = 1.0
+  #minLenght = 0.8868131637573242
+  #powLenght = 1.7000000476837158
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.4899999797344208
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.29469695687294006
+   #noisePower = 1.8700000047683716
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.5099999904632568
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = 3
+  #count = 30
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.25
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 3
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.22651514410972595
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 0.22000004351139069
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.23030301928520203
+   #noisePower = 1.621000051498413
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 2.680000066757202
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 8.0
+ #renderDitale = 1.0
+ #names = render for git
+ #discript = test hard preset
+ #domenView = 0
+ #Materials: 
+  #material = 0
+  #material = 1
+  #material = 2
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = 1
+  #count = 27
+  #ditale = 10
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.9967032670974731
+  #powLenght = 0.5900000333786011
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.27399998903274536
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.10909092426300049
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 0.04000002145767212
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.4727272689342499
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.059999942779541
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = voron
+   #noiseHight = 0.49545449018478394
+   #noisePower = 1.0
+   #noiseSize = 1.0
+   #noiseActive = 1
+   #noiseGrowth = 2.8299999237060547
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.0674242377281189
+   #noisePower = 0.7299999594688416
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = rotate
+   #noiseHight = 0.25303027033805847
+   #noisePower = -0.30000001192092896
+   #noiseSize = 25.790000915527344
+   #noiseActive = 1
+   #noiseGrowth = 4.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.574999988079071
+   #noisePower = 3.130000114440918
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 3.0399999618530273
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = 2.0
+  #count = 30.0
+  #ditale = 6.0
+  #noiseUv = 1.0
+  #noiseSize = 1.3100000619888306
+  #maxLenght = 1.0
+  #minLenght = 0.8868131637573242
+  #powLenght = 1.7000000476837158
+  #active = 0
+  #smooth = 1.0
+  #radiuse = 0.4899999797344208
+  #dinamick = 1
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.29469695687294006
+   #noisePower = 1.8700000047683716
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.5099999904632568
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = 3.0
+  #count = 30.0
+  #ditale = 6.0
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = 0
+  #smooth = 1.0
+  #radiuse = 0.25
+  #dinamick = 1
+  #boneNumber = 0
+  #countPreview = 3
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.22651514410972595
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = 1
+   #noiseGrowth = 0.22000004351139069
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.23030301928520203
+   #noisePower = 1.621000051498413
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 2.680000066757202
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 8.0
+ #renderDitale = 1.0
+ #names = render for git
+ #discript = test hard preset
+ #domenView = 0
+ #Materials: 
+  #material = 0
+  #material = 1
+  #material = 2
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = 1
+  #count = 27
+  #ditale = 10
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.9967032670974731
+  #powLenght = 0.5900000333786011
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.1899999976158142
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.10909092426300049
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = False
+   #noiseGrowth = 0.04000002145767212
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.4727272689342499
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.059999942779541
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = voron
+   #noiseHight = 0.49545449018478394
+   #noisePower = 1.0
+   #noiseSize = 1.0
+   #noiseActive = 1
+   #noiseGrowth = 2.8299999237060547
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.0674242377281189
+   #noisePower = 0.7299999594688416
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = rotate
+   #noiseHight = 0.25303027033805847
+   #noisePower = -0.30000001192092896
+   #noiseSize = 25.790000915527344
+   #noiseActive = 1
+   #noiseGrowth = 4.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.574999988079071
+   #noisePower = 3.130000114440918
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 3.0399999618530273
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = 2
+  #count = 30
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.3100000619888306
+  #maxLenght = 1.0
+  #minLenght = 0.8868131637573242
+  #powLenght = 1.7000000476837158
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.1899999976158142
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.29469695687294006
+   #noisePower = 1.8700000047683716
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.5099999904632568
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = 3
+  #count = 30
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.1899999976158142
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.22651514410972595
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 0.22000004351139069
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.23030301928520203
+   #noisePower = 1.621000051498413
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 2.680000066757202
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 6.0
+ #renderDitale = 1.0
+ #names = render hair 1
+ #discript = first preset
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 42
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.399999976158142
+  #maxLenght = 1.0
+  #minLenght = 0.8208791017532349
+  #powLenght = 0.5
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.1613636463880539
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.25681817531585693
+   #noisePower = 0.8799999952316284
+   #noiseSize = 0.2800000011920929
+   #noiseActive = True
+   #noiseGrowth = 2.739999771118164
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.22651514410972595
+   #noisePower = 0.5
+   #noiseSize = 0.2199999988079071
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.41969695687294006
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 0.20000000298023224
+   #noiseSpaceY = 0.20000000298023224
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.30000001192092896
+   #noisePower = 2.0
+   #noiseSize = 0.20000000298023224
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 19
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.7000000476837158
+  #maxLenght = 1.0
+  #minLenght = 0.5461538434028625
+  #powLenght = 0.800000011920929
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.47651514410972595
+   #noisePower = 1.0299999713897705
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.5999999046325684
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.3287878632545471
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 2.2300000190734863
+   #noiseSpaceY = 2.2300000190734863
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.385606050491333
+   #noisePower = 0.9399999976158142
+   #noiseSize = 0.4000000059604645
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 6.0
+ #renderDitale = 1.0
+ #names = render hair 2
+ #discript = first preset 2
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 42
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.399999976158142
+  #maxLenght = 1.0
+  #minLenght = 0.9399999976158142
+  #powLenght = 0.5
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.1613636463880539
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.25681817531585693
+   #noisePower = 0.8799999952316284
+   #noiseSize = 0.2800000011920929
+   #noiseActive = True
+   #noiseGrowth = 2.739999771118164
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.22651514410972595
+   #noisePower = 0.5
+   #noiseSize = 0.2199999988079071
+   #noiseActive = 1
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.41969695687294006
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 0.20000000298023224
+   #noiseSpaceY = 0.20000000298023224
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.30000001192092896
+   #noisePower = 2.0
+   #noiseSize = 0.20000000298023224
+   #noiseActive = 1
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 19
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.7000000476837158
+  #maxLenght = 1.0
+  #minLenght = 0.5461538434028625
+  #powLenght = 0.800000011920929
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.47651514410972595
+   #noisePower = 1.0299999713897705
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.5999999046325684
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.3287878632545471
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 2.2300000190734863
+   #noiseSpaceY = 2.2300000190734863
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.385606050491333
+   #noisePower = 0.9399999976158142
+   #noiseSize = 0.4000000059604645
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 20
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 0.4700000286102295
+  #maxLenght = 1.0
+  #minLenght = 1.0
+  #powLenght = 1.0
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.0
+   #noisePower = 1.0
+   #noiseSize = 1.0
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.1674242615699768
+   #noisePower = 1.5
+   #noiseSize = 0.05499996244907379
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 6.0
+ #renderDitale = 1.0
+ #names = render hair 2
+ #discript = first preset 2
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 42
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.399999976158142
+  #maxLenght = 1.0
+  #minLenght = 0.9399999976158142
+  #powLenght = 0.5
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.1613636463880539
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.25681817531585693
+   #noisePower = 0.8799999952316284
+   #noiseSize = 0.2800000011920929
+   #noiseActive = 1
+   #noiseGrowth = 2.739999771118164
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.22651514410972595
+   #noisePower = 0.5
+   #noiseSize = 0.2199999988079071
+   #noiseActive = 1
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.41969695687294006
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 0.20000000298023224
+   #noiseSpaceY = 0.20000000298023224
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.30000001192092896
+   #noisePower = 2.0
+   #noiseSize = 0.20000000298023224
+   #noiseActive = 1
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 19.0
+  #ditale = 6.0
+  #noiseUv = 1.0
+  #noiseSize = 1.7000000476837158
+  #maxLenght = 1.0
+  #minLenght = 0.5461538434028625
+  #powLenght = 0.800000011920929
+  #active = 0
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = 0
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.47651514410972595
+   #noisePower = 1.0299999713897705
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.5999999046325684
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.3287878632545471
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 2.2300000190734863
+   #noiseSpaceY = 2.2300000190734863
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.385606050491333
+   #noisePower = 0.9399999976158142
+   #noiseSize = 0.4000000059604645
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 20.0
+  #ditale = 5.0
+  #noiseUv = 1.0
+  #noiseSize = 0.4700000286102295
+  #maxLenght = 1.0
+  #minLenght = 1.0
+  #powLenght = 1.0
+  #active = 0
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = 1
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.0
+   #noisePower = 1.0
+   #noiseSize = 1.0
+   #noiseActive = 1
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.1674242615699768
+   #noisePower = 1.5
+   #noiseSize = 0.05499996244907379
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 6.0
+ #renderDitale = 1.2000000476837158
+ #names = render hair 3
+ #discript = first preset 3
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 42
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.399999976158142
+  #maxLenght = 1.0
+  #minLenght = 0.9399999976158142
+  #powLenght = 0.5
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = size
+   #noiseHight = 0.0
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 0.003000000026077032
+   #noiseSpaceX = 0.30000001192092896
+   #noiseSpaceY = 0.30000001192092896
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.30000001192092896
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 4.0
+   #noiseSpaceY = 4.0
+   #noiseSpaceZ = 1.0
+   #noiseType = voron
+   #noiseHight = 0.1613636463880539
+   #noisePower = 1.0
+   #noiseSize = 3.0
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.25681817531585693
+   #noisePower = 0.8799999952316284
+   #noiseSize = 0.2800000011920929
+   #noiseActive = 1
+   #noiseGrowth = 2.739999771118164
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.22651514410972595
+   #noisePower = 0.5
+   #noiseSize = 0.2199999988079071
+   #noiseActive = 1
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.41969695687294006
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 0.20000000298023224
+   #noiseSpaceY = 0.20000000298023224
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.30000001192092896
+   #noisePower = 2.0
+   #noiseSize = 0.20000000298023224
+   #noiseActive = 1
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 19
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.7000000476837158
+  #maxLenght = 1.0
+  #minLenght = 0.49059829115867615
+  #powLenght = 0.5
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.47651514410972595
+   #noisePower = 1.0299999713897705
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.5999999046325684
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.3287878632545471
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 2.2300000190734863
+   #noiseSpaceY = 2.2300000190734863
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.385606050491333
+   #noisePower = 0.9399999976158142
+   #noiseSize = 0.4000000059604645
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.699999988079071
+   #noisePower = 1.399999976158142
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 20
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 0.4700000286102295
+  #maxLenght = 1.0
+  #minLenght = 0.9555555582046509
+  #powLenght = 1.0
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.0
+   #noisePower = 1.0
+   #noiseSize = 1.0
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.1674242615699768
+   #noisePower = 1.5989999771118164
+   #noiseSize = 0.05499996244907379
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 19
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 2.0
+  #maxLenght = 0.699999988079071
+  #minLenght = 0.25
+  #powLenght = 0.4000000059604645
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.7170000076293945
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = noiseXYZ
+   #noiseHight = 0.21330797672271729
+   #noisePower = 0.5
+   #noiseSize = 0.4000000059604645
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.699999988079071
+   #noisePower = 1.2999999523162842
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = brov 1
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 64
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 0.8899999260902405
+  #maxLenght = 1.0
+  #minLenght = 0.8318681120872498
+  #powLenght = 0.30000001192092896
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.12999999523162842
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.22651514410972595
+   #noisePower = 1.0
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.5257575511932373
+   #noisePower = 0.9399999976158142
+   #noiseSize = 1.093000054359436
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 33
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 0.4100000262260437
+  #maxLenght = 1.0
+  #minLenght = 0.8208791017532349
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.12999999523162842
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.290909081697464
+   #noisePower = 1.1050000190734863
+   #noiseSize = 0.19300000369548798
+   #noiseActive = True
+   #noiseGrowth = 0.1600000262260437
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.4007575511932373
+   #noisePower = 1.0
+   #noiseSize = 0.5199999809265137
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = brov 2
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 70
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 0.699999988079071
+  #maxLenght = 1.0
+  #minLenght = 0.8318681120872498
+  #powLenght = 0.30000001192092896
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.13300000131130219
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.22651514410972595
+   #noisePower = 1.0
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.20000000298023224
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.6968601942062378
+   #noisePower = 0.9399999976158142
+   #noiseSize = 1.093000054359436
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 33
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 0.4100000262260437
+  #maxLenght = 0.7093023061752319
+  #minLenght = 0.25555554032325745
+  #powLenght = 0.30000001192092896
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.12999999523162842
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.30000001192092896
+   #noisePower = 1.0
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.4000000059604645
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.16007602214813232
+   #noisePower = 2.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 0.800000011920929
+   #noiseSpaceX = 4.0
+   #noiseSpaceY = 4.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.290909081697464
+   #noisePower = 0.699999988079071
+   #noiseSize = 0.19300000369548798
+   #noiseActive = True
+   #noiseGrowth = 0.1600000262260437
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.4007575511932373
+   #noisePower = 1.0
+   #noiseSize = 0.5199999809265137
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 155
+  #ditale = 3
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.06999999284744263
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.3311786949634552
+   #noisePower = 1.0
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.10000000149011612
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = brov 3
+ #discript = for the sream
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 70
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 0.699999988079071
+  #maxLenght = 1.0
+  #minLenght = 0.8318681120872498
+  #powLenght = 0.30000001192092896
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.18400000035762787
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.22651514410972595
+   #noisePower = 1.0
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.20000000298023224
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.6968601942062378
+   #noisePower = 0.9399999976158142
+   #noiseSize = 1.093000054359436
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 33
+  #ditale = 3
+  #noiseUv = 1.0
+  #noiseSize = 0.4100000262260437
+  #maxLenght = 0.7093023061752319
+  #minLenght = 0.25555554032325745
+  #powLenght = 0.30000001192092896
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.12999999523162842
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.30000001192092896
+   #noisePower = 1.0
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.4000000059604645
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.16007602214813232
+   #noisePower = 2.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 0.800000011920929
+   #noiseSpaceX = 4.0
+   #noiseSpaceY = 4.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.290909081697464
+   #noisePower = 0.699999988079071
+   #noiseSize = 0.19300000369548798
+   #noiseActive = 1
+   #noiseGrowth = 0.1600000262260437
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.4007575511932373
+   #noisePower = 1.0
+   #noiseSize = 0.5199999809265137
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = brow up 1
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 200
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.8428571224212646
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.10000000149011612
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.32499998807907104
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 2.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = brow up 2
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 296
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.8428571224212646
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.08799999952316284
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.06083650141954422
+   #noisePower = 0.6000000238418579
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.1006653904914856
+   #noisePower = 0.5199999809265137
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 0.6499999761581421
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.09543722867965698
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.2000000476837158
+   #noiseSpaceY = 1.2000000476837158
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 12.0
+ #renderDitale = 1.0
+ #names = brow up 3
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 100
+  #ditale = 6
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.8428571224212646
+  #powLenght = 0.5
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.08799999952316284
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.06083650141954422
+   #noisePower = 0.6000000238418579
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.1006653904914856
+   #noisePower = 0.5199999809265137
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 0.6499999761581421
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.09543722867965698
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.2000000476837158
+   #noiseSpaceY = 1.2000000476837158
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 33
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.10000000149011612
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.10304182767868042
+   #noisePower = 1.3899998664855957
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.5999999046325684
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 3.0
+ #renderDitale = 1.0
+ #names = brow up 4
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 100
+  #ditale = 7
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.8428571224212646
+  #powLenght = 0.5
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.08799999952316284
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.06083650141954422
+   #noisePower = 0.6000000238418579
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.1006653904914856
+   #noisePower = 0.5199999809265137
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 0.6499999761581421
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.09543722867965698
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.2000000476837158
+   #noiseSpaceY = 1.2000000476837158
+   #noiseSpaceZ = 1.0
+   #noiseType = rotate
+   #noiseHight = 0.0
+   #noisePower = 0.1029999852180481
+   #noiseSize = 13.049999237060547
+   #noiseActive = True
+   #noiseGrowth = 0.06999999284744263
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 33
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 1.5
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.10000000149011612
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.10304182767868042
+   #noisePower = 1.3899998664855957
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.5999999046325684
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 2.700000047683716
+ #renderDitale = 1.0
+ #names = brow up 4.4
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 100
+  #ditale = 7
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.8428571224212646
+  #powLenght = 0.5
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 1
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.06083650141954422
+   #noisePower = 0.6000000238418579
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.1006653904914856
+   #noisePower = 0.5199999809265137
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 0.6499999761581421
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.09543722867965698
+   #noisePower = 1.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 0.6000000238418579
+   #noiseSpaceX = 1.2000000476837158
+   #noiseSpaceY = 1.2000000476837158
+   #noiseSpaceZ = 1.0
+   #noiseType = rotate
+   #noiseHight = 0.0
+   #noisePower = 0.1029999852180481
+   #noiseSize = 13.049999237060547
+   #noiseActive = 1
+   #noiseGrowth = 0.06999999284744263
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 33
+  #ditale = 5
+  #noiseUv = 1.0
+  #noiseSize = 1.5
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = False
+  #smooth = 1.0
+  #radiuse = 0.05999999865889549
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = noiseUV
+   #noiseHight = 0.10304182767868042
+   #noisePower = 1.3899998664855957
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.5999999046325684
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.2999999523162842
+ #renderDitale = 1.0
+ #names = brov 4
+ #discript = for the sream/ nope
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 50
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 0.699999988079071
+  #maxLenght = 1.2000000476837158
+  #minLenght = 0.2429792284965515
+  #powLenght = 0.30000001192092896
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.12999999523162842
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.22651514410972595
+   #noisePower = 0.699999988079071
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.20000000298023224
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.6968601942062378
+   #noisePower = 0.9399999976158142
+   #noiseSize = 1.093000054359436
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.699999988079071
+   #noisePower = 1.399999976158142
+   #noiseSize = 0.10000000149011612
+   #noiseActive = True
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1.0
+  #count = 33
+  #ditale = 3
+  #noiseUv = 1.0
+  #noiseSize = 0.4100000262260437
+  #maxLenght = 0.7093023061752319
+  #minLenght = 0.25555554032325745
+  #powLenght = 0.30000001192092896
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.12999999523162842
+  #dinamick = False
+  #boneNumber = 0
+  #countPreview = 0
+  #Deformers: 
+   #noiseType = voron
+   #noiseHight = 0.30000001192092896
+   #noisePower = 1.0
+   #noiseSize = 2.0
+   #noiseActive = True
+   #noiseGrowth = 0.4000000059604645
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = size
+   #noiseHight = 0.16007602214813232
+   #noisePower = 2.0
+   #noiseSize = 0.10000000149011612
+   #noiseActive = 1
+   #noiseGrowth = 0.800000011920929
+   #noiseSpaceX = 4.0
+   #noiseSpaceY = 4.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseUV
+   #noiseHight = 0.290909081697464
+   #noisePower = 0.699999988079071
+   #noiseSize = 0.19300000369548798
+   #noiseActive = True
+   #noiseGrowth = 0.1600000262260437
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+   #noiseType = noiseXYZ
+   #noiseHight = 0.4007575511932373
+   #noisePower = 1.0
+   #noiseSize = 0.5199999809265137
+   #noiseActive = 1
+   #noiseGrowth = 1.0
+   #noiseSpaceX = 1.0
+   #noiseSpaceY = 1.0
+   #noiseSpaceZ = 1.0
+  #DeformersEnd;
+ #PresetEnd;
+#HairsEnd;
+#Hairs: 
+ #renderCount = 1.0
+ #renderDitale = 1.0
+ #names = test re pow radius
+ #discript = Hair descripts
+ #domenView = 0
+ #Materials: 
+  #material = 0
+ #MaterialsEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 10
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 0.9099999666213989
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #radiusePow = 1.6718413829803467
+  #Deformers: 
+  #DeformersEnd;
+ #PresetEnd;
+ #Preset: 
+  #types = curves
+  #separate = -1
+  #count = 10
+  #ditale = 4
+  #noiseUv = 1.0
+  #noiseSize = 1.100000023841858
+  #maxLenght = 1.0
+  #minLenght = 0.699999988079071
+  #powLenght = 1.7000000476837158
+  #active = True
+  #smooth = 1.0
+  #radiuse = 1.3899999856948853
+  #dinamick = True
+  #boneNumber = 0
+  #countPreview = 0
+  #radiusePow = 0.312534362077713
+  #Deformers: 
+  #DeformersEnd;
+ #PresetEnd;
 #HairsEnd;
