@@ -382,6 +382,21 @@ Combination example
 
 </details>
 
+<details>
+  <summary>    Gravity</summary>
+
+**Type**: Gravity : 
+
+ - Use
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193272696406046/first_1-13-1.png "The size")
+
+ - No use
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193274097172722/first_1-13-2.png "The size")
+
+</details>
+
 **Addon Discussion Location**:
 - https://blenderartists.org/t/addon-hair-conductor-blender-2-8/1242182
 
