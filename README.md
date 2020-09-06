@@ -376,12 +376,6 @@ No deformers
 
 </details>
 
-Combination example
-
-![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006184716566579/first_1-7-1.png "Combination example")
-
-</details>
-
 <details>
   <summary>    Gravity</summary>
 
@@ -394,6 +388,12 @@ Combination example
  - No use
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193274097172722/first_1-13-2.png "The size")
+
+</details>
+
+Combination example
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745006184716566579/first_1-7-1.png "Combination example")
 
 </details>
 
