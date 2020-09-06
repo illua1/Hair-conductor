@@ -138,8 +138,6 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
-</details>
-
 <details>
   <summary>    Curve power radius</summary>
 
