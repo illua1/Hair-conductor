@@ -138,6 +138,24 @@ Makes hair styling according to your corridor geometry.
 
 </details>
 
+</details>
+
+<details>
+  <summary>    Curve power radius</summary>
+
+ - Power 1
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193279272943616/first_1-14-3.png "Power 1")
+
+ - High power
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193276689383524/first_1-14-2.png "High power")
+
+ - Small power
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193276500770856/first_1-14-1.png "Small power")
+
+ </details>
 <details>
   <summary>    Split by materials</summary>
 
