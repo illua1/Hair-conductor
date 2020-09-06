@@ -178,6 +178,14 @@ Makes hair styling according to your corridor geometry.
 
 ![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/745374832530555010/first_1-10-4.png "High minimum")
 
+ - Length up to 1
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193281714028555/first_1-15-1.png "Length up to 1")
+
+ - Ton more than 1
+
+![Alt-текст](https://cdn.discordapp.com/attachments/340195875399663617/752193282536112220/first_1-15-2.png "Ton more than 1")
+
 </details>
 
 <details>
