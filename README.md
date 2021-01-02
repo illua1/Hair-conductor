@@ -405,3 +405,6 @@ Combination example
  - If you are using this hair for rendering, then you are using curves, but it is not hair! and if you render them in cycles you could lose your computer to gpu! Don't risk it! Use eevee!
 ____
 # The addon will be supported upon request. Development stopped. Addon readiness - ready to use.
+
+
+# I have plans to create version 2.0 in February
