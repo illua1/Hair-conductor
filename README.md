@@ -407,4 +407,4 @@ ____
 # The addon will be supported upon request. Development stopped. Addon readiness - ready to use.
 
 
-# CLOAED PROJECT
+# CLOSED PROJECT
